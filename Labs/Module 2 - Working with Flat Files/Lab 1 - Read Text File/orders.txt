@@ -1,0 +1,34 @@
+Productline: Classic Cars
+Customer: Christine Loomis
+Delivered: January 2004
+Order Value: $21.99
+
+Productline: Classic Cars
+Customer: Mary L. Peachin
+Delivered: November 2008
+Order Value: $24.99
+
+Productline: Trains
+Customer: Bob Italia
+Delivered: July 1994
+Order Value: $14.99
+
+Productline: Planes
+Customer: Scott M. Ascher 
+Delivered:  March 2014
+Order Value: $27.99
+
+Productline: Motorcycles
+Customer: Monty Halls
+Returned: April 2007
+Order Value: $29.99
+
+Productline: Trains
+Customer: Paul McCallum 
+Returned: June 2017
+Order Value: $34.99
+
+Productline: Boats
+Customer: Jill Robinson
+Delivered: November 2014
+Order Value: $19.99

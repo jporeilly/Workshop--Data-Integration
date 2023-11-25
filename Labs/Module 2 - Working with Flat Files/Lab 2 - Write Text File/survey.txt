@@ -1,0 +1,7 @@
+Customer name: James
+----------------------------------------------------
+Please answer the questions below:
+
+1. How many employees currently in your organisation?
+2. Which ETL tool do you currently use?
+3. What would you do if you had a magic wand?

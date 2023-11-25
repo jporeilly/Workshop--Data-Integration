@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+<order>
+   <productline>Classic Cars</productline>
+   <customer>Christine Loomis</customer>
+   <status>Delivered</status>
+   <date>January 2004</date>
+   <value>21.99</value>
+</order>
+
+<order>
+   <productline>Classic Cars</productline>
+   <customer>Mary L. Peachin</customer>
+   <status>Delivered</status>
+   <date>November 2008</date>
+   <value>24.99</value>
+</order>
+
+<order>
+   <productline>Trains</productline>
+   <customer>Bob Italia</customer>
+   <status>Delivered</status>
+   <date>July 1994</date>
+   <value>14.99</value>
+</order>
+
+<order>
+   <productline>Planes</productline>
+   <customer>Scott M. Ascher</customer>
+   <status>Delivered</status>
+   <date>March 2014</date>
+   <value>27.99</value>
+</order>
+
+<order>
+   <productline>Motorcycles</productline>
+   <customer>Monty Halls</customer>
+   <status>Returned</status>
+   <date>April 2007</date>
+   <value>29.99</value>
+</order>
+
+<order>
+   <productline>Trains</productline>
+   <customer>Paul McCallum</customer>
+   <status>Returned</status>
+   <date>June 2017</date>
+   <value>34.99</value>
+</order>
+
+<order>
+   <productline>Boats</productline>
+   <customer>Jill Robinson</customer>
+   <status>Delivered</status>
+   <date>November 2014</date>
+   <value>19.99</value>
+</order>
+</document>
+
