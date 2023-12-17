@@ -13,11 +13,11 @@
   <parameters>
     </parameters>
   <connection>
-    <name>db</name>
+    <name>SQLite</name>
     <server/>
     <type>SQLITE</type>
     <access>Native</access>
-    <database>C:/SQLite/data.db</database>
+    <database>${Internal.Entry.Current.Directory}/data.db</database>
     <port>-1</port>
     <username/>
     <password>Encrypted </password>
@@ -612,7 +612,7 @@ create table customers(
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>db</connection>
+      <connection>SQLite</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>

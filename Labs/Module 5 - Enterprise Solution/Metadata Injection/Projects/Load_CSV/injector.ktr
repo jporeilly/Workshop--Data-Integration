@@ -442,11 +442,11 @@
   <notepads>
   </notepads>
   <connection>
-    <name>db</name>
+    <name>SQLite</name>
     <server/>
     <type>SQLITE</type>
     <access>Native</access>
-    <database>C:/SQLite/data.db</database>
+    <database>${Internal.Entry.Current.Directory}/data.db</database>
     <port>-1</port>
     <username/>
     <password>Encrypted </password>
@@ -609,7 +609,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>720</xloc>
       <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
@@ -846,7 +846,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>848</xloc>
       <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1072,7 +1072,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>720</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1156,7 +1156,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>544</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1288,7 +1288,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db</connection>
+    <connection>SQLite</connection>
     <sql>select * from metadata;</sql>
     <limit>0</limit>
     <lookup/>
@@ -1415,7 +1415,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_filenames>N</accept_filenames>
+    <accept_filenames>Y</accept_filenames>
     <passing_through_fields>N</passing_through_fields>
     <accept_field>filename</accept_field>
     <accept_stepname>Get Variables</accept_stepname>
