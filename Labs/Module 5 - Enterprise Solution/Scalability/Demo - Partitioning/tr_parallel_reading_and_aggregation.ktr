@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>General - parallel reading and aggregation</name>
+    <name>tr_parallel_reading_and_aggregation</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -439,10 +439,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user/>
-    <created_date>2011&#x2f;03&#x2f;29 11&#x3a;21&#x3a;31.228</created_date>
+    <created_date>2011/03/29 11:21:31.228</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2008&#x2f;07&#x2f;07 22&#x3a;04&#x3a;34.780</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2008/07/07 22:04:34.780</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -465,43 +465,44 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>2</copies>
+    <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;files&#x2f;customers-100.txt</filename>
+    <filename>C:\GitHub\Workshop--Data-Integration\Labs\Module 5 - Enterprise Solution\Scalability\Demo - Partitioning\data\customers-100.txt</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
-    <separator>&#x3b;</separator>
-    <enclosure>&#x22;</enclosure>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
     <header>Y</header>
     <buffer_size>50000</buffer_size>
     <lazy_conversion>N</lazy_conversion>
     <add_filename_result>N</add_filename_result>
     <parallel>Y</parallel>
     <newline_possible>N</newline_possible>
+    <format>mixed</format>
     <encoding>UTF-8</encoding>
     <fields>
       <field>
         <name>id</name>
         <type>Integer</type>
-        <format/>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>3</length>
+        <format>#</format>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
         <precision>0</precision>
-        <trim_type>left</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>name</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>10</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -510,9 +511,9 @@
         <name>firstname</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>13</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -520,21 +521,21 @@
       <field>
         <name>zip</name>
         <type>Integer</type>
-        <format/>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>5</length>
+        <format>#</format>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
         <precision>0</precision>
-        <trim_type>left</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>city</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>8</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -542,11 +543,11 @@
       <field>
         <name>birthdate</name>
         <type>Date</type>
-        <format>yyyy&#x2f;MM&#x2f;dd</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>10</length>
+        <format>yyyy/MM/dd</format>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -554,9 +555,9 @@
         <name>street</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>11</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -564,21 +565,21 @@
       <field>
         <name>housenr</name>
         <type>Integer</type>
-        <format/>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>3</length>
+        <format>#</format>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
         <precision>0</precision>
-        <trim_type>left</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>stateCode</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>9</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -587,14 +588,15 @@
         <name>state</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <currency>£</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>30</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -607,8 +609,7 @@
       <yloc>93</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
     <name>Preview here</name>
     <type>Dummy</type>
@@ -620,6 +621,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -632,34 +634,33 @@
       <yloc>93</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
     <name>count by state</name>
     <type>MemoryGroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>2</copies>
+    <copies>1</copies>
     <partitioning>
-      <method>ModPartitioner</method>
+      <method>none</method>
       <schema_name>State</schema_name>
-           <field_name>state</field_name>
     </partitioning>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>state</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>count</aggregate>
-          <subject>id</subject>
-          <type>COUNT_ALL</type>
-          <valuefield/>
-        </field>
-      </fields>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>state</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>count</aggregate>
+        <subject>id</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -672,11 +673,11 @@
       <yloc>93</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes/>
 </transformation>
