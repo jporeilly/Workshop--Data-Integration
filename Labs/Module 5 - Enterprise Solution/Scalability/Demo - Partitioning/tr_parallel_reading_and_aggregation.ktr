@@ -465,12 +465,12 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>2</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\GitHub\Workshop--Data-Integration\Labs\Module 5 - Enterprise Solution\Scalability\Demo - Partitioning\data\customers-100.txt</filename>
+    <filename>${Internal.Transformation.Filename.Directory}/data/customers-100.txt</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -488,21 +488,21 @@
       <field>
         <name>id</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>3</length>
         <precision>0</precision>
-        <trim_type>both</trim_type>
+        <trim_type>left</trim_type>
       </field>
       <field>
         <name>name</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>10</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -511,9 +511,9 @@
         <name>firstname</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>13</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -521,21 +521,21 @@
       <field>
         <name>zip</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>5</length>
         <precision>0</precision>
-        <trim_type>both</trim_type>
+        <trim_type>left</trim_type>
       </field>
       <field>
         <name>city</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>8</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -544,10 +544,10 @@
         <name>birthdate</name>
         <type>Date</type>
         <format>yyyy/MM/dd</format>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>-1</length>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>10</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -555,9 +555,9 @@
         <name>street</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>11</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -565,21 +565,21 @@
       <field>
         <name>housenr</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>3</length>
         <precision>0</precision>
-        <trim_type>both</trim_type>
+        <trim_type>left</trim_type>
       </field>
       <field>
         <name>stateCode</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>9</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -588,9 +588,9 @@
         <name>state</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>30</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -605,8 +605,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>152</xloc>
-      <yloc>93</yloc>
+      <xloc>144</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -630,8 +630,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>569</xloc>
-      <yloc>93</yloc>
+      <xloc>400</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -641,10 +641,11 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>2</copies>
     <partitioning>
-      <method>none</method>
+      <method>ModPartitioner</method>
       <schema_name>State</schema_name>
+      <field_name>State</field_name>
     </partitioning>
     <give_back_row>N</give_back_row>
     <group>
@@ -669,8 +670,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>363</xloc>
-      <yloc>93</yloc>
+      <xloc>288</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
