@@ -1,0 +1,1945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>tr_mqtt_producer_sensor_data</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2017/04/26 11:19:52.144</created_date>
+    <modified_user>admin</modified_user>
+    <modified_date>2017/04/28 11:18:37.615</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via MQTT Producer step.</note>
+      <xloc>256</xloc>
+      <yloc>592</yloc>
+      <width>588</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>0</bordercolorred>
+      <bordercolorgreen>128</bordercolorgreen>
+      <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Step will never stop generating
+output, simulating IoT.</note>
+      <xloc>64</xloc>
+      <yloc>160</yloc>
+      <width>173</width>
+      <heigth>42</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>0</bordercolorred>
+      <bordercolorgreen>128</bordercolorgreen>
+      <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Records being batched in 5 sec intervals.</note>
+      <xloc>64</xloc>
+      <yloc>384</yloc>
+      <width>223</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>0</bordercolorred>
+      <bordercolorgreen>128</bordercolorgreen>
+      <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>MQTT</note>
+      <xloc>64</xloc>
+      <yloc>48</yloc>
+      <width>47</width>
+      <heigth>28</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-truck_temp_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-headlight_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-load_weight_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-truck_temp_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-headlight_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-load_weight_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-axle_vibration_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-axle_vibration_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-gps_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-gps_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-air_pressure_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-air_pressure_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dmmy-sensor_data_collector</from>
+      <to>sv-define_metadata</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gr-IoT_gateway</from>
+      <to>as-gen_timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>as-gen_timestamp</from>
+      <to>sv-remove_fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-define_metadata</from>
+      <to>cf-concat_message_field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>cf-concat_message_field</from>
+      <to>sv-message</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-message</from>
+      <to>Replace Me..!</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Replace Me..!</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>as-gen_timestamp</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>timestamp</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>20170401000000</start_at>
+    <increment_by>5</increment_by>
+    <max_value>99999999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>cf-concat_message_field</name>
+    <type>ConcatFields</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name/>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>vehicle_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>sensor_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>data_row</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dmmy-sensor_data_collector</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gr-IoT_gateway</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>vehicle_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>111</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>Y</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-air_pressure_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 6;
+var sensor_type = 6;
+
+// No big vibration should be felt
+var sensor_value = Math.floor(Math.random() * 5) + 30;
+
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value >= 34 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value &lt; 30 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-axle_vibration_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 4;
+var sensor_type = 4;
+
+// No big vibration should be felt
+var sensor_value = Math.floor(Math.random() * 20) + 80;
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value > 75 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value > 90 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-gps_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var data = {
+		"0": "40.73447:-74.00232",
+		"1": "40.73433:-74.0024",
+		"2": "40.7337:-74.00278",
+		"3": "40.73361:-74.00282",
+		"4": "40.7332:-74.00305",
+		"5": "40.73278:-74.00329",
+		"6": "40.73235:-74.00353",
+		"7": "40.73222:-74.00361",
+		"8": "40.73222:-74.00361",
+		"9": "40.73172:-74.00332",
+		"10": "40.73145:-74.00317",
+		"11": "40.73112:-74.00298",
+		"12": "40.7309:-74.00285",
+		"13": "40.73031:-74.0025",
+		"14": "40.72987:-74.00226",
+		"15": "40.72973:-74.00217",
+		"16": "40.72961:-74.00212",
+		"17": "40.7292:-74.00132",
+		"18": "40.72915:-74.00121",
+		"19": "40.72915:-74.00121",
+		"20": "40.72807:-74.00212",
+		"21": "40.72796:-74.00222",
+		"22": "40.72796:-74.00222",
+		"23": "40.72759:-74.00146",
+		"24": "40.72721:-74.0007",
+		"25": "40.72685:-73.99998",
+		"26": "40.72647:-73.99919",
+		"27": "40.72609:-73.99843",
+		"28": "40.72572:-73.99768",
+		"29": "40.72553:-73.99732",
+		"30": "40.72546:-73.99717",
+		"31": "40.7254:-73.99704",
+		"32": "40.72533:-73.99684",
+		"33": "40.72511:-73.99593",
+		"34": "40.72509:-73.99586",
+		"35": "40.72505:-73.99572",
+		"36": "40.72502:-73.99552",
+		"37": "40.72499:-73.99541",
+		"38": "40.72482:-73.99498",
+		"39": "40.72461:-73.99435",
+		"40": "40.72458:-73.99423",
+		"41": "40.72434:-73.9935",
+		"42": "40.72423:-73.99321",
+		"43": "40.72406:-73.99271",
+		"44": "40.72406:-73.99271",
+		"45": "40.72282:-73.99317",
+		"46": "40.72235:-73.99334",
+		"47": "40.72161:-73.99359",
+		"48": "40.72092:-73.99387",
+		"49": "40.72035:-73.9941",
+		"50": "40.72028:-73.99414",
+		"51": "40.72028:-73.99414",
+		"52": "40.7202:-73.99402",
+		"53": "40.72014:-73.9939",
+		"54": "40.71992:-73.99314",
+		"55": "40.71986:-73.99297",
+		"56": "40.71981:-73.99277",
+		"57": "40.71963:-73.99219",
+		"58": "40.71959:-73.99201",
+		"59": "40.71953:-73.99183",
+		"60": "40.71938:-73.99133",
+		"61": "40.71928:-73.991",
+		"62": "40.71914:-73.99056",
+		"63": "40.7191:-73.99043",
+		"64": "40.71906:-73.99029",
+		"65": "40.71892:-73.98982",
+		"66": "40.71873:-73.98918",
+		"67": "40.71869:-73.98906",
+		"68": "40.71845:-73.98824",
+		"69": "40.71821:-73.98745",
+		"70": "40.71818:-73.98735",
+		"71": "40.71815:-73.98728",
+		"72": "40.71811:-73.98717",
+		"73": "40.71792:-73.98665",
+		"74": "40.71762:-73.98593",
+		"75": "40.71758:-73.98584",
+		"76": "40.71758:-73.98584",
+		"77": "40.71757:-73.9858",
+		"78": "40.71754:-73.98574",
+		"79": "40.71754:-73.98572",
+		"80": "40.71752:-73.98567",
+		"81": "40.71751:-73.98563",
+		"82": "40.71749:-73.98558",
+		"83": "40.7155:-73.97898",
+		"84": "40.7155:-73.97898",
+		"85": "40.71533:-73.97834",
+		"86": "40.71531:-73.97828",
+		"87": "40.71527:-73.97812",
+		"88": "40.71519:-73.97784",
+		"89": "40.71508:-73.97743",
+		"90": "40.71507:-73.97742",
+		"91": "40.71486:-73.97668",
+		"92": "40.71484:-73.97662",
+		"93": "40.71482:-73.97652",
+		"94": "40.71478:-73.97639",
+		"95": "40.71474:-73.97624",
+		"96": "40.71447:-73.97529",
+		"97": "40.71444:-73.97521",
+		"98": "40.7144:-73.97509",
+		"99": "40.71276:-73.96956",
+		"100": "40.71263:-73.96913",
+		"101": "40.71256:-73.9689",
+		"102": "40.71249:-73.96867",
+		"103": "40.71225:-73.96788",
+		"104": "40.71221:-73.96773",
+		"105": "40.71192:-73.96679",
+		"106": "40.71176:-73.96628",
+		"107": "40.71139:-73.96512",
+		"108": "40.71091:-73.96357",
+		"109": "40.71085:-73.96339",
+		"110": "40.71073:-73.963",
+		"111": "40.71062:-73.96275",
+		"112": "40.71043:-73.96215",
+		"113": "40.71031:-73.96176",
+		"114": "40.71019:-73.96137",
+		"115": "40.71014:-73.96119",
+		"116": "40.71012:-73.96107",
+		"117": "40.71008:-73.96087",
+		"118": "40.71006:-73.96077",
+		"119": "40.71004:-73.96057",
+		"120": "40.71003:-73.96042",
+		"121": "40.71003:-73.96042",
+		"122": "40.71003:-73.96026",
+		"123": "40.71004:-73.96012",
+		"124": "40.71005:-73.95998",
+		"125": "40.71008:-73.95966",
+		"126": "40.71009:-73.9595",
+		"127": "40.71016:-73.95885",
+		"128": "40.71018:-73.95868",
+		"129": "40.7102:-73.95854",
+		"130": "40.7102:-73.95846",
+		"131": "40.71023:-73.95813",
+		"132": "40.71027:-73.95772",
+		"133": "40.7103:-73.95746",
+		"134": "40.71032:-73.95728",
+		"135": "40.71034:-73.9572",
+		"136": "40.71036:-73.9571",
+		"137": "40.71038:-73.95701",
+		"138": "40.7104:-73.95691",
+		"139": "40.71044:-73.95677",
+		"140": "40.71048:-73.95665",
+		"141": "40.71051:-73.95658",
+		"142": "40.71053:-73.95652",
+		"143": "40.71059:-73.9564",
+		"144": "40.71062:-73.95633",
+		"145": "40.71074:-73.9561",
+		"146": "40.71096:-73.95578",
+		"147": "40.71116:-73.95554",
+		"148": "40.71143:-73.95529",
+		"149": "40.71145:-73.95527",
+		"150": "40.71162:-73.95515",
+		"151": "40.71189:-73.95497",
+		"152": "40.71233:-73.95468",
+		"153": "40.71266:-73.95447",
+		"154": "40.71299:-73.9542",
+		"155": "40.71331:-73.95391",
+		"156": "40.71357:-73.95366",
+		"157": "40.71385:-73.95337",
+		"158": "40.71404:-73.95317",
+		"159": "40.71407:-73.95313",
+		"160": "40.71408:-73.95312",
+		"161": "40.71408:-73.95311",
+		"162": "40.71409:-73.9531",
+		"163": "40.71409:-73.95309",
+		"164": "40.7141:-73.95308",
+		"165": "40.7141:-73.95306",
+		"166": "40.71414:-73.95294",
+		"167": "40.71427:-73.95281",
+		"168": "40.71439:-73.95268",
+		"169": "40.71468:-73.95237",
+		"170": "40.71494:-73.95207",
+		"171": "40.71504:-73.95195",
+		"172": "40.71521:-73.95174",
+		"173": "40.71557:-73.95126",
+		"174": "40.71577:-73.951",
+		"175": "40.71598:-73.9507",
+		"176": "40.71616:-73.95046",
+		"177": "40.71638:-73.95013",
+		"178": "40.7166:-73.94979",
+		"179": "40.71667:-73.94967",
+		"180": "40.71676:-73.94954",
+		"181": "40.71738:-73.94858",
+		"182": "40.71758:-73.94828",
+		"183": "40.71775:-73.94801",
+		"184": "40.71819:-73.94732",
+		"185": "40.71854:-73.94675",
+		"186": "40.71873:-73.94645",
+		"187": "40.71893:-73.9461",
+		"188": "40.71893:-73.9461",
+		"189": "40.71901:-73.94585",
+		"190": "40.71904:-73.9458",
+		"191": "40.7191:-73.94565",
+		"192": "40.71916:-73.94552",
+		"193": "40.7192:-73.94541",
+		"194": "40.7193:-73.94513",
+		"195": "40.71937:-73.94486",
+		"196": "40.71945:-73.94459",
+		"197": "40.71945:-73.94459",
+		"198": "40.71956:-73.94447",
+		"199": "40.71966:-73.94438",
+		"200": "40.71974:-73.94432",
+		"201": "40.71983:-73.94426",
+		"202": "40.71992:-73.94422",
+		"203": "40.72001:-73.94418",
+		"204": "40.72001:-73.94418",
+		"205": "40.72006:-73.94424",
+		"206": "40.7201:-73.94429",
+		"207": "40.72015:-73.94431",
+		"208": "40.72016:-73.94431",
+		"209": "40.72022:-73.94433",
+		"210": "40.72029:-73.94439",
+		"211": "40.72083:-73.94489",
+		"212": "40.721:-73.94507",
+		"213": "40.7214:-73.94547",
+		"214": "40.72159:-73.9457",
+		"215": "40.72206:-73.94621",
+		"216": "40.72222:-73.94639",
+		"217": "40.72253:-73.94671",
+		"218": "40.72279:-73.94698"
+};
+
+var sensor_id = 7;
+var sensor_type = 7;
+
+
+var sensor_value = data[iteration];
+if(iteration == 218)
+{
+	iteration = 0;
+}
+else
+{	
+	iteration = iteration+1;
+}
+
+var minor_alert = 0;
+var major_alert = 1;
+</jsScript_script>
+      </jsScript>
+      <jsScript>
+        <jsScript_type>1</jsScript_type>
+        <jsScript_name>Item_0</jsScript_name>
+        <jsScript_script>//Script here
+var iteration = 0;
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-headlight_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 2;
+var sensor_type = 2;
+
+// cars headlights = 700 1200 lumens
+// minor alert = &lt; 750
+// major alert = > 1200 (short circuit?)
+var sensor_value = Math.floor(Math.random() * 800) + 700;
+
+var minor_alert = (sensor_value &lt;750 ? 1 : 0);
+var major_alert = (sensor_value > 1200 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-load_weight_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 3;
+var sensor_type = 3;
+
+// should only really have a big variation when the vehicle is loaded/offloaded
+var sensor_value = Math.floor(Math.random() * 1700) + 9000;
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value &lt;10000 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-truck_temp_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 1;
+var sensor_type = 1;
+
+var sensor_value = Math.floor(Math.random() * 41) + 50;
+
+var minor_alert = (sensor_value > 80 ? 1 : 0);
+var major_alert = (sensor_value > 95 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-define_metadata</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>timestamp</name>
+        <rename>timestamp</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>vehicle_id</name>
+        <rename>vehicle_id</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Integer</type>
+        <length>16</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Integer</type>
+        <length>16</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Integer</type>
+        <length>16</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Integer</type>
+        <length>16</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-message</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>vehicle_id</name>
+      </field>
+      <field>
+        <name>timestamp</name>
+      </field>
+      <field>
+        <name>sensor_id</name>
+      </field>
+      <field>
+        <name>sensor_type</name>
+      </field>
+      <field>
+        <name>sensor_value</name>
+      </field>
+      <field>
+        <name>minor_alert</name>
+      </field>
+      <field>
+        <name>major_alert</name>
+      </field>
+      <field>
+        <name>data_row</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>timestamp</name>
+      </remove>
+      <remove>
+        <name>sensor_id</name>
+      </remove>
+      <remove>
+        <name>sensor_type</name>
+      </remove>
+      <remove>
+        <name>sensor_value</name>
+      </remove>
+      <remove>
+        <name>minor_alert</name>
+      </remove>
+      <remove>
+        <name>major_alert</name>
+      </remove>
+      <meta>
+        <name>data_row</name>
+        <rename>message</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-remove_fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>FiveSecondsAgo</name>
+      </remove>
+      <remove>
+        <name>now</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+  <attributes>
+    <group>
+      <name>METASTORE.NamedClusters</name>
+      <attribute>
+        <key>NamedCluster</key>
+        <value>{"namespace":"NamedClusters","id":"NamedCluster","name":"NamedCluster","description":"A NamedCluster","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>explorerState</name>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
+    </group>
+  </attributes>
+</transformation>
