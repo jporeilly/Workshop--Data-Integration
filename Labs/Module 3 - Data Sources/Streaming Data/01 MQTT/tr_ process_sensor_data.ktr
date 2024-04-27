@@ -439,7 +439,7 @@
       <note>Minor Alerts</note>
       <xloc>288</xloc>
       <yloc>288</yloc>
-      <width>82</width>
+      <width>85</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -460,7 +460,7 @@
       <note>Major Alerts</note>
       <xloc>592</xloc>
       <yloc>288</yloc>
-      <width>82</width>
+      <width>84</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -505,16 +505,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get records from stream</from>
-      <to>JSON Input</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON Input</from>
-      <to>Get System Info</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Get System Info</from>
       <to>Get Sensor Type</to>
       <enabled>Y</enabled>
@@ -544,7 +534,69 @@
       <to>Major Owner and Number</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Get records from stream</from>
+      <to>sf-split_message_field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sf-split_message_field</from>
+      <to>Get System Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Data grid</from>
+      <to>sf-split_message_field</to>
+      <enabled>N</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Data grid</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>111;20170401000000;6.0;6.0;40.73447:-74.00232;0.0;1.0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;3.0;3.0;42.73447:-74.00232;1.0;0.0</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>680</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Filter Major Alerts</name>
     <type>FilterRows</type>
@@ -556,7 +608,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to/>
+    <send_true_to>Group Major Alerts</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -569,12 +621,12 @@
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Integer</type>
-              <text>1</text>
+              <type>String</type>
+              <text>1.0</text>
               <length>-1</length>
-              <precision>0</precision>
+              <precision>-1</precision>
               <isnull>N</isnull>
-              <mask>####0;-####0</mask>
+              <mask/>
             </value>
           </condition>
         </conditions>
@@ -605,7 +657,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to/>
+    <send_true_to>Group Minor Alerts</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -619,12 +671,12 @@
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Integer</type>
-              <text>1</text>
+              <type>String</type>
+              <text>1.0</text>
               <length>-1</length>
-              <precision>0</precision>
+              <precision>-1</precision>
               <isnull>N</isnull>
-              <mask>####0;-####0</mask>
+              <mask/>
             </value>
           </condition>
         </conditions>
@@ -639,7 +691,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>384</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -660,31 +712,31 @@
     <non_match_default>Unknown</non_match_default>
     <fields>
       <field>
-        <source_value>1</source_value>
+        <source_value>1.0</source_value>
         <target_value>Temperature</target_value>
       </field>
       <field>
-        <source_value>2</source_value>
+        <source_value>2.0</source_value>
         <target_value>Headlight</target_value>
       </field>
       <field>
-        <source_value>3</source_value>
+        <source_value>3.0</source_value>
         <target_value>Load_Weight</target_value>
       </field>
       <field>
-        <source_value>4</source_value>
+        <source_value>4.0</source_value>
         <target_value>Vibration</target_value>
       </field>
       <field>
-        <source_value>5</source_value>
+        <source_value>5.0</source_value>
         <target_value>Count</target_value>
       </field>
       <field>
-        <source_value>6</source_value>
+        <source_value>6.0</source_value>
         <target_value>Pressure</target_value>
       </field>
       <field>
-        <source_value>7</source_value>
+        <source_value>7.0</source_value>
         <target_value>Position</target_value>
       </field>
     </fields>
@@ -697,8 +749,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>475</xloc>
-      <yloc>300</yloc>
+      <xloc>480</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -728,8 +780,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>475</xloc>
-      <yloc>200</yloc>
+      <xloc>480</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -761,8 +813,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>475</xloc>
-      <yloc>25</yloc>
+      <xloc>480</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -770,7 +822,7 @@
     <name>Group Major Alerts</name>
     <type>MemoryGroupBy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -851,156 +903,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>384</xloc>
       <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON Input</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>vehicle_id</name>
-        <path>$.vehicle_id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <path>$.timestamp</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>sensor_id</name>
-        <path>$.sensor_id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <path>$.sensor_type</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <path>$.sensor_value</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <path>$.minor_alert</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <path>$.major_alert</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>475</xloc>
-      <yloc>100</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1023,13 +927,13 @@
     <footer>N</footer>
     <format>UNIX</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/Major_Alert_Output</name>
+      <name>/home/pentaho/Project/MQTT/major_alert</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1047,6 +951,18 @@
     </file>
     <fields>
       <field>
+        <name>current_time</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>vehicle_id</name>
         <type>String</type>
         <format/>
@@ -1054,31 +970,7 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>owner</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>phone_number</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -1090,25 +982,37 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
+        <trim_type>none</trim_type>
+        <length>11</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>count_alerts</name>
         <type>Integer</type>
-        <format>0</format>
+        <format/>
         <currency/>
         <decimal>.</decimal>
         <group>,</group>
         <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>owner</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>current_time</name>
-        <type>Date</type>
+        <name>phone_number</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1144,7 +1048,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from/>
+    <from>dg-vehicule_lookup</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1152,7 +1056,7 @@
     <lookup>
       <key>
         <name>vehicle_id</name>
-        <field>vehicule</field>
+        <field>vehicle_id</field>
       </key>
       <value>
         <name>owner</name>
@@ -1200,13 +1104,13 @@
     <footer>N</footer>
     <format>UNIX</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/Minor_Alert_Output</name>
+      <name>/home/pentaho/Project/MQTT/minor_alert</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1224,6 +1128,18 @@
     </file>
     <fields>
       <field>
+        <name>current_time</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>vehicle_id</name>
         <type>String</type>
         <format/>
@@ -1231,31 +1147,7 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>owner</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>phone_number</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -1267,25 +1159,37 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
+        <trim_type>none</trim_type>
+        <length>11</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>count_alerts</name>
         <type>Integer</type>
-        <format>0</format>
+        <format/>
         <currency/>
         <decimal>.</decimal>
         <group>,</group>
         <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>owner</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>current_time</name>
-        <type>Date</type>
+        <name>phone_number</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1305,7 +1209,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>384</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1321,7 +1225,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from/>
+    <from>dg-vehicule_lookup</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1329,7 +1233,7 @@
     <lookup>
       <key>
         <name>vehicle_id</name>
-        <field>vehicule</field>
+        <field>vehicle_id</field>
       </key>
       <value>
         <name>owner</name>
@@ -1353,7 +1257,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>384</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1380,6 +1284,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>owner</name>
@@ -1391,6 +1296,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>phone_number</name>
@@ -1402,6 +1308,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -1415,11 +1322,6 @@
         <item>Steve Brown</item>
         <item>+44 781 85 55</item>
       </line>
-      <line>
-        <item/>
-        <item/>
-        <item/>
-      </line>
     </data>
     <attributes/>
     <cluster_schema/>
@@ -1431,7 +1333,142 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>512</yloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sf-split_message_field</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>message</splitfield>
+    <delimiter>;</delimiter>
+    <enclosure/>
+    <fields>
+      <field>
+        <name>vehicle_id</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>sensor_id</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1449,6 +1486,13 @@
       </attribute>
     </group>
     <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Snowflake Staging VFS Connection</key>
+        <value>{"namespace":"pentaho","id":"Snowflake Staging VFS Connection","name":"Snowflake Staging VFS Connection","description":"Defines the connection details for a Snowflake staging area VFS connection","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
       <name>explorerState</name>
     </group>
     <group>
@@ -1456,6 +1500,17 @@
       <attribute>
         <key>Demo</key>
         <value>{"children":[{"children":[],"id":"hdfsPassword","value":null},{"children":[],"id":"oozieUrl","value":"http://ip-172-31-26-88.eu-west-1.compute.internal:11000/oozie"},{"children":[],"id":"mapr","value":"N"},{"children":[],"id":"useGateway","value":"N"},{"children":[],"id":"lastModifiedDate","value":"1521218510183"},{"children":[],"id":"jobTrackerHost","value":"ip-172-31-22-90.eu-west-1.compute.internal"},{"children":[],"id":"zooKeeperHost","value":"ip-172-31-22-90.eu-west-1.compute.internal"},{"children":[],"id":"shimIdentifier","value":null},{"children":[],"id":"gatewayUrl","value":null},{"children":[],"id":"jobTrackerPort","value":"8032"},{"children":[],"id":"zooKeeperPort","value":"2181"},{"children":[],"id":"name","value":"Demo"},{"children":[],"id":"hdfsPort","value":"8020"},{"children":[],"id":"hdfsUsername","value":null},{"children":[],"id":"gatewayPassword","value":null},{"children":[],"id":"kafkaBootstrapServers","value":"ip-172-31-26-88.eu-west-1.compute.internal:9092"},{"children":[],"id":"storageScheme","value":"hdfs"},{"children":[],"id":"hdfsHost","value":"ip-172-31-22-90.eu-west-1.compute.internal"},{"children":[],"id":"gatewayUsername","value":null}],"id":"Demo","value":null,"name":"Demo","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Snowflake Staging VFS Connection"}</name>
+      <attribute>
+        <key>AWS_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.us-east-1.snowflakecomputing.com"},{"children":[],"id":"name","value":"AWS_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"AWS_SnowflakeStagingArea","value":null,"name":"AWS_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+      <attribute>
+        <key>Azure_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.east-us-2.azure.snowflakecomputing.com"},{"children":[],"id":"name","value":"Azure_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"Azure_SnowflakeStagingArea","value":null,"name":"Azure_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
       </attribute>
     </group>
   </attributes>

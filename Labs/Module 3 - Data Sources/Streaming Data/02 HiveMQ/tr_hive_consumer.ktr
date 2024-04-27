@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_process_sensor_data</name>
+    <name>tr_mqtt_consumer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,39 +428,62 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/10/12 15:27:50.701</created_date>
+    <created_date>2017/10/12 15:26:32.019</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/10/12 15:27:50.701</modified_date>
+    <modified_date>2017/10/12 15:26:32.019</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>MQTT Consumer step will call another transformation, 
+sub-transformation, that will utilize the 'Get records from stream' Step.</note>
+      <xloc>64</xloc>
+      <yloc>80</yloc>
+      <width>466</width>
+      <heigth>44</heigth>
+      <fontname>Inter Medium</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>0</bordercolorred>
+      <bordercolorgreen>128</bordercolorgreen>
+      <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>MQTT</note>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
+      <width>53</width>
+      <heigth>29</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
-    <hop>
-      <from>grfs-message_topic</from>
-      <to>sf-split_message_field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sf-split_message_field</from>
-      <to>tfo-sensor_data</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fr-alerts</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sf-split_message_field</from>
-      <to>fr-alerts</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
+    <name>MQTT Consumer</name>
+    <type>MQTTConsumer</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -469,110 +492,112 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fr-alerts</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to/>
-    <send_false_to>Dummy (do nothing)</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>major_alert</leftvalue>
-            <function>=</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>Integer</type>
-              <text>1</text>
-              <length>-1</length>
-              <precision>0</precision>
-              <isnull>N</isnull>
-              <mask>####0;-####0</mask>
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>OR</operator>
-            <leftvalue>minor_alert</leftvalue>
-            <function>=</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>Integer</type>
-              <text>1</text>
-              <length>-1</length>
-              <precision>0</precision>
-              <isnull>N</isnull>
-              <mask>####0;-####0</mask>
-            </value>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>grfs-message_topic</name>
-    <type>RecordsFromStream</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>topic</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>message</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
+    <step-props secure="PASSWORD SSL_VALUES">
+      <group name="">
+        <property group="" name="MQTT_SERVER">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CLIENT_ID">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="TOPICS"/>
+        <property group="" name="MSG_OUTPUT_NAME">
+          <value xsi:type="xs:string">Message</value>
+        </property>
+        <property group="" name="TOPIC_OUTPUT_NAME">
+          <value xsi:type="xs:string">Topic</value>
+        </property>
+        <property group="" name="QOS">
+          <value xsi:type="xs:string">0</value>
+        </property>
+        <property group="" name="USERNAME">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="PASSWORD">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="KEEP_ALIVE_INTERVAL">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="MAX_INFLIGHT">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CONNECTION_TIMEOUT">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CLEAN_SESSION">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="STORAGE_LEVEL">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="SERVER_URIS">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="MQTT_VERSION">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="AUTOMATIC_RECONNECT">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="MESSAGE_DATA_TYPE">
+          <value xsi:type="xs:string">String</value>
+        </property>
+        <property group="" name="TRANSFORMATION_PATH">
+          <value xsi:type="xs:string">${Internal.Entry.Current.Directory}/tr_process_sensor_data.ktr</value>
+        </property>
+        <property group="" name="NUM_MESSAGES">
+          <value xsi:type="xs:string">50</value>
+        </property>
+        <property group="" name="PREFETCH_COUNT">
+          <value xsi:type="xs:string">100000</value>
+        </property>
+        <property group="" name="DURATION">
+          <value xsi:type="xs:string">5000</value>
+        </property>
+        <property group="" name="SUB_STEP">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="PARALLELISM">
+          <value xsi:type="xs:string">1</value>
+        </property>
+      </group>
+      <group name="SSL">
+        <property group="SSL" name="USE_SSL">
+          <value xsi:type="xs:boolean">false</value>
+        </property>
+        <property group="SSL" name="SSL_KEYS">
+          <value xsi:type="xs:string">ssl.contextProvider</value>
+          <value xsi:type="xs:string">ssl.enabledCipherSuites</value>
+          <value xsi:type="xs:string">ssl.keyManager</value>
+          <value xsi:type="xs:string">ssl.keyStore</value>
+          <value xsi:type="xs:string">ssl.keyStorePassword</value>
+          <value xsi:type="xs:string">ssl.keyStoreProvider</value>
+          <value xsi:type="xs:string">ssl.keyStoreType</value>
+          <value xsi:type="xs:string">ssl.protocol</value>
+          <value xsi:type="xs:string">ssl.trustManager</value>
+          <value xsi:type="xs:string">ssl.trustStore</value>
+          <value xsi:type="xs:string">ssl.trustStorePassword</value>
+          <value xsi:type="xs:string">ssl.trustStoreProvider</value>
+          <value xsi:type="xs:string">ssl.trustStoreType</value>
+        </property>
+        <property group="SSL" name="SSL_VALUES">
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10beb884e9</value>
+          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10bea683e9</value>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+        </property>
+      </group>
+    </step-props>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -583,268 +608,7 @@
     </remotesteps>
     <GUI>
       <xloc>240</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>sf-split_message_field</name>
-    <type>FieldSplitter</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <splitfield>message</splitfield>
-    <delimiter>,</delimiter>
-    <enclosure/>
-    <fields>
-      <field>
-        <name>vehicle_id</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>sensor_id</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>tfo-sensor_data</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>${Internal.Entry.Current.Directory}/output/IoT</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>Y</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>Y</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>N</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-      <field>
-        <name>topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>vehicle_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>sensor_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>144</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -864,8 +628,8 @@
     <group>
       <name>METASTORE.pentaho</name>
       <attribute>
-        <key>Kettle Data Service</key>
-        <value>{"namespace":"pentaho","id":"Kettle Data Service","name":"Kettle Data Service","description":"The elements describing data services based upon transformation output","metaStoreName":null}</value>
+        <key>Snowflake Staging VFS Connection</key>
+        <value>{"namespace":"pentaho","id":"Snowflake Staging VFS Connection","name":"Snowflake Staging VFS Connection","description":"Defines the connection details for a Snowflake staging area VFS connection","metaStoreName":null}</value>
       </attribute>
     </group>
     <group>
@@ -873,13 +637,17 @@
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
-      <attribute>
-        <key>CDH</key>
-        <value>{"children":[{"children":[],"id":"hdfsPassword","value":"ZGVtb3VzZXI="},{"children":[],"id":"oozieUrl","value":"http://localhost:11000/oozie"},{"children":[],"id":"mapr","value":"N"},{"children":[],"id":"useGateway","value":"N"},{"children":[],"id":"lastModifiedDate","value":"1543527020150"},{"children":[],"id":"jobTrackerHost","value":"pentahobdvm.localdomain"},{"children":[],"id":"zooKeeperHost","value":"pentahobdvm.localdomain"},{"children":[],"id":"shimIdentifier","value":null},{"children":[],"id":"gatewayUrl","value":null},{"children":[],"id":"jobTrackerPort","value":"8032"},{"children":[],"id":"zooKeeperPort","value":"2181"},{"children":[],"id":"name","value":"CDH"},{"children":[],"id":"hdfsPort","value":"8020"},{"children":[],"id":"hdfsUsername","value":"demouser"},{"children":[],"id":"gatewayPassword","value":null},{"children":[],"id":"kafkaBootstrapServers","value":"pentahobdvm.localdomain:9092"},{"children":[],"id":"storageScheme","value":"hdfs"},{"children":[],"id":"hdfsHost","value":"pentahobdvm.localdomain"},{"children":[],"id":"gatewayUsername","value":null}],"id":"CDH","value":null,"name":"CDH","owner":null,"ownerPermissionsList":[]}</value>
-      </attribute>
     </group>
     <group>
-      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Kettle Data Service"}</name>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Snowflake Staging VFS Connection"}</name>
+      <attribute>
+        <key>AWS_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.us-east-1.snowflakecomputing.com"},{"children":[],"id":"name","value":"AWS_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"AWS_SnowflakeStagingArea","value":null,"name":"AWS_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+      <attribute>
+        <key>Azure_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.east-us-2.azure.snowflakecomputing.com"},{"children":[],"id":"name","value":"Azure_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"Azure_SnowflakeStagingArea","value":null,"name":"Azure_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
     </group>
   </attributes>
 </transformation>

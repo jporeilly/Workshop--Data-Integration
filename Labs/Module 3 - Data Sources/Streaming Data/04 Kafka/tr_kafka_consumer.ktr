@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_mqtt_consumer</name>
+    <name>tr_kafka_consumer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -436,12 +436,12 @@
   </info>
   <notepads>
     <notepad>
-      <note>MQTT Consumer step will call another transformation, 
-sub-transformation, that will utilize the 'Get records from stream' Step.</note>
+      <note>Kafka Consumer step will call another transformation, 
+that consumes the records from the 'Get records from stream' step</note>
       <xloc>48</xloc>
-      <yloc>80</yloc>
-      <width>381</width>
-      <heigth>42</heigth>
+      <yloc>96</yloc>
+      <width>357</width>
+      <heigth>40</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -458,13 +458,13 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>MQTT</note>
-      <xloc>64</xloc>
+      <note>Kafka</note>
+      <xloc>48</xloc>
       <yloc>32</yloc>
-      <width>47</width>
-      <heigth>28</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>10</fontsize>
+      <width>54</width>
+      <heigth>29</heigth>
+      <fontname>Inter</fontname>
+      <fontsize>11</fontsize>
       <fontbold>Y</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -482,8 +482,8 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
   <order>
   </order>
   <step>
-    <name>MQTT Consumer</name>
-    <type>MQTTConsumer</type>
+    <name>Kafka consumer</name>
+    <type>KafkaConsumerInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -492,108 +492,32 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <step-props secure="PASSWORD SSL_VALUES">
-      <group name="">
-        <property group="" name="MQTT_SERVER">
-          <value xsi:type="xs:string">localhost:1883</value>
-        </property>
-        <property group="" name="TOPICS">
-          <value xsi:type="xs:string">SensorData</value>
-        </property>
-        <property group="" name="MSG_OUTPUT_NAME">
-          <value xsi:type="xs:string">Message</value>
-        </property>
-        <property group="" name="TOPIC_OUTPUT_NAME">
-          <value xsi:type="xs:string">Topic</value>
-        </property>
-        <property group="" name="QOS">
-          <value xsi:type="xs:string">0</value>
-        </property>
-        <property group="" name="USERNAME">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="PASSWORD">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="KEEP_ALIVE_INTERVAL">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="MAX_INFLIGHT">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="CONNECTION_TIMEOUT">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="CLEAN_SESSION">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="STORAGE_LEVEL">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="SERVER_URIS">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="MQTT_VERSION">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="AUTOMATIC_RECONNECT">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="MESSAGE_DATA_TYPE">
-          <value xsi:type="xs:string">String</value>
-        </property>
-        <property group="" name="TRANSFORMATION_PATH">
-          <value xsi:type="xs:string">${Internal.Entry.Current.Directory}/tr_ process_sensor_data.ktr</value>
-        </property>
-        <property group="" name="NUM_MESSAGES">
-          <value xsi:type="xs:string">50</value>
-        </property>
-        <property group="" name="DURATION">
-          <value xsi:type="xs:string">5000</value>
-        </property>
-        <property group="" name="SUB_STEP">
-          <value xsi:type="xs:string"/>
-        </property>
-        <property group="" name="PARALLELISM">
-          <value xsi:type="xs:string">1</value>
-        </property>
-      </group>
-      <group name="SSL">
-        <property group="SSL" name="USE_SSL">
-          <value xsi:type="xs:boolean">false</value>
-        </property>
-        <property group="SSL" name="SSL_KEYS">
-          <value xsi:type="xs:string">ssl.contextProvider</value>
-          <value xsi:type="xs:string">ssl.enabledCipherSuites</value>
-          <value xsi:type="xs:string">ssl.keyManager</value>
-          <value xsi:type="xs:string">ssl.keyStore</value>
-          <value xsi:type="xs:string">ssl.keyStorePassword</value>
-          <value xsi:type="xs:string">ssl.keyStoreProvider</value>
-          <value xsi:type="xs:string">ssl.keyStoreType</value>
-          <value xsi:type="xs:string">ssl.protocol</value>
-          <value xsi:type="xs:string">ssl.trustManager</value>
-          <value xsi:type="xs:string">ssl.trustStore</value>
-          <value xsi:type="xs:string">ssl.trustStorePassword</value>
-          <value xsi:type="xs:string">ssl.trustStoreProvider</value>
-          <value xsi:type="xs:string">ssl.trustStoreType</value>
-        </property>
-        <property group="SSL" name="SSL_VALUES">
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10beb884e9</value>
-          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10bea683e9</value>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-          <value xsi:type="xs:string"/>
-        </property>
-      </group>
-    </step-props>
+    <clusterName/>
+    <topic>SensorData</topic>
+    <consumerGroup/>
+    <transformationPath>${Internal.Entry.Current.Directory}/tr_ process_sensor_data.ktr</transformationPath>
+    <SUB_STEP/>
+    <batchSize>1000</batchSize>
+    <batchDuration>1000</batchDuration>
+    <PARALLELISM>1</PARALLELISM>
+    <prefetchMessageCount>100000</prefetchMessageCount>
+    <connectionType>DIRECT</connectionType>
+    <directBootstrapServers>localhost:9091</directBootstrapServers>
+    <AUTO_COMMIT>Y</AUTO_COMMIT>
+    <OutputField kafkaName="key" type="String">Key</OutputField>
+    <OutputField kafkaName="message" type="String">Message</OutputField>
+    <OutputField kafkaName="topic" type="String">Topic</OutputField>
+    <OutputField kafkaName="partition" type="Integer">Partition</OutputField>
+    <OutputField kafkaName="offset" type="Integer">Offset</OutputField>
+    <OutputField kafkaName="timestamp" type="Integer">Timestamp</OutputField>
+    <advancedConfig>
+      <option property="auto.offset.reset" value="latest"/>
+      <option property="ssl.key.password" value=""/>
+      <option property="ssl.keystore.location" value=""/>
+      <option property="ssl.keystore.password" value=""/>
+      <option property="ssl.truststore.location" value=""/>
+      <option property="ssl.truststore.password" value=""/>
+    </advancedConfig>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -603,8 +527,8 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>176</yloc>
+      <xloc>256</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -622,28 +546,10 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       </attribute>
     </group>
     <group>
-      <name>METASTORE.pentaho</name>
-      <attribute>
-        <key>Snowflake Staging VFS Connection</key>
-        <value>{"namespace":"pentaho","id":"Snowflake Staging VFS Connection","name":"Snowflake Staging VFS Connection","description":"Defines the connection details for a Snowflake staging area VFS connection","metaStoreName":null}</value>
-      </attribute>
-    </group>
-    <group>
       <name>explorerState</name>
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
-    </group>
-    <group>
-      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Snowflake Staging VFS Connection"}</name>
-      <attribute>
-        <key>AWS_SnowflakeStagingArea</key>
-        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.us-east-1.snowflakecomputing.com"},{"children":[],"id":"name","value":"AWS_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"AWS_SnowflakeStagingArea","value":null,"name":"AWS_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
-      </attribute>
-      <attribute>
-        <key>Azure_SnowflakeStagingArea</key>
-        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.east-us-2.azure.snowflakecomputing.com"},{"children":[],"id":"name","value":"Azure_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"Azure_SnowflakeStagingArea","value":null,"name":"Azure_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
-      </attribute>
     </group>
   </attributes>
 </transformation>

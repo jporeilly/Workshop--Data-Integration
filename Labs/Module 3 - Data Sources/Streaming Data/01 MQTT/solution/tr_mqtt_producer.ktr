@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_kafka_producer_sensor_data_gen</name>
+    <name>tr_mqtt_producer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -436,11 +436,11 @@
   </info>
   <notepads>
     <notepad>
-      <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via Kafka Producer step</note>
-      <xloc>288</xloc>
-      <yloc>880</yloc>
-      <width>875</width>
-      <heigth>34</heigth>
+      <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via MQTT Producer step.</note>
+      <xloc>208</xloc>
+      <yloc>560</yloc>
+      <width>589</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -458,11 +458,11 @@
     </notepad>
     <notepad>
       <note>Step will never stop generating
-output, simulating IoT</note>
-      <xloc>176</xloc>
-      <yloc>368</yloc>
-      <width>254</width>
-      <heigth>58</heigth>
+output, simulating IoT.</note>
+      <xloc>64</xloc>
+      <yloc>160</yloc>
+      <width>172</width>
+      <heigth>40</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -479,11 +479,11 @@ output, simulating IoT</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Records being batched in 5 sec intervals</note>
-      <xloc>176</xloc>
-      <yloc>608</yloc>
-      <width>326</width>
-      <heigth>34</heigth>
+      <note>Records being batched in 5 sec intervals.</note>
+      <xloc>64</xloc>
+      <yloc>368</yloc>
+      <width>223</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -497,6 +497,27 @@ output, simulating IoT</note>
       <bordercolorred>0</bordercolorred>
       <bordercolorgreen>128</bordercolorgreen>
       <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>MQTT</note>
+      <xloc>64</xloc>
+      <yloc>64</yloc>
+      <width>49</width>
+      <heigth>28</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
@@ -588,13 +609,13 @@ output, simulating IoT</note>
     </hop>
     <hop>
       <from>sv-message</from>
-      <to>Kafka producer</to>
+      <to>MQTT producer</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Kafka producer</name>
-    <type>KafkaProducerOutput</type>
+    <name>MQTT producer</name>
+    <type>MQTTProducer</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -603,21 +624,96 @@ output, simulating IoT</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>localhost:9092</directBootstrapServers>
-    <clusterName/>
-    <topic>SensorData</topic>
-    <clientId/>
-    <keyField>vehicle_id</keyField>
-    <messageField>message</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
+    <step-props secure="PASSWORD SSL_VALUES">
+      <group name="">
+        <property group="" name="MQTT_SERVER">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CLIENT_ID">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="TOPIC">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="FIELD_TOPIC">
+          <value xsi:type="xs:string">message</value>
+        </property>
+        <property group="" name="TOPIC_IN_FIELD">
+          <value xsi:type="xs:boolean">false</value>
+        </property>
+        <property group="" name="QOS">
+          <value xsi:type="xs:string">0</value>
+        </property>
+        <property group="" name="MESSAGE_FIELD">
+          <value xsi:type="xs:string">message</value>
+        </property>
+        <property group="" name="USERNAME">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="PASSWORD">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="KEEP_ALIVE_INTERVAL">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="MAX_INFLIGHT">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CONNECTION_TIMEOUT">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="CLEAN_SESSION">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="STORAGE_LEVEL">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="SERVER_URIS">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="MQTT_VERSION">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="AUTOMATIC_RECONNECT">
+          <value xsi:type="xs:string"/>
+        </property>
+      </group>
+      <group name="SSL">
+        <property group="SSL" name="USE_SSL">
+          <value xsi:type="xs:boolean">false</value>
+        </property>
+        <property group="SSL" name="SSL_KEYS">
+          <value xsi:type="xs:string">ssl.contextProvider</value>
+          <value xsi:type="xs:string">ssl.enabledCipherSuites</value>
+          <value xsi:type="xs:string">ssl.keyManager</value>
+          <value xsi:type="xs:string">ssl.keyStore</value>
+          <value xsi:type="xs:string">ssl.keyStorePassword</value>
+          <value xsi:type="xs:string">ssl.keyStoreProvider</value>
+          <value xsi:type="xs:string">ssl.keyStoreType</value>
+          <value xsi:type="xs:string">ssl.protocol</value>
+          <value xsi:type="xs:string">ssl.trustManager</value>
+          <value xsi:type="xs:string">ssl.trustStore</value>
+          <value xsi:type="xs:string">ssl.trustStorePassword</value>
+          <value xsi:type="xs:string">ssl.trustStoreProvider</value>
+          <value xsi:type="xs:string">ssl.trustStoreType</value>
+        </property>
+        <property group="SSL" name="SSL_VALUES">
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10beb884e9</value>
+          <value xsi:type="xs:string">Encrypted 2be98afc86aa7f2e4cb79ce10bea683e9</value>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string"/>
+        </property>
+      </group>
+    </step-props>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -627,8 +723,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>736</yloc>
+      <xloc>752</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -662,8 +758,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
+      <xloc>192</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -692,9 +788,9 @@ output, simulating IoT</note>
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>file</name>
+      <name/>
       <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
       <append>N</append>
       <split>N</split>
@@ -735,8 +831,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>sensor_id</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -747,8 +843,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>sensor_type</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -771,8 +867,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>minor_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -783,8 +879,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>major_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -808,8 +904,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>608</yloc>
+      <xloc>912</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -833,8 +929,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>496</yloc>
+      <xloc>592</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -877,8 +973,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>496</yloc>
+      <xloc>64</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -967,8 +1063,8 @@ var major_alert = (sensor_value &lt; 30 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>672</yloc>
+      <xloc>464</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1056,8 +1152,8 @@ var major_alert = (sensor_value > 90 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>576</yloc>
+      <xloc>464</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1379,8 +1475,8 @@ var iteration = 0;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>784</yloc>
+      <xloc>464</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1468,8 +1564,8 @@ var major_alert = (sensor_value > 1200 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>304</yloc>
+      <xloc>464</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1557,8 +1653,8 @@ var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>416</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1643,8 +1739,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>192</yloc>
+      <xloc>464</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1699,8 +1795,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_id</name>
         <rename>sensor_id</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1716,8 +1812,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_type</name>
         <rename>sensor_type</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1733,7 +1829,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_value</name>
         <rename>sensor_value</rename>
         <type>String</type>
-        <length>16</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -1750,8 +1846,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>minor_alert</name>
         <rename>minor_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1767,8 +1863,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>major_alert</name>
         <rename>major_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1790,8 +1886,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>496</yloc>
+      <xloc>752</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1809,35 +1905,27 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
     <fields>
       <field>
         <name>vehicle_id</name>
-        <rename/>
       </field>
       <field>
         <name>timestamp</name>
-        <rename/>
       </field>
       <field>
         <name>sensor_id</name>
-        <rename/>
       </field>
       <field>
         <name>sensor_type</name>
-        <rename/>
       </field>
       <field>
         <name>sensor_value</name>
-        <rename/>
       </field>
       <field>
         <name>minor_alert</name>
-        <rename/>
       </field>
       <field>
         <name>major_alert</name>
-        <rename/>
       </field>
       <field>
         <name>data_row</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -1885,8 +1973,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>736</yloc>
+      <xloc>912</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1919,8 +2007,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>496</yloc>
+      <xloc>320</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1938,10 +2026,28 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </attribute>
     </group>
     <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Snowflake Staging VFS Connection</key>
+        <value>{"namespace":"pentaho","id":"Snowflake Staging VFS Connection","name":"Snowflake Staging VFS Connection","description":"Defines the connection details for a Snowflake staging area VFS connection","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
       <name>explorerState</name>
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Snowflake Staging VFS Connection"}</name>
+      <attribute>
+        <key>AWS_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.us-east-1.snowflakecomputing.com"},{"children":[],"id":"name","value":"AWS_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"AWS_SnowflakeStagingArea","value":null,"name":"AWS_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+      <attribute>
+        <key>Azure_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.east-us-2.azure.snowflakecomputing.com"},{"children":[],"id":"name","value":"Azure_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"Azure_SnowflakeStagingArea","value":null,"name":"Azure_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
     </group>
   </attributes>
 </transformation>

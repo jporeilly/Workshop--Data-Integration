@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_kafka_producer_sensor_data_gen</name>
+    <name>tr_kafka_producer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -437,10 +437,10 @@
   <notepads>
     <notepad>
       <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via Kafka Producer step</note>
-      <xloc>288</xloc>
-      <yloc>880</yloc>
-      <width>875</width>
-      <heigth>34</heigth>
+      <xloc>96</xloc>
+      <yloc>576</yloc>
+      <width>583</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -454,15 +454,36 @@
       <bordercolorred>0</bordercolorred>
       <bordercolorgreen>128</bordercolorgreen>
       <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Kafka</note>
+      <xloc>64</xloc>
+      <yloc>48</yloc>
+      <width>54</width>
+      <heigth>29</heigth>
+      <fontname>Inter</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
       <note>Step will never stop generating
-output, simulating IoT</note>
-      <xloc>176</xloc>
-      <yloc>368</yloc>
-      <width>254</width>
-      <heigth>58</heigth>
+output, simulating IoT.</note>
+      <xloc>96</xloc>
+      <yloc>176</yloc>
+      <width>172</width>
+      <heigth>40</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -479,11 +500,11 @@ output, simulating IoT</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Records being batched in 5 sec intervals</note>
-      <xloc>176</xloc>
-      <yloc>608</yloc>
-      <width>326</width>
-      <heigth>34</heigth>
+      <note>Records being batched in 5 sec intervals.</note>
+      <xloc>96</xloc>
+      <yloc>384</yloc>
+      <width>223</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -502,22 +523,37 @@ output, simulating IoT</note>
   </notepads>
   <order>
     <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-truck_temp_sensor</to>
+      <from>as-gen_timestamp</from>
+      <to>sv-remove_fields</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-headlight_sensor</to>
+      <from>cf-concat_message_field</from>
+      <to>sv-message</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-load_weight_sensor</to>
+      <from>dmmy-sensor_data_collector</from>
+      <to>sv-define_metadata</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>mjsv-truck_temp_sensor</from>
+      <from>gr-IoT_gateway</from>
+      <to>as-gen_timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-air_pressure_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-axle_vibration_sensor</from>
+      <to>dmmy-sensor_data_collector</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>mjsv-gps_sensor</from>
       <to>dmmy-sensor_data_collector</to>
       <enabled>Y</enabled>
     </hop>
@@ -532,48 +568,8 @@ output, simulating IoT</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-axle_vibration_sensor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>mjsv-axle_vibration_sensor</from>
+      <from>mjsv-truck_temp_sensor</from>
       <to>dmmy-sensor_data_collector</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-gps_sensor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>mjsv-gps_sensor</from>
-      <to>dmmy-sensor_data_collector</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sv-remove_fields</from>
-      <to>mjsv-air_pressure_sensor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>mjsv-air_pressure_sensor</from>
-      <to>dmmy-sensor_data_collector</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dmmy-sensor_data_collector</from>
-      <to>sv-define_metadata</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>gr-IoT_gateway</from>
-      <to>as-gen_timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>as-gen_timestamp</from>
-      <to>sv-remove_fields</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -582,41 +578,41 @@ output, simulating IoT</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>cf-concat_message_field</from>
-      <to>sv-message</to>
+      <from>sv-remove_fields</from>
+      <to>mjsv-air_pressure_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-axle_vibration_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-gps_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-headlight_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-load_weight_sensor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sv-remove_fields</from>
+      <to>mjsv-truck_temp_sensor</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>sv-message</from>
-      <to>Repalce me..!</to>
+      <to>Kafka producer</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Repalce me..!</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1312</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>as-gen_timestamp</name>
     <type>Sequence</type>
@@ -647,8 +643,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
+      <xloc>224</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -677,9 +673,9 @@ output, simulating IoT</note>
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>file</name>
+      <name/>
       <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
       <append>N</append>
       <split>N</split>
@@ -720,8 +716,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>sensor_id</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -732,8 +728,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>sensor_type</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -756,8 +752,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>minor_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -768,8 +764,8 @@ output, simulating IoT</note>
       </field>
       <field>
         <name>major_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -793,8 +789,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>608</yloc>
+      <xloc>944</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -818,8 +814,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>496</yloc>
+      <xloc>624</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -862,8 +858,8 @@ output, simulating IoT</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>496</yloc>
+      <xloc>96</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -952,8 +948,8 @@ var major_alert = (sensor_value &lt; 30 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>672</yloc>
+      <xloc>496</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1041,8 +1037,8 @@ var major_alert = (sensor_value > 90 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>576</yloc>
+      <xloc>496</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1364,8 +1360,8 @@ var iteration = 0;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>784</yloc>
+      <xloc>496</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1453,8 +1449,8 @@ var major_alert = (sensor_value > 1200 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>304</yloc>
+      <xloc>496</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1542,8 +1538,8 @@ var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>416</yloc>
+      <xloc>496</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1628,8 +1624,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>192</yloc>
+      <xloc>496</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1684,8 +1680,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_id</name>
         <rename>sensor_id</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1701,8 +1697,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_type</name>
         <rename>sensor_type</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1718,7 +1714,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_value</name>
         <rename>sensor_value</rename>
         <type>String</type>
-        <length>16</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -1735,8 +1731,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>minor_alert</name>
         <rename>minor_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1752,8 +1748,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>major_alert</name>
         <rename>major_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1775,8 +1771,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>496</yloc>
+      <xloc>784</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1862,8 +1858,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>736</yloc>
+      <xloc>944</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1896,8 +1892,48 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>496</yloc>
+      <xloc>352</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Kafka producer</name>
+    <type>KafkaProducerOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connectionType>DIRECT</connectionType>
+    <directBootstrapServers>localhost:9091</directBootstrapServers>
+    <clusterName/>
+    <topic>SensorData</topic>
+    <clientId/>
+    <keyField>vehicle_id</keyField>
+    <messageField>message</messageField>
+    <advancedConfig>
+      <option property="compression.type" value="none"/>
+      <option property="ssl.key.password" value=""/>
+      <option property="ssl.keystore.location" value=""/>
+      <option property="ssl.keystore.password" value=""/>
+      <option property="ssl.truststore.location" value=""/>
+      <option property="ssl.truststore.password" value=""/>
+    </advancedConfig>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

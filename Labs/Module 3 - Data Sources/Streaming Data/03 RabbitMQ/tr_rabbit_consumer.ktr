@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_kafka_consumer</name>
+    <name>tr_amqp_consumer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -436,14 +436,14 @@
   </info>
   <notepads>
     <notepad>
-      <note>Kafka Consumer step will call another transformation, 
-that consumes the records from the 'Get records from stream' step</note>
-      <xloc>336</xloc>
-      <yloc>176</yloc>
-      <width>540</width>
-      <heigth>58</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
+      <note>AMQP Consumer step will call another transformation, 
+sub-transformation, that will utilize the 'Get records from stream' Step.</note>
+      <xloc>64</xloc>
+      <yloc>80</yloc>
+      <width>466</width>
+      <heigth>44</heigth>
+      <fontname>Inter Medium</fontname>
+      <fontsize>10</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -457,12 +457,33 @@ that consumes the records from the 'Get records from stream' step</note>
       <bordercolorblue>0</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>AMQP</note>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
+      <width>54</width>
+      <heigth>29</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
   </order>
   <step>
-    <name>Replace Me</name>
-    <type>Dummy</type>
+    <name>AMQP consumer</name>
+    <type>AmqpConsumer</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -471,6 +492,124 @@ that consumes the records from the 'Get records from stream' step</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <step-props secure="password SSL_KEYSTORE_PASSWORD SSL_TRUSTSTORE_PASSWORD">
+      <group name="">
+        <property group="" name="connection">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="exchangeType">
+          <value xsi:type="xs:string">DIRECT</value>
+        </property>
+        <property group="" name="directExchange">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="fanoutExchange">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="topicExchange">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="headersExchange">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="username">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="password">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="directQueue">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="fanoutQueue">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="topicQueue">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="headersQueue">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="directRoutingKeys"/>
+        <property group="" name="topicRoutingKeys"/>
+        <property group="" name="msgOutputName">
+          <value xsi:type="xs:string">Message</value>
+        </property>
+        <property group="" name="queueOutputName">
+          <value xsi:type="xs:string">Queue name</value>
+        </property>
+        <property group="" name="routingKeyOutputName">
+          <value xsi:type="xs:string">Routing key</value>
+        </property>
+        <property group="" name="exchangeOutputName">
+          <value xsi:type="xs:string">Exchange name</value>
+        </property>
+        <property group="" name="deliveryTagOutputName">
+          <value xsi:type="xs:string">Delivery tag</value>
+        </property>
+        <property group="" name="MESSAGE_DATA_TYPE">
+          <value xsi:type="xs:string">String</value>
+        </property>
+        <property group="" name="matchAnyHeader">
+          <value xsi:type="xs:boolean">false</value>
+        </property>
+        <property group="" name="autoAck">
+          <value xsi:type="xs:boolean">true</value>
+        </property>
+        <property group="" name="TRANSFORMATION_PATH">
+          <value xsi:type="xs:string">${Internal.Entry.Current.Directory}/tr_process_sensor_data.ktr</value>
+        </property>
+        <property group="" name="NUM_MESSAGES">
+          <value xsi:type="xs:string">1000</value>
+        </property>
+        <property group="" name="PREFETCH_COUNT">
+          <value xsi:type="xs:string">100000</value>
+        </property>
+        <property group="" name="DURATION">
+          <value xsi:type="xs:string">1000</value>
+        </property>
+        <property group="" name="SUB_STEP">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="" name="PARALLELISM">
+          <value xsi:type="xs:string">1</value>
+        </property>
+      </group>
+      <group name="headersGroup">
+        <property group="headersGroup" name="headerKeys">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="headersGroup" name="headerValues">
+          <value xsi:type="xs:string"/>
+        </property>
+      </group>
+      <group name="SSL_GROUP">
+        <property group="SSL_GROUP" name="SSL_ENABLED">
+          <value xsi:type="xs:boolean">false</value>
+        </property>
+        <property group="SSL_GROUP" name="SSL_KEYSTORE_PATH">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_KEYSTORE_TYPE">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_KEYSTORE_PASSWORD">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_TRUSTSTORE_PATH">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_TRUSTSTORE_TYPE">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_TRUSTSTORE_PASSWORD">
+          <value xsi:type="xs:string"/>
+        </property>
+        <property group="SSL_GROUP" name="SSL_CONTEXT_ALGORITHM">
+          <value xsi:type="xs:string"/>
+        </property>
+      </group>
+    </step-props>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -480,8 +619,8 @@ that consumes the records from the 'Get records from stream' step</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>288</yloc>
+      <xloc>208</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -499,10 +638,28 @@ that consumes the records from the 'Get records from stream' step</note>
       </attribute>
     </group>
     <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Snowflake Staging VFS Connection</key>
+        <value>{"namespace":"pentaho","id":"Snowflake Staging VFS Connection","name":"Snowflake Staging VFS Connection","description":"Defines the connection details for a Snowflake staging area VFS connection","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
       <name>explorerState</name>
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Snowflake Staging VFS Connection"}</name>
+      <attribute>
+        <key>AWS_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.us-east-1.snowflakecomputing.com"},{"children":[],"id":"name","value":"AWS_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"AWS_SnowflakeStagingArea","value":null,"name":"AWS_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+      <attribute>
+        <key>Azure_SnowflakeStagingArea</key>
+        <value>{"children":[{"children":[],"id":"schema","value":"PUBLIC"},{"children":[],"id":"database","value":"PENTAHO_DB"},{"children":[],"id":"password","value":"Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde"},{"children":[],"id":"port","value":"443"},{"children":[],"id":"host","value":"xxxxxx.east-us-2.azure.snowflakecomputing.com"},{"children":[],"id":"name","value":"Azure_SnowflakeStagingArea"},{"children":[],"id":"description","value":null},{"children":[],"id":"username","value":"user"}],"id":"Azure_SnowflakeStagingArea","value":null,"name":"Azure_SnowflakeStagingArea","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
     </group>
   </attributes>
 </transformation>

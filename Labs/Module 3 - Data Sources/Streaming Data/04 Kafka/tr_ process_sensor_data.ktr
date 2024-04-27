@@ -439,7 +439,7 @@
       <note>Minor Alerts</note>
       <xloc>288</xloc>
       <yloc>288</yloc>
-      <width>82</width>
+      <width>85</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -460,7 +460,7 @@
       <note>Major Alerts</note>
       <xloc>592</xloc>
       <yloc>288</yloc>
-      <width>82</width>
+      <width>84</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -502,7 +502,7 @@
     <hop>
       <from>Group Major Alerts</from>
       <to>Major Owner and Number</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Get System Info</from>
@@ -517,12 +517,12 @@
     <hop>
       <from>Get Sensor Type</from>
       <to>Filter Major Alerts</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Major Owner and Number</from>
       <to>Major Alert Output</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>dg-vehicule_lookup</from>
@@ -532,7 +532,7 @@
     <hop>
       <from>dg-vehicule_lookup</from>
       <to>Major Owner and Number</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Get records from stream</from>
@@ -544,7 +544,86 @@
       <to>Get System Info</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Data grid</from>
+      <to>sf-split_message_field</to>
+      <enabled>N</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Data grid</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>111;20170401000000;4;4;82;1;0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;6;6;34;1;0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;1;1;80;0;0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;2;2;1494;0;1</item>
+      </line>
+      <line>
+        <item>111;20170401000000;3;3;10433;0;0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;7;7;40.73447:-74.00232;0;1</item>
+      </line>
+      <line>
+        <item>111;20170401000005;3;3;9211;1;0</item>
+      </line>
+      <line>
+        <item>111;20170401000005;4;4;82;1;0</item>
+      </line>
+      <line>
+        <item>111;20170401000005;7;7;40.73433:-74.0024;0;1</item>
+      </line>
+      <line>
+        <item>111;20170401000005;6;6;30;0;0</item>
+      </line>
+      <line>
+        <item>111;20170401000000;7;7;40.73447:-74.00232;0</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>680</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Filter Major Alerts</name>
     <type>FilterRows</type>
@@ -556,7 +635,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to/>
+    <send_true_to>Group Major Alerts</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -569,12 +648,12 @@
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Integer</type>
+              <type>String</type>
               <text>1</text>
               <length>-1</length>
-              <precision>0</precision>
+              <precision>-1</precision>
               <isnull>N</isnull>
-              <mask>####0;-####0</mask>
+              <mask/>
             </value>
           </condition>
         </conditions>
@@ -605,7 +684,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to/>
+    <send_true_to>Group Minor Alerts</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -619,12 +698,12 @@
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Integer</type>
+              <type>String</type>
               <text>1</text>
               <length>-1</length>
-              <precision>0</precision>
+              <precision>-1</precision>
               <isnull>N</isnull>
-              <mask>####0;-####0</mask>
+              <mask/>
             </value>
           </condition>
         </conditions>
@@ -770,7 +849,7 @@
     <name>Group Major Alerts</name>
     <type>MemoryGroupBy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -875,13 +954,13 @@
     <footer>N</footer>
     <format>UNIX</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/Major_Alert_Output</name>
+      <name>/home/pentaho/Project/Kafka/major_alert</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -899,6 +978,18 @@
     </file>
     <fields>
       <field>
+        <name>current_time</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>vehicle_id</name>
         <type>String</type>
         <format/>
@@ -906,31 +997,7 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>owner</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>phone_number</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -942,25 +1009,37 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
+        <trim_type>none</trim_type>
+        <length>11</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>count_alerts</name>
         <type>Integer</type>
-        <format>0</format>
+        <format/>
         <currency/>
         <decimal>.</decimal>
         <group>,</group>
         <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>owner</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>current_time</name>
-        <type>Date</type>
+        <name>phone_number</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1052,13 +1131,13 @@
     <footer>N</footer>
     <format>UNIX</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/Minor_Alert_Output</name>
+      <name>/home/pentaho/Project/Kafka/minor_alert</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1076,6 +1155,18 @@
     </file>
     <fields>
       <field>
+        <name>current_time</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>vehicle_id</name>
         <type>String</type>
         <format/>
@@ -1083,31 +1174,7 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>owner</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>phone_number</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -1119,25 +1186,37 @@
         <decimal/>
         <group/>
         <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
+        <trim_type>none</trim_type>
+        <length>11</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>count_alerts</name>
         <type>Integer</type>
-        <format>0</format>
+        <format/>
         <currency/>
         <decimal>.</decimal>
         <group>,</group>
         <nullif/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>owner</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>current_time</name>
-        <type>Date</type>
+        <name>phone_number</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1223,7 +1302,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>vehicle</name>
+        <name>vehicle_id</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1232,6 +1311,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>owner</name>
@@ -1243,6 +1323,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>phone_number</name>
@@ -1254,6 +1335,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -1278,7 +1360,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>512</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1286,7 +1368,7 @@
     <name>sf-split_message_field</name>
     <type>FieldSplitter</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1294,11 +1376,26 @@
       <schema_name/>
     </partitioning>
     <splitfield>message</splitfield>
-    <delimiter>,</delimiter>
+    <delimiter>;</delimiter>
     <enclosure/>
     <fields>
       <field>
         <name>vehicle_id</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>timestamp</name>
         <id/>
         <idrem>N</idrem>
         <type>String</type>
