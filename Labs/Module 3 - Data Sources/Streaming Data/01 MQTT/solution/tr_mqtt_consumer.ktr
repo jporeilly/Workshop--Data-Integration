@@ -440,9 +440,9 @@
 sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       <xloc>48</xloc>
       <yloc>80</yloc>
-      <width>381</width>
-      <heigth>42</heigth>
-      <fontname>Segoe UI</fontname>
+      <width>438</width>
+      <heigth>40</heigth>
+      <fontname>Inter Regular</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -461,7 +461,7 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       <note>MQTT</note>
       <xloc>64</xloc>
       <yloc>32</yloc>
-      <width>47</width>
+      <width>49</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -496,6 +496,9 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       <group name="">
         <property group="" name="MQTT_SERVER">
           <value xsi:type="xs:string">localhost:1883</value>
+        </property>
+        <property group="" name="CLIENT_ID">
+          <value xsi:type="xs:string"/>
         </property>
         <property group="" name="TOPICS">
           <value xsi:type="xs:string">SensorData</value>
@@ -547,6 +550,9 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
         </property>
         <property group="" name="NUM_MESSAGES">
           <value xsi:type="xs:string">50</value>
+        </property>
+        <property group="" name="PREFETCH_COUNT">
+          <value xsi:type="xs:string">100000</value>
         </property>
         <property group="" name="DURATION">
           <value xsi:type="xs:string">5000</value>
@@ -603,8 +609,8 @@ sub-transformation, that will utilize the 'Get records from stream' Step.</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>176</yloc>
+      <xloc>144</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

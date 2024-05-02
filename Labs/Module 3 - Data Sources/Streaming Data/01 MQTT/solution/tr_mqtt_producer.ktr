@@ -439,8 +439,8 @@
       <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via MQTT Producer step.</note>
       <xloc>208</xloc>
       <yloc>560</yloc>
-      <width>522</width>
-      <heigth>24</heigth>
+      <width>589</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -461,8 +461,8 @@
 output, simulating IoT.</note>
       <xloc>64</xloc>
       <yloc>160</yloc>
-      <width>153</width>
-      <heigth>38</heigth>
+      <width>172</width>
+      <heigth>40</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -482,8 +482,8 @@ output, simulating IoT.</note>
       <note>Records being batched in 5 sec intervals.</note>
       <xloc>64</xloc>
       <yloc>368</yloc>
-      <width>198</width>
-      <heigth>24</heigth>
+      <width>223</width>
+      <heigth>25</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -503,7 +503,7 @@ output, simulating IoT.</note>
       <note>MQTT</note>
       <xloc>64</xloc>
       <yloc>64</yloc>
-      <width>47</width>
+      <width>49</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -627,16 +627,16 @@ output, simulating IoT.</note>
     <step-props secure="PASSWORD SSL_VALUES">
       <group name="">
         <property group="" name="MQTT_SERVER">
-          <value xsi:type="xs:string">localhost:1883</value>
+          <value xsi:type="xs:string"/>
         </property>
         <property group="" name="CLIENT_ID">
           <value xsi:type="xs:string"/>
         </property>
         <property group="" name="TOPIC">
-          <value xsi:type="xs:string">SensorData</value>
+          <value xsi:type="xs:string"/>
         </property>
         <property group="" name="FIELD_TOPIC">
-          <value xsi:type="xs:string"/>
+          <value xsi:type="xs:string">message</value>
         </property>
         <property group="" name="TOPIC_IN_FIELD">
           <value xsi:type="xs:boolean">false</value>
@@ -790,7 +790,7 @@ output, simulating IoT.</note>
     <file>
       <name/>
       <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
       <append>N</append>
       <split>N</split>
@@ -831,8 +831,8 @@ output, simulating IoT.</note>
       </field>
       <field>
         <name>sensor_id</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -843,8 +843,8 @@ output, simulating IoT.</note>
       </field>
       <field>
         <name>sensor_type</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -867,8 +867,8 @@ output, simulating IoT.</note>
       </field>
       <field>
         <name>minor_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -879,8 +879,8 @@ output, simulating IoT.</note>
       </field>
       <field>
         <name>major_alert</name>
-        <type>Integer</type>
-        <format/>
+        <type>Number</type>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
@@ -1795,8 +1795,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_id</name>
         <rename>sensor_id</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1812,8 +1812,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_type</name>
         <rename>sensor_type</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1829,7 +1829,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>sensor_value</name>
         <rename>sensor_value</rename>
         <type>String</type>
-        <length>16</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -1846,8 +1846,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>minor_alert</name>
         <rename>minor_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -1863,8 +1863,8 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <name>major_alert</name>
         <rename>major_alert</rename>
         <type>Integer</type>
-        <length>16</length>
-        <precision>2</precision>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>

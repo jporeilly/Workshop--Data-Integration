@@ -1,0 +1,42 @@
+#to improve performance, increase number of generations and population size for 'tpot = TPOTClassifier(generations=1, verbosity=2,population_size=50, config_dict='TPOT light')'
+# ensure the following libraries are installed
+#pandas
+#matplotlib
+#py4j
+#numpy
+
+
+# import libraries
+import pandas as pd
+import numpy as np
+
+# import TPOT classifier and train_test_split 
+from tpot import TPOTClassifier
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+
+# references all rows and columns
+x = cust.iloc[:,0:-1].values #returns a numpy array
+min_max_scaler = preprocessing.MinMaxScaler()
+x_scaled = min_max_scaler.fit_transform(x)
+
+X=np.asarray(x_scaled)
+y=np.asarray(cust.iloc[:,-1])
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=None)
+
+tpot = TPOTClassifier(generations=1, verbosity=2,population_size=50, config_dict='TPOT light')
+tpot.fit(X_train, y_train)
+output_score=str(tpot.score(X_test, y_test))
+tpot.export('tpot_creditcard_pipeline.py')
+print(tpot.score(X_test, y_test))
+
+model_name=[x[0] for x in tpot.evaluated_individuals_.items()]
+model_gen=[x[1]['generation'] for x in tpot.evaluated_individuals_.items()]
+model_mut=[x[1]['mutation_count'] for x in tpot.evaluated_individuals_.items()]
+model_cross=[x[1]['crossover_count'] for x in tpot.evaluated_individuals_.items()]
+model_predec=[x[1]['predecessor'] for x in tpot.evaluated_individuals_.items()]
+model_opp=[x[1]['operator_count'] for x in tpot.evaluated_individuals_.items()]
+model_cv=[str(y[1]['internal_cv_score']) for y in tpot.evaluated_individuals_.items()]
+model_list=list(zip(model_name,model_gen,model_mut,model_cross,model_predec,model_opp,model_cv))
+model_df=pd.DataFrame(model_list,columns=['pipe','generation','mutation','crossover','predecessor','operator','cv'])
