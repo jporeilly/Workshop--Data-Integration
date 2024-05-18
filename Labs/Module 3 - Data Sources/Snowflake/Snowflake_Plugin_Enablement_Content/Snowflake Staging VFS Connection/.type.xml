@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<data-type>
+  <name>Snowflake Staging VFS Connection</name>
+  <description>Defines the connection details for a Snowflake staging area VFS connection</description>
+</data-type>

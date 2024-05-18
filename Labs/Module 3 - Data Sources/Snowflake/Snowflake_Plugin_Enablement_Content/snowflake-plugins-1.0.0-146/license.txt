@@ -1,0 +1,223 @@
+
+
+
+STANDALONE SOFTWARE LICENSE TERMS
+Version 2018-09-28
+
+Unless You have a Direct Purchase Agreement or any other form of supply or licensing agreement in place with Hitachi Vantara Corporation or its Affiliate ("HITACHI") or a HITACHI Partner, these Software License Terms ("License Terms") apply to the HITACHI software purchased or downloaded by You ("Software").  You must read these License Terms under which HITACHI will license Software to You.  Capitalized terms will have the meanings indicated in Section 22 below.
+
+BY DOWNLOADING, INSTALLING, COPYING, ACCESSING, OR USING THE SOFTWARE, OR BY CHOOSING THE "I ACCEPT" OPTION LOCATED ON OR ADJACENT TO THE SCREEN WHERE THIS AGREEMENT MAY BE DISPLAYED, YOU AGREE TO THE SOFTWARE LICENSE TERMS. IF YOU ARE ACCEPTING THESE TERMS ON BEHALF OF ANOTHER PERSON, COMPANY OR OTHER LEGAL ENTITY, YOU REPRESENT AND WARRANT THAT YOU HAVE FULL AUTHORITY TO BIND THAT PERSON, COMPANY, OR LEGAL ENTITY TO THESE LICENSE TERMS. IF YOU DO NOT AGREE TO THESE LICENSE TERMS, DO NOT DOWNLOAD, INSTALL, COPY, ACCESS, CLICK AN ACCEPT BUTTON OR USE THE SOFTWARE AND PROMPTLY RETURN THE SOFTWARE TO THE PARTY FROM WHOM IT WAS OBTAINED FOR A REFUND OF THE AMOUNT PAID.
+
+1.  License Grant.
+   (a)  Except as otherwise expressly provided, HITACHI grants You a personal, non-transferable, non-exclusive license:
+      (i)   to Use the Software solely on the HITACHI Equipment with which it is shipped, to enable the Equipment to function;
+      (ii)  to Use the Software solely for Your internal business purposes subject to the restrictions specified on any Equipment used in connection with the Software;
+      (iii) with respect to a Big Data and Analytics Product, to Use the Big Data and Analytics Product solely for Your internal business purposes;
+      (iv)  if You are provided with Work Product under a Statement of Work, to Use, reproduce, copy and display the Work Product solely for Your internal business purposes.  You obtain no title or ownership in any Software or Work Product or Maintenance Material under these License Terms, nor do You obtain any right to sublicense the Software, Work Product or Maintenance Material;
+      (v)   if You have purchased "development/testing" licenses, You acknowledge that such licenses are intended for use in Your development and testing environments only, and not in a Production Environment; and
+      (vi)  if You have loaned Equipment or Software from HITACHI, to use the Software for Your internal evaluation purposes, and subject to the additional terms in Section 2 below.
+   (b)  You must only Use the Software as provided:
+      (i)   in either machine-readable object code form or machine-compressed form, and the related documentation may be used only in printed or electronic form;
+      (ii)  in accordance with the Published Specifications applicable to that Software;
+      (iii) subject to the restrictions specified in these License Terms; and
+      (vi)  in compliance with all applicable laws, rules and regulations.
+   (c)  You acknowledge and agree that HITACHI may use license keys and other means to limit access to or Use of Programs in accordance with these License Terms.  You will not disable, work around or otherwise interfere with the operation of any license key or other mechanisms or technical limitations in the Programs. You further acknowledge that HITACHI may choose not to renew any license key with You, if HITACHI reasonably believes that You are in violation of the terms of these License Terms.
+   (d)  If HITACHI or HITACHI Partner provides You with a temporary or initial license key for any Program, You will be entitled to Use the applicable Program for the temporary or initial period that applies to the license key and the Program will cease to operate at the end of that period. However, with respect to any Big Data and Analytics Product, if HITACHI or HITACHI Partner provides You with an initial license key for a Subscription or Term Based License, and provided that You have paid to HITACHI or HITACHI Partner the fees for the applicable Big Data and Analytics Product License in full, You will receive a second license key to cover the remaining part of the Subscription Period or the Term-Based License Period for the applicable Big Data and Analytics Product.
+   (e)  For capacity-based Software, You will Use the Software up to the specified capacity purchased (e.g. number of Cores or Nodes specified in an Order) on the relevant equipment, network, device or CPU.  If You wish to exceed capacity, You must pay to HITACHI or HITACHI Partner (as applicable) all additional license fees first.
+
+2.  Software Evaluation License.
+Where HITACHI has granted You the right to Use the Software for Your evaluation purposes, You must Use the Software solely to evaluate its performance and functionality on the relevant Equipment with which HITACHI has supplied the Software, in Your internal business environment at the location, and only for the Designated Use, that You have agreed with HITACHI under the loan arrangement. Your right to Use the Software for such purpose will end upon the earlier of the expiration of the applicable loan period or termination of the loan arrangement.
+
+3.  Third Party Software & Hosting Services.
+   (a)  Third Party Software may be embedded in the HITACHI proprietary Software that is branded as HITACHI and sublicensed directly to You under these License Terms.  Other Third-Party Software is provided to You subject to Third Party EULAs, which are available from HITACHI at Your request.  Such Third-Party EULAs may be in the form of shrink-wrap or click-through license agreements.
+   (b)  You will have no recourse against HITACHI with respect to the Third-Party Software unless HITACHI is the stated licensor and then only to the extent expressly provided for in these License Terms. You are responsible to do whatever is necessary or required by the Third-Party Licensor for the licenses and related terms to take effect (e.g. online registration).
+   (c)  The inclusion of Third Party Software or Open Source Software in the Software and Your acceptance of any Third-Party EULAs or Open Source Software Licenses (or other similar agreements presented by Third-Party Licensors) will not adversely affect Your Use of the Software as contemplated under these License Terms or your agreement with HITACHI.
+   (d)  You will have no recourse against HITACHI with respect to the actions or omissions of a third-party hosting service or hosting provider and its agents.
+
+4.  Open Source Software.
+   (a)  The Software may include Open Source Software.  You can access a complete list of the licenses for the Open Source Software provided with the HITACHI proprietary Software from the Open Source License Website.  You are responsible to read the terms of and adhere to all licenses for Open Source Software.
+   (b)  By accepting these License Terms, You are also accepting the terms and conditions of the licenses applicable to any Third Party Software (including any Open Source Software) included with the Software. The Open Source License Website does not include Third Party Related OSS.  You must refer to the applicable Third Party EULA or the file directory located in the Software for those terms.
+   (c)  If the Software includes certain software licensed under the GNU General Public License or other similar Open Source Software  with a license that requires the licensor to make the source code publicly available ("GPL Software") and the applicable source code was not included in the Software, then You may obtain a copy of the applicable source code for the GPL Software by either:
+      (i)  requesting HITACHI mail the open source code to You; or
+      (ii) downloading the open source code by following the links on the website referenced in the Open Source License Website.
+
+5.  Use Restrictions.
+Except to the extent these restrictions are prohibited by applicable law or any Open Source Software License, or otherwise agreed to by HITACHI in writing, You must not, and must not allow any other person to:
+   (a)  disclose the results of testing or benchmarking the Software or products to any third party without the prior written consent of HITACHI;
+   (b)  translate, decompile, disassemble, reverse compile, reverse engineer, reduce in human readable form or otherwise attempt to discover, access or reconstruct the source code or underlying ideas, algorithms, file formats, programming or interoperability interfaces of the Software, or any files contained in, or generated using the Software by any means whatsoever;
+   (c)  modify, unbundle, enhance, supplement, or create derivative works using the Software;
+   (d)  sub-license, rent, lease, transfer, loan, distribute, resell or grant any rights in and to the Software to a third party;
+   (e)  copy or reproduce the Software other than as expressly allowed other than as expressly allowed in these License Terms, these License Terms or as authorized by HITACHI;
+   (f)  remove or otherwise tamper with any proprietary notices, labels or marks contained on or in the Software;
+   (g)  use or permit the Software or product to be used to perform services for third parties, whether on a service bureau or time-sharing basis or otherwise, other than as expressly allowed in these License Terms or as authorized by HITACHI;
+   (h)  use the Software or allow its use:
+      (i)   for developing, enhancing or marketing any product that is in any way competitive with the Software or any HITACHI product; or
+      (ii)  for testing the Software or HITACHI product to derive data for any purpose which is competitive with the Software or any HITACHI product;
+      (iii) via any communications network or by means of remote access; or
+      (iv)  in any manner other than as expressly provided herein.
+
+6.  Authorized Copies.
+Except as otherwise expressly provided in these License Terms, HITACHI will provide You with one copy of the media and documentation for the Software.  Unless otherwise agreed by HITACHI in writing, all Programs will be delivered to You electronically.  For Software licensed under an enterprise license, HITACHI grants to You right to make copies of the Software solely for Your own internal use within the scope of the enterprise license.  You may also make one (1) copy of back-up or archival copies of Software solely for Your own internal use, provided that You ensure that such copy bears HITACHI's proprietary notices, labels or marks.  You must reproduce on all copies made, all proprietary and copyright notices contained on or in the Software.
+
+7.  Software Transfers.
+Except to the extent otherwise provided in any applicable Open Source Software License, You must not transfer the Software to any other person or entity, without HITACHI's prior written consent. You may, however, transfer the Operating Software to a third party ("transferee") solely with the related HITACHI equipment, but You must ensure that the transferee agrees to the terms of these Software License Terms and additional relevant license terms. The Operating Software is provided to the transferee on an "as is" basis, with no extension of any existing warranty or support arrangements. When the transfer is complete, You must remove and destroy all copies of the Operating Software in Your possession or under Your control.  You must also permanently remove all Software from any media upon which it is stored prior to disposing of the media.
+
+8.  Location of Software.
+If the Equipment upon which You are authorized to Use the Software becomes temporarily inoperable, You may load and Use the Software on another of Your computer systems located at the same premises, until the original Equipment becomes operable.  Otherwise, You must always get HITACHI's prior written consent before changing the Equipment on which the Software is to be Used, or its location.
+
+9.  Verification Rights.
+HITACHI or its independent auditor may, upon reasonable notice to You, examine and audit Your records and systems to ensure compliance with applicable software licenses. The audit will be performed during normal business hours in a manner which does not unduly interfere with Your business operations.  If the audit shows that You are using more copies of the Software than permitted under Your applicable license(s), HITACHI may charge You additional usage fees.
+
+10.  Limited Warranty.
+Subject to this Section 10, HITACHI warrants to You that, during the Warranty Period, the Software will function in accordance with its Published Specifications.  To make a valid warranty claim, You must submit a claim to HITACHI under its standard warranty claim procedures. EXCEPT AS SPECIFIED IN THESE LICENSE TERMS, ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTIES OR CONDITION OF MERCHANTABILITY, SATISFACTORY QUALITY, OR FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXCLUDED TO THE MAXIMUM EXTENT PERMITTED BY LAW.  HITACHI DOES NOT WARRANT THAT ANY SOFTWARE OR THIRD PARTY SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR FREE AND WILL NOT BE LIABLE FOR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES.
+
+11.  Ownership and Licenses.
+   (a)  You agree and acknowledge that HITACHI and its licensors own all copyright, trademarks, designs, patents, circuit layout rights, know-how, trade secrets, trade, business and/or company names, domain names and related registration rights and all other intellectual property rights in the HITACHI IP.  HITACHI IP is protected by U.S. and other copyright laws and the laws protecting trade secret, other intellectual property rights and confidential information.
+   (b)  You gain no right, title or interest in the HITACHI IP other than the license rights in Software and any other HITACHI IP as expressly stated in these License Terms.
+   (c)  Without limiting the operation of the License Terms, You must not do anything to jeopardize the rights of HITACHI and HITACHI's licensors' rights in the HITACHI IP including to
+      (i)   copy, modify, merge, or transmit HITACHI IP;
+      (ii)  register or attempt to register any competing intellectual property rights in or to the HITACHI IP;
+      (iii) delete or tamper with any proprietary notices on or in the HITACHI IP,
+      (iv)  take or allow any action that diminishes the value of any trademarks included in the HITACHI IP, or
+      (v)   use the Software in violation of applicable law.  These restrictions are in addition to those stated in Section 5.
+
+12.  Intellectual Property Claims.
+Subject to Sections 5 and 11 and the exceptions in this Section, if a third party makes a claim against You that the Software infringes that party's patent rights or copyright ("IP Claim"), HITACHI will provide the following recourse (which, to the extent permitted by applicable law, comprises Your sole and exclusive remedy against HITACHI and HITACHI's sole and exclusive liability to You for the IP Claim):
+   (a)  HITACHI will defend or settle the IP Claim at our option and cost, and pay to You the amount of damages, losses and costs finally awarded against You or settled by You (with HITACHI's written consent), provided that You
+      (i)   promptly notify HITACHI of the IP Claim
+      (ii)  allow HITACHI to solely manage the defense and settlement of the IP Claim;
+      (iii) co-operate with and assist HITACHI as HITACHI requires (and HITACHI will pay Your costs of doing so); and
+      (iv)  are not in breach of these License Terms or any other agreement that You have with HITACHI or any of its affiliates.
+   (b)  HITACHI will, at its option and cost, do any of the following in relation to Software which is or which HITACHI considers is likely to be the subject of an IP Claim:
+      (i)   secure the rights for You to continue to use the Software without infringement; or
+      (ii)  modify the Software so that it is not infringing; or
+      (iii) replace it with something that has similar functionality to the Software. If HITACHI considers that none of these options are reasonably possible, HITACHI will provide You with a refund, provided that You promptly return the Software to HITACHI.
+
+HITACHI will not be liable to provide any remedies in this Section with respect to
+   (a)  any Third Party Software that is not included on HITACHI's standard price list at the time of the IP Claim;
+   (b)  any Third Party Related OSS or
+   (c)  otherwise to any Software that You have, or any person on Your behalf has:
+      (i)   modified or combined with any third party product not resold and authorized or approved by HITACHI,
+      (ii)  used outside the stated standard operating environment for the Software or for an unauthorized purpose or
+      (iii) failed to use a more recent version of the Software that was available to You and would have avoided the infringement or where the IP Claim arises due to any material or item that You own or have sourced from a third party Yourself.
+
+13.  LIABILITY LIMITATIONS
+
+13.1  Uncapped Liability.  Each Party acknowledges the full extent of its own liability arising from death or personal injury resulting from that Party's negligent acts or omissions; claims for non-payment; the non-excludable statutory rights of consumers (for example, under laws providing for strict product liability); any infringement of HITACHI IP; breach of the confidentiality obligations, and breaches of these License Terms. For the avoidance of doubt, to the full extent permitted by law, this Section 13.1 does not apply to a Party's liability for Security Breaches under these License Terms or under applicable law or for a breach of Section 15.
+
+13.2  Cap on Liability.  Subject to Sections 13.1 and 16, HITACHI's indemnity obligations as described in Section 12 and to the extent not prohibited by applicable law:
+   (a)  HITACHI's and Your maximum aggregate liability for all claims relating to all Software licensed to You under these License Terms, whether for breach of contract, breach of warranty or in tort, including negligence, will be limited to the amount paid for the particular Software which is the subject matter of the claim, up to a maximum of the fees paid by You to HITACHI over the twelve (12) month period immediately prior to the first event giving rise to the claim; and
+   (b)  neither You nor HITACHI will be liable for any indirect, punitive, special, incidental or consequential damages in connection with or arising out of the License Terms (including, without limitation, loss of actual or anticipated business, revenue, profits, goodwill, loss of use, lost or corrupted data, or loss of other economic advantage), however they arise, whether in breach of contract, breach of warranty or in tort, including negligence, and  even if that party has previously been advised of the possibility of such damages.
+
+14.  Confidential Information.
+Each Party must keep any Confidential Information that is disclosed by the other party as confidential by using the same degree of care used to protect our own Confidential Information.  Each Party must not disclose the other Party's Confidential Information to any third party, without the other Party's prior written consent.  A Party can, however, disclose the other Party's Confidential Information to those of its Personnel who need to know the information in order to perform that Party's obligations under these License Terms, provided that it takes all necessary steps to ensure its Personnel's compliance with this Section.
+
+15.  PERSONAL DATA
+
+15.1  Your Obligations. You are, and will remain at all times, the data controller for any Personal Data You provide to HITACHI.  You are responsible for compliance with Your obligations as the data controller under applicable data protection laws.  You will provide adequate safeguards to, routinely back up, and ensure the integrity and security of Your Personal Data. You are responsible for any unauthorized access, acquisition, use, disclosure, modification or destruction to Your Personal Data caused by the acts or omissions of You, Your Personnel, Affiliates, agents, vendors, and contractors.  You will only provide HITACHI with Personal Data that You have the legal right to collect, process, use, and transfer, and only to the extent that is necessary or required under any transaction agreed to by the Parties pursuant to these License Terms.  You will not disclose any Personal Data about HITACHI Personnel without the prior written consent of HITACHI.
+
+15.2  Our Obligations. To the extent that HITACHI collects Your Personal Data as part of a transaction agreed to by the Parties pursuant to these License Terms, HITACHI agrees to not disclose such Personal Data unless HITACHI has your prior written consent, or otherwise as is allowed under these License Terms.  HITACHI is entitled to disclose Your Personal Data:
+   (i)   to HITACHI's Personnel with a need to know the information in order to perform obligations under these License Terms;
+   (ii)  to Affiliates, subcontractors, vendors, and agents of HITACHI who help HITACHI perform its obligations under these License Terms and who are contractually obligated to protect Your Personal Data; or
+   (iii) as required by law.  HITACHI will comply with applicable law with respect to your Personal Data.
+
+15.3  Reporting. Each Party will promptly report any Security Breach to the other Party.  The Party experiencing the Security Breach will first provide oral notice as soon as reasonably practicable and no later than ten (10) days after discovery.  That Party will provide follow-up, written notice as soon as reasonably practicable and no later than fifteen (15) days after discovery.  The written notice will include, to the extent the information is currently available:
+   (i)   an identification of affected individuals, and
+   (ii)  any other information that must be included in a legally required notice of Security Breach under applicable law.
+
+15.4  Cooperation & Mitigation. Each Party agrees to cooperate in any Security Breach investigation undertaken by, or otherwise involving the other Party and to take reasonable measures to mitigate the harmful effects of any Security Breach, of which that Party becomes aware.
+
+16.  Service/Support Delays and Failures.
+If HITACHI fails to perform, or delays in the performance of, any service or other obligation required of HITACHI under these License Terms, HITACHI will not be liable to You for the failure or non-performance, to the extent that such failure or non-performance is caused by Your act or omission, or the act or omission of Your Personnel or any other person acting on Your behalf. In any event, You agree to take all steps and measures available to You in order to mitigate and minimize the losses, costs and damages arising from such failure or non-performance, irrespective of the nature and extent of Your contribution.
+
+17.  Export Compliance and Anti-Bribery.
+You acknowledge that in various countries, laws and regulations regulate the export of computer products and technology which may prohibit use, sale or re-export of such products or technology if You know or have reason to know that such products and technology are for use in connection with the design, development, production, stock piling or use of nuclear, chemical or biological weapons or missiles and in some countries (e.g. China) for certain conventional military end-uses.  If You sell or transfer to another person or entity title in or right to use any Software, you will ensure that all applicable export restrictions of the nature described in this section are observed. Each party will comply with all applicable laws and regulations relating to anti-corruption and bribery, including the U.S. Foreign Corrupt Practices Act, and not engage in any activity, practice or conduct that would constitute an offence under such laws and regulations. You must read, understand and comply with the HITACHI Code of Ethics and Business Conduct.
+
+18.  Termination of License
+Your license in the Software will terminate:
+   (i)   when that Software is replaced with any upgrade, revision or replacement Software;
+   (ii)  when the License Term or subscription period ends, if any is expressly stated; or
+   (iii) if You are in breach of any of these License Terms or any license for Third Party Software.
+
+19.  Dispute Resolution.
+Both Parties will use reasonable efforts to get an appropriate person from our respective management teams to meet and attempt to resolve any dispute regarding these License Terms in good faith.  If such management are unable to resolve the dispute within 30 days, the Parties may resort to alternate dispute resolution such as arbitration (if both Parties agree) or otherwise a Party may seek recourse from the courts.  Either party may seek injunctive or other urgent equitable relief at any time.
+
+20.  Governing Law.
+These License Terms will be governed by California law, with venue and exclusive jurisdiction in the appropriate courts in Santa Clara County, California.  To the extent allowed, the United Nations Convention on Contracts for the International sale of goods and its implementing legislation will not apply to these License Terms.
+
+21.  Miscellaneous.
+Neither Party will be responsible for any failure to meet any of our obligations (except payment obligations) due to matters beyond our reasonable control provided reasonable efforts have been made to perform them.  You must not assign, or otherwise transfer any of Your rights under these License Terms without HITACHI's prior written agreement.  Notices made under these License Terms must be in writing to a senior executive. Notices will be deemed given: where they are hand delivered, when a duly authorized employee or representative of the recipient gives written acknowledgement of receipt; for email communication, at the time the communication enters into the information system of the recipient; for posting, three days after dispatch and for fax, on receipted transmission of the fax. Rights and obligations under these License Terms, which by their nature should survive the termination or expiry, will remain in effect after termination.  If either of us fails to promptly exercise any contractual right, this does not of itself mean that the right has been waived.  For a waiver of a right to be valid, it must be written and it will not give rise to an ongoing waiver or any expectation that the right will not be enforced, unless it is expressly stated to do so.  These Terms may not be modified except in writing signed by an authorized representative of each party. There are no third-party beneficiaries to these License Terms.  All oral or written communications, understandings, proposals, representations and warranties are by agreement, excluded and are of no force or effect (to the extent permitted at law).  These License Terms (and all related Quotes, Orders and Order Confirmations that comprise a transaction to which these License Terms apply) are the entire agreement relating to their subject matter.  You grant to HITACHI the limited right to use Your company and brand name and/or logo in promotional materials, including press releases, presentations and customer references regarding the sale of Software. These permissions are free of charge and for worldwide use in any medium. The foregoing notwithstanding, HITACHI agrees to obtain Your prior written approval for publicity that contains claims, quotes, endorsements or attributions by You, such approval not to be unreasonably withheld. Rights and obligations under these License Terms, which by their nature should survive the termination or expiration, will remain in effect after termination.
+
+22.  Definitions.
+
+Affiliate: in relation to a party, means a business entity controlled by, controlling or under common control of such party, where "control" means owning or controlling the majority (more than 50%) of the voting rights, either directly or indirectly, or, if no voting stock exists, possessing, directly or indirectly, the power to direct or cause the direction of the management and policies of the concerned entity. In the case of HITACHI, Affiliate also means Hitachi, Ltd. and any business entity controlled by Hitachi, Ltd. However, Affiliate does not include any HITACHI Partner or Authorized Service Provider.
+
+Big Data and Analytics Product: the commercial enterprise edition Versions of the Pentaho data integration and analytics software program that HITACHI or a HITACHI Partner supplies to You on a Subscription, Term Based on Perpetual basis. Where the context so allows or requires, this term also refers to the licenses of the software program itself, regardless of whichever licensing model.
+
+Confidential Information: information that, at the time of disclosure, is clearly marked as confidential or in the circumstances would be considered to be confidential.
+
+Core: a physical or virtual independent processing unit that is capable of executing a single Software or Third-Party Software code thread at a time.
+
+Designated Use: Your internal business evaluation of the performance of the product or Software in a non-Production Environment.
+
+Equipment: hardware and spare parts.
+
+HITACHI IP: all items and materials that HITACHI provides to You or otherwise creates pursuant to these License Terms, and their changes, improvements, additions, enhancements, new versions, updates and derivatives.
+
+HITACHI Code of Ethics and Business Conduct: the code of conduct located at located at  https://www.hitachivantara.com/en-us/pdf/brochure/code-of-ethics-and-business-conduct.pdf and any updated or replacement document published by HITACHI from time to time.
+
+HITACHI Partner: an authorised reseller or distributor under the HITACHI Partner Program, the Global Systems Integrator Program or any related programs offered by HITACHI, including any additional or replacement programs (howsoever named), from time to time.
+
+HITACHI Warranty Maintenance and Support Terms: the document located at https://www.hitachivantara.com/en-us/company/legal.html and any updates or replacements from time to time.
+
+Maintenance Material: is defined in the HITACHI Warranty Maintenance and Support Terms.
+
+Node: an individual system within a Hadoop cluster, whether virtual or physical, bearing a unique Internet Protocol (IP) address or hostname.
+
+Open Source License Website:  https://www.hitachivantara.com/en-us/company/legal.html.
+
+Open Source Software:  Third party software, which may be available without charge for use, modification or distribution and generally licensed under the GNU General Public License, Lesser General Public License, Apache or other open source software license, provided, however, that Third Party Related OSS is excluded from this definition.
+
+Order: a written or electronic order for the purchase of Software from HITACHI, or a document detailing the same, including, but not limited to, description and price which is submitted in accordance with HITACHI's then-current ordering requirements.
+
+Order Confirmation: a written or electronic acknowledgement or invoice issued by HITACHI in response to an Order.
+
+Party: HITACHI or You. Parties means HITACHI and You.
+
+Personal Data: personal information about an identifiable person.
+
+Personnel: of a Party means that Party's employees, contractors or workforce members.
+
+Product(s): any Equipment or Software listed in HITACHI's standard product price lists published from time to time.
+
+Production Environment: any computer system running Software that: a) is being actively used to process data or provide information to the system's users, and b) is not being used for testing purposes.
+
+Published Specifications: the published Software specifications existing at the time You ordered Software from HITACHI.
+
+Quote: a written quotation or proposal issued by HITACHI for the proposed supply of products and/or Services.
+
+Refund: a refund of the price that You have paid for the Product will be less a straight-line depreciation, based on a 3-year useful life.
+
+Security Breach: the unauthorized access, acquisition, use, disclosure, modification or destruction of unencrypted or physical copies of an identifiable person's name in combination with medical information, Social Security numbers, financial account information, driver's license numbers, state identification numbers, or other Personal Data protected by the applicable security breach statute.
+
+Software: the object code format of (i) programming firmware embedded in the Equipment to enable it to perform its basic functions or to operate the Equipment ("Operating Software"), (ii) software programs supplied by HITACHI, including the Big Data and Analytics Products and Third-Party Software ("Programs"), and (iii) any updates, related documentation and Published Specifications.  Software may include Third Party Software and/or Open Source Software.
+
+Third Party EULAs:  separate licenses directly between You and the Third-Party Licensor, which terms may be shrink-wrapped or click-through and related documentation, which may be provided to You in connection with the delivery or Use of the Software.
+
+Third-Party Licensor: the person set out in the Third Party EULA who licenses the Third Party Software to You.
+
+Third-Party Related OSS:  any Open Source Software licensed to, provided with or otherwise contained in, the Third Party Software.
+
+Third Party Software: any software supplied to HITACHI by any party other than Hitachi, Ltd., including Third-Party Products Licensors, for direct or indirect or distribution to end users, including You.  For clarification purposes, if any Third-Party Software not sublicensed through these License Terms contains Third-Party Related OSS, You must refer back to that applicable Third-Party EULA.
+
+Third Party Products: any equipment or Software supplied to HITACHI by any party other than Hitachi Ltd. for direct or indirect distribution to end users, which is listed in HITACHI's standard product price lists published from time to time.
+
+Update: subsequent releases and error corrections and/or minor functional enhancements for Software previously licensed by HITACHI.
+
+Use:  to use Software in live production for processing data either in operation of Products, as stand-alone Programs or in receipt of Services.
+
+Version: a generic term for code corrections, patches, maintenance releases, minor releases, and major releases of the same Software, generally made available to HITACHI customers.
+
+Warranty Period: means the applicable warranty period in https://www.hitachivantara.com/en-us/services/customer-support.html for a particular Software following delivery of the Software or in the case of Third Party Software, as may be provided in the applicable third-party warranty terms.
+
+You or Your:  end user of the Software.
