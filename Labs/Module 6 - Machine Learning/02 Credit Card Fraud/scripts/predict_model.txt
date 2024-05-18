@@ -1,0 +1,28 @@
+# the following packages need to be installed (see pre-requisites)
+# rJava
+# randomForest
+
+# load randomForest package
+library(randomForest)
+
+# the dataset is referenced in the step: sv-convert_booleans_to_numbers
+# assign the dataframe: test to variable: test.df
+test.df <- as.data.frame(test)
+
+# load randomForest Model
+load("C:\\Machine—Learning\\01_Credit_Card\\Lab_02_Credit_Card_Fraud\\train_model_output\\rf.rdata")
+
+# declare a variable pred which is assigned the results of using the predict function
+# predict function runs our randomForest model against test.df = newdata
+# predict with new test data
+pred <- predict(rf, newdata = test.df)
+
+# assign pred dataframe to pred.df variable
+pred.df <- as.data.frame(pred)
+
+# prepare output data
+# using cbind function to bind pred.df to test.df
+submission <- data.frame(cbind(test.df,pred.df))
+
+# output data
+submission
