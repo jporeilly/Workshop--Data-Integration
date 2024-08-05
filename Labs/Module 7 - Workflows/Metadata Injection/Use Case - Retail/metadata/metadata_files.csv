@@ -1,0 +1,3 @@
+file_id,input_file_directory,input_file_name_regex,file_type,separator,enclosure,header_present,nr_header_lines,file_format
+1,${Internal.Entry.Current.Directory}/data/,sales.txt,CSV,",",,Y,1,Mixed
+2,${Internal.Entry.Current.Directory}/data/,stock.txt,CSV,|,,Y,1,Mixed
