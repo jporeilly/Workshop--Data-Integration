@@ -11,6 +11,8 @@ grant all on sampledata.* to pentaho_admin identified by 'password';
 
 USE sampledata;
 
+set session sql_mode=replace(@@sql_mode,'NO_ZERO_DATE','');
+
 
 -- Create tables
 
