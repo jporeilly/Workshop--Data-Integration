@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>2_Modify_From_Grouped_Rows</name>
+    <name>8 Join and Modify</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/11/17 23:13:31.624</created_date>
+    <created_date>2022/11/18 09:10:37.299</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/11/17 23:13:31.624</modified_date>
-    <key_for_session_key/>
+    <modified_date>2022/11/18 09:10:37.299</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>As a user, I want to take multiple rows from an input stream and use field data to build multi-level hierarchical objects.</note>
-      <xloc>96</xloc>
-      <yloc>64</yloc>
-      <width>625</width>
+      <note>As a user, I want to merge additional data into HDT.</note>
+      <xloc>224</xloc>
+      <yloc>32</yloc>
+      <width>286</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -448,22 +449,19 @@
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>In this example, a hierarchical object is built that has top level owner name properties, but also
-a nested object called pets where the keys are the pet names, and the objects under each pet
-name are the details about that pet. This example shows using field data from ?pet? as the key
-of output.</note>
-      <xloc>608</xloc>
-      <yloc>128</yloc>
-      <width>503</width>
-      <heigth>74</heigth>
+      <note>The original HDT has a car owner with a nested list of makes and models of the cars they own.</note>
+      <xloc>320</xloc>
+      <yloc>112</yloc>
+      <width>514</width>
+      <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -472,23 +470,19 @@ of output.</note>
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>In this example, the idea of backreference context is first used to store the first successful array push
-at the 2nd level of nesting. 0 is root, 1 is a string key of "first", "last", or "pets". The value of @2@ represents
-the level within the output path to store on the first successful use. This level is then referenced in the path
-set rules, as they are processed top-down in order of definition. Notice how pets is an array, and there are
-elements for each pet belonging to the top level owner.</note>
-      <xloc>608</xloc>
-      <yloc>240</yloc>
-      <width>572</width>
-      <heigth>90</heigth>
+      <note>Use Extract to rows to place the join criteria and the car HDT onto the stream.</note>
+      <xloc>320</xloc>
+      <yloc>224</yloc>
+      <width>423</width>
+      <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -497,64 +491,39 @@ elements for each pet belonging to the top level owner.</note>
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>This example organizes the data in a different way, listing owners underneath each type of pet. Backreferences are used
-so the "first" and "last" property are grouped in an object under the same array index of the pet type, which is provided
-from the ?pet? string field refrence.</note>
-      <xloc>608</xloc>
+      <note>Merge the recalled status from another data source.</note>
+      <xloc>320</xloc>
+      <yloc>320</yloc>
+      <width>288</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Apply the recalled status using SET_IGNORE_NULL_VALUE.</note>
+      <xloc>336</xloc>
       <yloc>432</yloc>
-      <width>636</width>
-      <heigth>58</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>This example uses backrefences again, but notice @3@ is used. Instead of organizing owner names together in a sub object,
-two parallel arrays contain the pet owner data by pet type. The first array contains the first names of the owners of a given pet,
-and the second array contains the last names of the owners of a given pet (at the same index value).</note>
-      <xloc>608</xloc>
-      <yloc>576</yloc>
-      <width>671</width>
-      <heigth>58</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>As a User, I want to build a complex object in multiple steps</note>
-      <xloc>64</xloc>
-      <yloc>752</yloc>
-      <width>325</width>
+      <width>318</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -564,8 +533,50 @@ and the second array contains the last names of the owners of a given pet (at th
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Assign a numeric index to the original index in the source HDT.</note>
+      <xloc>336</xloc>
+      <yloc>544</yloc>
+      <width>348</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Set the index of the nested item in the original HDT.</note>
+      <xloc>336</xloc>
+      <yloc>672</yloc>
+      <width>291</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
@@ -574,38 +585,188 @@ and the second array contains the last names of the owners of a given pet (at th
   </notepads>
   <order>
     <hop>
-      <from>dg: Input</from>
-      <to>Modify values from grouped rows ( keys from pet field )</to>
+      <from>dg: Input Cars</from>
+      <to>Extract to rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Input</from>
-      <to>Modify values from grouped rows (pets organized in array)</to>
+      <from>Extract to rows</from>
+      <to>Merge join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Input</from>
-      <to>Sort rows (by Pet Type)</to>
+      <from>dg: Recalls</from>
+      <to>Merge join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows (by Pet Type)</from>
-      <to>Modify values from grouped rows (organized by pet type)</to>
+      <from>Merge join</from>
+      <to>Modify values from a single row</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows (by Pet Type)</from>
-      <to>Modify values from grouped rows (organized by pet type in arrays)</to>
+      <from>Modify values from a single row</from>
+      <to>Add value fields changing sequence</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: People</from>
-      <to>mvgr: Initial</to>
+      <from>Add value fields changing sequence</from>
+      <to>Modify values from grouped rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Modify values from grouped rows ( keys from pet field )</name>
+    <name>Add value fields changing sequence</name>
+    <type>FieldsChangeSequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <start>0</start>
+    <increment>1</increment>
+    <resultfieldName>car_index</resultfieldName>
+    <fields>
+      <field>
+        <name>cars_hierarchical</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Extract to rows</name>
+    <type>HierarchicalExtract</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <INCOMING_HIERARCHICAL_FIELD_NAME>cars_hierarchical</INCOMING_HIERARCHICAL_FIELD_NAME>
+    <PASS_THROUGH_FIELDS>Y</PASS_THROUGH_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.cars[*].make</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>car_make</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME/>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.cars[*].model</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>car_model</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME/>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.cars[*]</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>car_structure</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>Hierarchical</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME/>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Extract to rows</step1>
+    <step2>dg: Recalls</step2>
+    <keys_1>
+      <key>car_make</key>
+      <key>car_model</key>
+    </keys_1>
+    <keys_2>
+      <key>recall_make</key>
+      <key>recall_model</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modify values from a single row</name>
+    <type>HierarchicalSingleModify</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <FIELDS>
+      <TARGET_FIELD_NAME>car_structure</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.recalled</MODIFY_PATH>
+      <VALUE_FIELD_NAME>recalled</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modify values from grouped rows</name>
     <type>HierarchicalGroupModify</type>
     <description/>
     <distribute>Y</distribute>
@@ -615,43 +776,21 @@ and the second array contains the last names of the owners of a given pet (at th
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+    <TARGET_FIELD_NAME>cars_hierarchical</TARGET_FIELD_NAME>
     <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>first</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>last</GROUPING_FIELD_NAME>
+      <GROUPING_FIELD_NAME>cars_hierarchical</GROUPING_FIELD_NAME>
       <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
     </GROUPING_FIELDS>
     <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.first</MODIFY_PATH>
-      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
+      <MODIFY_PATH>$.cars[#car_index#]</MODIFY_PATH>
+      <VALUE_FIELD_NAME>car_structure</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
     </MODIFIER_FIELDS>
     <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.last</MODIFY_PATH>
-      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[?pet?].age</MODIFY_PATH>
-      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[?pet?].color</MODIFY_PATH>
-      <VALUE_FIELD_NAME>color</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[?pet?].type</MODIFY_PATH>
-      <VALUE_FIELD_NAME>type</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <MODIFY_PATH>$.cars[#car_index#]</MODIFY_PATH>
+      <VALUE_FIELD_NAME/>
+      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
     </MODIFIER_FIELDS>
     <attributes/>
@@ -663,16 +802,16 @@ and the second array contains the last names of the owners of a given pet (at th
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>144</yloc>
+      <xloc>224</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Input</name>
+    <name>dg: Input Cars</name>
     <type>DataGrid</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -681,68 +820,8 @@ and the second array contains the last names of the owners of a given pet (at th
     </partitioning>
     <fields>
       <field>
-        <name>first</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>last</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>pet</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>age</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>color</name>
-        <type>String</type>
+        <name>cars_hierarchical</name>
+        <type>Hierarchical</type>
         <format/>
         <currency/>
         <decimal/>
@@ -755,52 +834,16 @@ and the second array contains the last names of the owners of a given pet (at th
     </fields>
     <data>
       <line>
-        <item>Fred</item>
-        <item>Smith</item>
-        <item>Sally</item>
-        <item>4</item>
-        <item>Dog</item>
-        <item>Brindle</item>
+        <item>{ "name" : "Sam Peters", "cars": [ { "make" : "ABC", "model": "Model1" }, { "make" : "ABC", "model" : "Model2" } ] }</item>
       </line>
       <line>
-        <item>Fred</item>
-        <item>Smith</item>
-        <item>Pete</item>
-        <item>15</item>
-        <item>Parrot</item>
-        <item>Green</item>
+        <item>{ "name" : "Katie Smith", "cars": [ { "make" : "ABC", "model": "Model2" } ] }</item>
       </line>
       <line>
-        <item>Megan</item>
-        <item>Peters</item>
-        <item>Frank</item>
-        <item>2</item>
-        <item>Cat</item>
-        <item>Black</item>
+        <item>{ "name" : "Randy Jones", "cars": [ { "make" : "XYZ", "model": "SuperSport" } ] }</item>
       </line>
       <line>
-        <item>Bryce</item>
-        <item>Fontain</item>
-        <item>Gizmo</item>
-        <item>1</item>
-        <item>Cat</item>
-        <item>Brown</item>
-      </line>
-      <line>
-        <item>Bryce</item>
-        <item>Fontain</item>
-        <item>Princess</item>
-        <item>5</item>
-        <item>Dog</item>
-        <item>Striped</item>
-      </line>
-      <line>
-        <item>Bryce</item>
-        <item>Fontain</item>
-        <item>Ellen</item>
-        <item/>
-        <item>Dog</item>
-        <item>White</item>
+        <item>{ "name" : "Pat Bayer", "cars": [] }</item>
       </line>
     </data>
     <attributes/>
@@ -812,209 +855,13 @@ and the second array contains the last names of the owners of a given pet (at th
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>144</yloc>
+      <xloc>224</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modify values from grouped rows (pets organized in array)</name>
-    <type>HierarchicalGroupModify</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>first</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>last</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.first</MODIFY_PATH>
-      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.last</MODIFY_PATH>
-      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[@2@].age</MODIFY_PATH>
-      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[@2@].name</MODIFY_PATH>
-      <VALUE_FIELD_NAME>pet</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[@2@].color</MODIFY_PATH>
-      <VALUE_FIELD_NAME>color</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.pets[@2@].type</MODIFY_PATH>
-      <VALUE_FIELD_NAME>type</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows (by Pet Type)</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>type</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modify values from grouped rows (organized by pet type)</name>
-    <type>HierarchicalGroupModify</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>type</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>N</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$[?type?][@2@].first</MODIFY_PATH>
-      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$[?type?][@2@].last</MODIFY_PATH>
-      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modify values from grouped rows (organized by pet type in arrays)</name>
-    <type>HierarchicalGroupModify</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>type</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>N</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$[?type?].owner_first_names[@3@]</MODIFY_PATH>
-      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$[?type?].owner_last_names[@3@]</MODIFY_PATH>
-      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
-    </MODIFIER_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dg: People</name>
+    <name>dg: Recalls</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -1026,19 +873,7 @@ and the second array contains the last names of the owners of a given pet (at th
     </partitioning>
     <fields>
       <field>
-        <name>id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>first</name>
+        <name>recall_make</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1050,7 +885,7 @@ and the second array contains the last names of the owners of a given pet (at th
         <field_null_if/>
       </field>
       <field>
-        <name>last</name>
+        <name>recall_model</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1062,8 +897,8 @@ and the second array contains the last names of the owners of a given pet (at th
         <field_null_if/>
       </field>
       <field>
-        <name>age</name>
-        <type>Integer</type>
+        <name>recalled</name>
+        <type>Boolean</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1076,28 +911,19 @@ and the second array contains the last names of the owners of a given pet (at th
     </fields>
     <data>
       <line>
-        <item>1</item>
-        <item>Frank</item>
-        <item>Slatery</item>
-        <item>56</item>
+        <item>ABC</item>
+        <item>Model2</item>
+        <item>Y</item>
       </line>
       <line>
-        <item>2</item>
-        <item>Ed</item>
-        <item>Smith</item>
-        <item>33</item>
+        <item>XYZ</item>
+        <item>SuperSport</item>
+        <item>Y</item>
       </line>
       <line>
-        <item>3</item>
-        <item>Veronica</item>
-        <item>Jones</item>
-        <item>42</item>
-      </line>
-      <line>
-        <item>4</item>
-        <item>Sally</item>
-        <item>Queens</item>
-        <item>21</item>
+        <item>XYZ</item>
+        <item>GasSaver</item>
+        <item>N</item>
       </line>
     </data>
     <attributes/>
@@ -1109,56 +935,8 @@ and the second array contains the last names of the owners of a given pet (at th
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>832</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>mvgr: Initial</name>
-    <type>HierarchicalGroupModify</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <TARGET_FIELD_NAME>output_structure</TARGET_FIELD_NAME>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>id</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.first</MODIFY_PATH>
-      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.last</MODIFY_PATH>
-      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.age</MODIFY_PATH>
-      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>832</yloc>
+      <xloc>112</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

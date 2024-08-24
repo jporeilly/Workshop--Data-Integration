@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>2 Modify values</name>
+    <name>7 Modify Grouped rows</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,61 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/08/26 09:40:25.273</created_date>
+    <created_date>2022/11/17 23:13:31.624</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/26 09:40:25.273</modified_date>
-    <key_for_session_key/>
+    <modified_date>2022/11/17 23:13:31.624</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Modify the values in a record</note>
-      <xloc>304</xloc>
-      <yloc>128</yloc>
-      <width>182</width>
-      <heigth>28</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>255</bordercolorred>
-      <bordercolorgreen>255</bordercolorgreen>
-      <bordercolorblue>255</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>The 'key value' is taken from the product_name field.
-Syntax used is [?field_name?] - the brackets represent a part of the path</note>
-      <xloc>624</xloc>
-      <yloc>272</yloc>
-      <width>393</width>
-      <heigth>42</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>The hierarchical output has values set at particular indicies. </note>
-      <xloc>624</xloc>
-      <yloc>512</yloc>
-      <width>327</width>
+      <note>As a user, I want to take multiple rows from an input stream and use field data to build multi-level hierarchical objects.</note>
+      <xloc>96</xloc>
+      <yloc>64</yloc>
+      <width>642</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -492,39 +449,165 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>In this example, a hierarchical object is built that has top level owner name properties, but also
+a nested object called pets where the keys are the pet names, and the objects under each pet
+name are the details about that pet. This example shows using field data from ?pet? as the key
+of output.</note>
+      <xloc>608</xloc>
+      <yloc>128</yloc>
+      <width>516</width>
+      <heigth>74</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>255</backgroundcolorgreen>
       <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>In this example, the idea of backreference context is first used to store the first successful array push
+at the 2nd level of nesting. 0 is root, 1 is a string key of "first", "last", or "pets". The value of @2@ represents
+the level within the output path to store on the first successful use. This level is then referenced in the path
+set rules, as they are processed top-down in order of definition. Notice how pets is an array, and there are
+elements for each pet belonging to the top level owner.</note>
+      <xloc>608</xloc>
+      <yloc>240</yloc>
+      <width>587</width>
+      <heigth>90</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>This example organizes the data in a different way, listing owners underneath each type of pet. Backreferences are used
+so the "first" and "last" property are grouped in an object under the same array index of the pet type, which is provided
+from the ?pet? string field refrence.</note>
+      <xloc>608</xloc>
+      <yloc>432</yloc>
+      <width>650</width>
+      <heigth>58</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>This example uses backrefences again, but notice @3@ is used. Instead of organizing owner names together in a sub object,
+two parallel arrays contain the pet owner data by pet type. The first array contains the first names of the owners of a given pet,
+and the second array contains the last names of the owners of a given pet (at the same index value).</note>
+      <xloc>608</xloc>
+      <yloc>576</yloc>
+      <width>687</width>
+      <heigth>58</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>As a User, I want to build a complex object in multiple steps</note>
+      <xloc>64</xloc>
+      <yloc>752</yloc>
+      <width>329</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
   <order>
     <hop>
-      <from>Modify values from a single row (Integer Field)</from>
-      <to>sjo: Index from Integer field</to>
+      <from>dg: Input</from>
+      <to>Modify values from grouped rows ( keys from pet field )</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modify values from a single row (String Field)</from>
-      <to>sjo: Keys from String field</to>
+      <from>dg: Input</from>
+      <to>Modify values from grouped rows (pets organized in array)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Inputs</from>
-      <to>Modify values from a single row (Integer Field)</to>
+      <from>dg: Input</from>
+      <to>Sort rows (by Pet Type)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Products</from>
-      <to>Modify values from a single row (String Field)</to>
+      <from>Sort rows (by Pet Type)</from>
+      <to>Modify values from grouped rows (organized by pet type)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows (by Pet Type)</from>
+      <to>Modify values from grouped rows (organized by pet type in arrays)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dg: People</from>
+      <to>mvgr: Initial</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Modify values from a single row (Integer Field)</name>
-    <type>HierarchicalSingleModify</type>
+    <name>Modify values from grouped rows ( keys from pet field )</name>
+    <type>HierarchicalGroupModify</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -533,14 +616,45 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_output</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$[#array_index#]</MODIFY_PATH>
-      <VALUE_FIELD_NAME>array_value</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
+    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>first</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>last</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
-    </FIELDS>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[?pet?].age</MODIFY_PATH>
+      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[?pet?].color</MODIFY_PATH>
+      <VALUE_FIELD_NAME>color</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[?pet?].type</MODIFY_PATH>
+      <VALUE_FIELD_NAME>type</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -550,14 +664,98 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>400</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modify values from grouped rows (organized by pet type in arrays)</name>
+    <type>HierarchicalGroupModify</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>type</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>N</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$[?type?].owner_first_names[@3@]</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$[?type?].owner_last_names[@3@]</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
+    </MODIFIER_FIELDS>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modify values from grouped rows (organized by pet type)</name>
+    <type>HierarchicalGroupModify</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>type</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>N</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$[?type?][@2@].first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$[?type?][@2@].last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP>1</BACK_REFRENCE_GROUP>
+    </MODIFIER_FIELDS>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
       <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modify values from a single row (String Field)</name>
-    <type>HierarchicalSingleModify</type>
+    <name>Modify values from grouped rows (pets organized in array)</name>
+    <type>HierarchicalGroupModify</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -566,22 +764,51 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_output</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$[?product_name?].year</MODIFY_PATH>
-      <VALUE_FIELD_NAME>year_introduced</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
+    <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>first</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>last</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
-    </FIELDS>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_output</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$[?product_name?].offset</MODIFY_PATH>
-      <VALUE_FIELD_NAME>offset_product</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IF_NULL</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
-    </FIELDS>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[@2@].age</MODIFY_PATH>
+      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[@2@].name</MODIFY_PATH>
+      <VALUE_FIELD_NAME>pet</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[@2@].color</MODIFY_PATH>
+      <VALUE_FIELD_NAME>color</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.pets[@2@].type</MODIFY_PATH>
+      <VALUE_FIELD_NAME>type</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -591,16 +818,58 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>208</yloc>
+      <xloc>400</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Inputs</name>
+    <name>Sort rows (by Pet Type)</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>type</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dg: Input</name>
     <type>DataGrid</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -609,7 +878,43 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
     </partitioning>
     <fields>
       <field>
-        <name>array_index</name>
+        <name>first</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>last</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>pet</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>age</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -621,7 +926,19 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
         <field_null_if/>
       </field>
       <field>
-        <name>array_value</name>
+        <name>type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>color</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -635,16 +952,52 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
     </fields>
     <data>
       <line>
-        <item>0</item>
-        <item>Hello</item>
+        <item>Fred</item>
+        <item>Smith</item>
+        <item>Sally</item>
+        <item>4</item>
+        <item>Dog</item>
+        <item>Brindle</item>
       </line>
       <line>
-        <item>1</item>
-        <item>World</item>
+        <item>Fred</item>
+        <item>Smith</item>
+        <item>Pete</item>
+        <item>15</item>
+        <item>Parrot</item>
+        <item>Green</item>
       </line>
       <line>
+        <item>Megan</item>
+        <item>Peters</item>
+        <item>Frank</item>
         <item>2</item>
-        <item>Index_2</item>
+        <item>Cat</item>
+        <item>Black</item>
+      </line>
+      <line>
+        <item>Bryce</item>
+        <item>Fontain</item>
+        <item>Gizmo</item>
+        <item>1</item>
+        <item>Cat</item>
+        <item>Brown</item>
+      </line>
+      <line>
+        <item>Bryce</item>
+        <item>Fontain</item>
+        <item>Princess</item>
+        <item>5</item>
+        <item>Dog</item>
+        <item>Striped</item>
+      </line>
+      <line>
+        <item>Bryce</item>
+        <item>Fontain</item>
+        <item>Ellen</item>
+        <item/>
+        <item>Dog</item>
+        <item>White</item>
       </line>
     </data>
     <attributes/>
@@ -656,13 +1009,13 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>432</yloc>
+      <xloc>96</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Products</name>
+    <name>dg: People</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -674,7 +1027,19 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
     </partitioning>
     <fields>
       <field>
-        <name>product_name</name>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>first</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -686,8 +1051,8 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
         <field_null_if/>
       </field>
       <field>
-        <name>year_introduced</name>
-        <type>Number</type>
+        <name>last</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -698,8 +1063,8 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
         <field_null_if/>
       </field>
       <field>
-        <name>offset_product</name>
-        <type>String</type>
+        <name>age</name>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -712,24 +1077,28 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
     </fields>
     <data>
       <line>
-        <item>Compact Disc</item>
-        <item>1986</item>
-        <item>Cassette</item>
+        <item>1</item>
+        <item>Frank</item>
+        <item>Slatery</item>
+        <item>56</item>
       </line>
       <line>
-        <item>VHS</item>
-        <item>1978</item>
-        <item>Betamax</item>
+        <item>2</item>
+        <item>Ed</item>
+        <item>Smith</item>
+        <item>33</item>
       </line>
       <line>
-        <item>DVD</item>
-        <item>1996</item>
-        <item>VHS</item>
+        <item>3</item>
+        <item>Veronica</item>
+        <item>Jones</item>
+        <item>42</item>
       </line>
       <line>
-        <item>BluRay</item>
-        <item>2003</item>
-        <item>DVD</item>
+        <item>4</item>
+        <item>Sally</item>
+        <item>Queens</item>
+        <item>21</item>
       </line>
     </data>
     <attributes/>
@@ -741,14 +1110,14 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>208</yloc>
+      <xloc>96</xloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sjo: Index from Integer field</name>
-    <type>HierarchicalJsonOutput</type>
+    <name>mvgr: Initial</name>
+    <type>HierarchicalGroupModify</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -757,10 +1126,29 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <INCOMING_FIELD_NAME>hierarchical_output</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
-    <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
+    <TARGET_FIELD_NAME>output_structure</TARGET_FIELD_NAME>
+    <GROUPING_FIELDS>
+      <GROUPING_FIELD_NAME>id</GROUPING_FIELD_NAME>
+      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
+    </GROUPING_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
+    <MODIFIER_FIELDS>
+      <MODIFY_PATH>$.age</MODIFY_PATH>
+      <VALUE_FIELD_NAME>age</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </MODIFIER_FIELDS>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -770,37 +1158,8 @@ Syntax used is [?field_name?] - the brackets represent a part of the path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>432</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>sjo: Keys from String field</name>
-    <type>HierarchicalJsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <INCOMING_FIELD_NAME>hierarchical_output</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
-    <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>208</yloc>
+      <xloc>272</xloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

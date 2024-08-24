@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>4_Advanced_Using_Multiples_To_Join_And_Edit</name>
+    <name>5 UNSET JSON Object</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,21 +428,44 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/11/18 09:10:37.299</created_date>
+    <created_date>2023/08/26 12:28:23.934</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/11/18 09:10:37.299</modified_date>
+    <modified_date>2023/08/26 12:28:23.934</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>As a user, I want to merge additional data into HDT.
+      <note>UNSET keys</note>
+      <xloc>384</xloc>
+      <yloc>128</yloc>
+      <width>80</width>
+      <heigth>28</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
+      <drawshadow>N</drawshadow>
+    </notepad>
+    <notepad>
+      <note>The "world" key is removed due to UNSET_IF_NULL value.
+The "country" key is removed due UNSET action.
+The"value" key is retained even if the UNSET_IF_NULL action is set as it has associated data.
 
-</note>
-      <xloc>16</xloc>
-      <yloc>0</yloc>
-      <width>420</width>
-      <heigth>84</heigth>
+Expected Output : { hello: null, value: 100 }</note>
+      <xloc>208</xloc>
+      <yloc>272</yloc>
+      <width>497</width>
+      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -450,291 +474,33 @@
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>The original HDT has a car owner with a nested list of makes and models of the cars they own.</note>
-      <xloc>320</xloc>
-      <yloc>112</yloc>
-      <width>753</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Use Extract to rows to place the join criteria and the car HDT onto the stream.</note>
-      <xloc>320</xloc>
-      <yloc>224</yloc>
-      <width>618</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Merge the recalled status from another data source.</note>
-      <xloc>320</xloc>
-      <yloc>320</yloc>
-      <width>419</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Apply the recalled status using SET_IGNORE_NULL_VALUE.</note>
-      <xloc>336</xloc>
-      <yloc>432</yloc>
-      <width>466</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Assign a numeric index to the original index in the source HDT.</note>
-      <xloc>336</xloc>
-      <yloc>544</yloc>
-      <width>504</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Set the index of the nested item in the original HDT.</note>
-      <xloc>336</xloc>
-      <yloc>672</yloc>
-      <width>418</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
+      <drawshadow>N</drawshadow>
     </notepad>
   </notepads>
   <order>
     <hop>
-      <from>dg: Input Cars</from>
-      <to>Extract to rows</to>
+      <from>Modify values from a single row (UNSET options)</from>
+      <to>sjo: after UNSET</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Extract to rows</from>
-      <to>Merge join</to>
+      <from>dg: Input</from>
+      <to>sjo: before UNSET</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Recalls</from>
-      <to>Merge join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join</from>
-      <to>Modify values from a single row</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modify values from a single row</from>
-      <to>Add value fields changing sequence</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Add value fields changing sequence</from>
-      <to>Modify values from grouped rows</to>
+      <from>sjo: before UNSET</from>
+      <to>Modify values from a single row (UNSET options)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Add value fields changing sequence</name>
-    <type>FieldsChangeSequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <start>0</start>
-    <increment>1</increment>
-    <resultfieldName>car_index</resultfieldName>
-    <fields>
-      <field>
-        <name>cars_hierarchical</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Extract to rows</name>
-    <type>HierarchicalExtract</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <INCOMING_HIERARCHICAL_FIELD_NAME>cars_hierarchical</INCOMING_HIERARCHICAL_FIELD_NAME>
-    <PASS_THROUGH_FIELDS>Y</PASS_THROUGH_FIELDS>
-    <EXTRACT_FIELDS>
-      <HIERARCHICAL_PATH>$.cars[*].make</HIERARCHICAL_PATH>
-      <OUTPUT_FIELD_NAME>car_make</OUTPUT_FIELD_NAME>
-      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
-      <OUTPUT_PATH_FIELD_NAME/>
-      <INPUT_HIERARCHICAL_FIELD_NAME/>
-    </EXTRACT_FIELDS>
-    <EXTRACT_FIELDS>
-      <HIERARCHICAL_PATH>$.cars[*].model</HIERARCHICAL_PATH>
-      <OUTPUT_FIELD_NAME>car_model</OUTPUT_FIELD_NAME>
-      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
-      <OUTPUT_PATH_FIELD_NAME/>
-      <INPUT_HIERARCHICAL_FIELD_NAME/>
-    </EXTRACT_FIELDS>
-    <EXTRACT_FIELDS>
-      <HIERARCHICAL_PATH>$.cars[*]</HIERARCHICAL_PATH>
-      <OUTPUT_FIELD_NAME>car_structure</OUTPUT_FIELD_NAME>
-      <OUTPUT_FIELD_TYPE>Hierarchical</OUTPUT_FIELD_TYPE>
-      <OUTPUT_PATH_FIELD_NAME/>
-      <INPUT_HIERARCHICAL_FIELD_NAME/>
-    </EXTRACT_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>LEFT OUTER</join_type>
-    <step1>Extract to rows</step1>
-    <step2>dg: Recalls</step2>
-    <keys_1>
-      <key>car_make</key>
-      <key>car_model</key>
-    </keys_1>
-    <keys_2>
-      <key>recall_make</key>
-      <key>recall_model</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modify values from a single row</name>
+    <name>Modify values from a single row (UNSET options)</name>
     <type>HierarchicalSingleModify</type>
     <description/>
     <distribute>Y</distribute>
@@ -745,11 +511,27 @@
       <schema_name/>
     </partitioning>
     <FIELDS>
-      <TARGET_FIELD_NAME>car_structure</TARGET_FIELD_NAME>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
       <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$.recalled</MODIFY_PATH>
-      <VALUE_FIELD_NAME>recalled</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <MODIFY_PATH>$.country</MODIFY_PATH>
+      <VALUE_FIELD_NAME/>
+      <MODIFY_ACTION>UNSET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.value</MODIFY_PATH>
+      <VALUE_FIELD_NAME/>
+      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.world</MODIFY_PATH>
+      <VALUE_FIELD_NAME/>
+      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
     </FIELDS>
     <attributes/>
@@ -761,55 +543,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>432</yloc>
+      <xloc>528</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modify values from grouped rows</name>
-    <type>HierarchicalGroupModify</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <TARGET_FIELD_NAME>cars_hierarchical</TARGET_FIELD_NAME>
-    <GROUPING_FIELDS>
-      <GROUPING_FIELD_NAME>cars_hierarchical</GROUPING_FIELD_NAME>
-      <PASS_FIELD_THROUGH>Y</PASS_FIELD_THROUGH>
-    </GROUPING_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.cars[#car_index#]</MODIFY_PATH>
-      <VALUE_FIELD_NAME>car_structure</VALUE_FIELD_NAME>
-      <MODIFY_ACTION>SET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <MODIFIER_FIELDS>
-      <MODIFY_PATH>$.cars[#car_index#]</MODIFY_PATH>
-      <VALUE_FIELD_NAME/>
-      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </MODIFIER_FIELDS>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>688</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dg: Input Cars</name>
+    <name>dg: Input</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -821,7 +561,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>cars_hierarchical</name>
+        <name>hierarchical_data</name>
         <type>Hierarchical</type>
         <format/>
         <currency/>
@@ -835,16 +575,7 @@
     </fields>
     <data>
       <line>
-        <item>{ "name" : "Sam Peters", "cars": [ { "make" : "ABC", "model": "Model1" }, { "make" : "ABC", "model" : "Model2" } ] }</item>
-      </line>
-      <line>
-        <item>{ "name" : "Katie Smith", "cars": [ { "make" : "ABC", "model": "Model2" } ] }</item>
-      </line>
-      <line>
-        <item>{ "name" : "Randy Jones", "cars": [ { "make" : "XYZ", "model": "SuperSport" } ] }</item>
-      </line>
-      <line>
-        <item>{ "name" : "Pat Bayer", "cars": [] }</item>
+        <item>{ "hello": null, "world": null, "country": "US", "value": 100 }</item>
       </line>
     </data>
     <attributes/>
@@ -856,14 +587,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>112</yloc>
+      <xloc>208</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Recalls</name>
-    <type>DataGrid</type>
+    <name>sjo: after UNSET</name>
+    <type>HierarchicalJsonOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -872,61 +603,10 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>recall_make</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>recall_model</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>recalled</name>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>ABC</item>
-        <item>Model2</item>
-        <item>Y</item>
-      </line>
-      <line>
-        <item>XYZ</item>
-        <item>SuperSport</item>
-        <item>Y</item>
-      </line>
-      <line>
-        <item>XYZ</item>
-        <item>GasSaver</item>
-        <item>N</item>
-      </line>
-    </data>
+    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
+    <OUTPUT_FIELD_NAME>json_output_after</OUTPUT_FIELD_NAME>
+    <PRETTY_PRINT>N</PRETTY_PRINT>
+    <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -936,8 +616,37 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>320</yloc>
+      <xloc>720</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sjo: before UNSET</name>
+    <type>HierarchicalJsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
+    <OUTPUT_FIELD_NAME>json_output_before</OUTPUT_FIELD_NAME>
+    <PRETTY_PRINT>Y</PRETTY_PRINT>
+    <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -946,5 +655,9 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes/>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+    </group>
+  </attributes>
 </transformation>

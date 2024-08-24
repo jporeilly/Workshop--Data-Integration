@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>4 UNSET JSON Object</name>
+    <name>1 Extract rows</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,18 +427,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/08/26 12:28:23.934</created_date>
+    <created_date>2023/09/03 10:57:08.387</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/26 12:28:23.934</modified_date>
+    <modified_date>2023/09/03 10:57:08.387</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>UNSET keys</note>
-      <xloc>384</xloc>
-      <yloc>128</yloc>
-      <width>80</width>
+      <note>Extract Data</note>
+      <xloc>272</xloc>
+      <yloc>80</yloc>
+      <width>81</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -454,54 +453,24 @@
       <bordercolorred>255</bordercolorred>
       <bordercolorgreen>255</bordercolorgreen>
       <bordercolorblue>255</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>The "world" key is removed due to UNSET_IF_NULL value.
-The "country" key is removed due UNSET action.
-The"value" key is retained even if the UNSET_IF_NULL action is set as it has associated data.
-
-Expected Output : { hello: null, value: 100 }</note>
-      <xloc>208</xloc>
-      <yloc>272</yloc>
-      <width>497</width>
-      <heigth>90</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
+      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
   <order>
     <hop>
-      <from>Modify values from a single row (UNSET options)</from>
-      <to>sjo: after UNSET</to>
+      <from>Hierarchical JSON input</from>
+      <to>Extract to rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Input</from>
-      <to>sjo: before UNSET</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sjo: before UNSET</from>
-      <to>Modify values from a single row (UNSET options)</to>
+      <from>Extract to rows</from>
+      <to>Hierarchical JSON output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Modify values from a single row (UNSET options)</name>
-    <type>HierarchicalSingleModify</type>
+    <name>Extract to rows</name>
+    <type>HierarchicalExtract</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -510,30 +479,29 @@ Expected Output : { hello: null, value: 100 }</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$.country</MODIFY_PATH>
-      <VALUE_FIELD_NAME/>
-      <MODIFY_ACTION>UNSET</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </FIELDS>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$.value</MODIFY_PATH>
-      <VALUE_FIELD_NAME/>
-      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </FIELDS>
-    <FIELDS>
-      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
-      <MODIFY_PATH>$.world</MODIFY_PATH>
-      <VALUE_FIELD_NAME/>
-      <MODIFY_ACTION>UNSET_IF_NULL</MODIFY_ACTION>
-      <BACK_REFRENCE_GROUP/>
-    </FIELDS>
+    <INCOMING_HIERARCHICAL_FIELD_NAME>employees</INCOMING_HIERARCHICAL_FIELD_NAME>
+    <PASS_THROUGH_FIELDS>Y</PASS_THROUGH_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.firstName</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>First Name</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME/>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.lastName</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>Surname</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME/>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
+    <EXTRACT_FIELDS>
+      <HIERARCHICAL_PATH>$.address[*]</HIERARCHICAL_PATH>
+      <OUTPUT_FIELD_NAME>Address</OUTPUT_FIELD_NAME>
+      <OUTPUT_FIELD_TYPE>String</OUTPUT_FIELD_TYPE>
+      <OUTPUT_PATH_FIELD_NAME>address_Path</OUTPUT_PATH_FIELD_NAME>
+      <INPUT_HIERARCHICAL_FIELD_NAME/>
+    </EXTRACT_FIELDS>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -543,14 +511,14 @@ Expected Output : { hello: null, value: 100 }</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>192</yloc>
+      <xloc>304</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Input</name>
-    <type>DataGrid</type>
+    <name>Hierarchical JSON input</name>
+    <type>HierarchicalJsonInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -559,25 +527,20 @@ Expected Output : { hello: null, value: 100 }</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>hierarchical_data</name>
-        <type>Hierarchical</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>{ "hello": null, "world": null, "country": "US", "value": 100 }</item>
-      </line>
-    </data>
+    <FILE_NAME>C:\GitHub\How-To--Plugins\HDT\data\employees.json</FILE_NAME>
+    <SOURCE_FIELD_NAME/>
+    <OUTPUT_FIELD_NAME>employees</OUTPUT_FIELD_NAME>
+    <SPLIT_ROWS_PATH>$.employees[*]</SPLIT_ROWS_PATH>
+    <IS_FILE_PATH_MENTIONED>Y</IS_FILE_PATH_MENTIONED>
+    <FILTERS>
+      <PATH>$.firstName</PATH>
+    </FILTERS>
+    <FILTERS>
+      <PATH>$.lastName</PATH>
+    </FILTERS>
+    <FILTERS>
+      <PATH>$.address</PATH>
+    </FILTERS>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -587,13 +550,13 @@ Expected Output : { hello: null, value: 100 }</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>192</yloc>
+      <xloc>160</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sjo: after UNSET</name>
+    <name>Hierarchical JSON output</name>
     <type>HierarchicalJsonOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -603,9 +566,9 @@ Expected Output : { hello: null, value: 100 }</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output_after</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
+    <INCOMING_FIELD_NAME>employees</INCOMING_FIELD_NAME>
+    <OUTPUT_FIELD_NAME>JSON Employee Details</OUTPUT_FIELD_NAME>
+    <PRETTY_PRINT>Y</PRETTY_PRINT>
     <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
     <attributes/>
     <cluster_schema/>
@@ -616,37 +579,8 @@ Expected Output : { hello: null, value: 100 }</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>sjo: before UNSET</name>
-    <type>HierarchicalJsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output_before</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
-    <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>192</yloc>
+      <xloc>432</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -655,9 +589,5 @@ Expected Output : { hello: null, value: 100 }</note>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes>
-    <group>
-      <name>explorerState</name>
-    </group>
-  </attributes>
+  <attributes/>
 </transformation>

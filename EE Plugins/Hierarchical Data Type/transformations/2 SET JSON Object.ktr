@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>3 Push values</name>
+    <name>2 SET JSON Object</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/08/26 10:22:15.732</created_date>
+    <created_date>2023/08/26 09:16:12.067</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/26 10:22:15.732</modified_date>
+    <modified_date>2023/08/26 09:16:12.067</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Push values into JSON Object</note>
-      <xloc>384</xloc>
-      <yloc>112</yloc>
-      <width>184</width>
+      <note>Create a JSON object from a single record</note>
+      <xloc>224</xloc>
+      <yloc>32</yloc>
+      <width>259</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -456,13 +457,34 @@
       <drawshadow>N</drawshadow>
     </notepad>
     <notepad>
-      <note>dg: Inputs has a HDT "array" field with the values [A,B,C,D].
-The Modify Values step uses push operator to add the value E to the end of the
-index based on the array path value [ ] </note>
-      <xloc>320</xloc>
-      <yloc>272</yloc>
-      <width>436</width>
-      <heigth>58</heigth>
+      <note>Fred Lake has a second address of {"street": null, "zip": null }
+The SET action disregards the input value and sets all the key/value pairs.</note>
+      <xloc>528</xloc>
+      <yloc>160</yloc>
+      <width>402</width>
+      <heigth>42</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Fred Lake only has a single address. 
+The SET_IGNORE_NULL_VALUE will disregard the field if the value is null.</note>
+      <xloc>528</xloc>
+      <yloc>368</yloc>
+      <width>395</width>
+      <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -481,23 +503,28 @@ index based on the array path value [ ] </note>
   </notepads>
   <order>
     <hop>
-      <from>Modify values from a single row (Push into array)</from>
-      <to>sjo: Added Element</to>
+      <from>Modify values from a single row (SET_IGNORE_NULL_VALUE)</from>
+      <to>sjo: SET_IGNORE_NULL_VALUE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dg: Inputs</from>
-      <to>sjo: Push Element</to>
+      <from>dg: Person and Addresses</from>
+      <to>Modify values from a single row (SET)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sjo: Push Element</from>
-      <to>Modify values from a single row (Push into array)</to>
+      <from>dg: Person and Addresses</from>
+      <to>Modify values from a single row (SET_IGNORE_NULL_VALUE)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modify values from a single row (SET)</from>
+      <to>sjo: SET</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Modify values from a single row (Push into array)</name>
+    <name>Modify values from a single row (SET)</name>
     <type>HierarchicalSingleModify</type>
     <description/>
     <distribute>Y</distribute>
@@ -508,10 +535,123 @@ index based on the array path value [ ] </note>
       <schema_name/>
     </partitioning>
     <FIELDS>
-      <TARGET_FIELD_NAME>array</TARGET_FIELD_NAME>
-      <OUTPUT_MODIFY_PATH_FIELD_NAME>target_path</OUTPUT_MODIFY_PATH_FIELD_NAME>
-      <MODIFY_PATH>$[]</MODIFY_PATH>
-      <VALUE_FIELD_NAME>push</VALUE_FIELD_NAME>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first_name</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last_name</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[0].street</MODIFY_PATH>
+      <VALUE_FIELD_NAME>street1</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[0].zip</MODIFY_PATH>
+      <VALUE_FIELD_NAME>zip1</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[1].street</MODIFY_PATH>
+      <VALUE_FIELD_NAME>street2</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[1].zip</MODIFY_PATH>
+      <VALUE_FIELD_NAME>zip2</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modify values from a single row (SET_IGNORE_NULL_VALUE)</name>
+    <type>HierarchicalSingleModify</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.first</MODIFY_PATH>
+      <VALUE_FIELD_NAME>first_name</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.last</MODIFY_PATH>
+      <VALUE_FIELD_NAME>last_name</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[0].street</MODIFY_PATH>
+      <VALUE_FIELD_NAME>street1</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[0].zip</MODIFY_PATH>
+      <VALUE_FIELD_NAME>zip1</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[1].street</MODIFY_PATH>
+      <VALUE_FIELD_NAME>street2</VALUE_FIELD_NAME>
+      <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
+      <BACK_REFRENCE_GROUP/>
+    </FIELDS>
+    <FIELDS>
+      <TARGET_FIELD_NAME>hierarchical_data</TARGET_FIELD_NAME>
+      <OUTPUT_MODIFY_PATH_FIELD_NAME/>
+      <MODIFY_PATH>$.addresses[1].zip</MODIFY_PATH>
+      <VALUE_FIELD_NAME>zip2</VALUE_FIELD_NAME>
       <MODIFY_ACTION>SET_IGNORE_NULL_VALUE</MODIFY_ACTION>
       <BACK_REFRENCE_GROUP/>
     </FIELDS>
@@ -524,16 +664,16 @@ index based on the array path value [ ] </note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>520</xloc>
-      <yloc>186</yloc>
+      <xloc>288</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dg: Inputs</name>
+    <name>dg: Person and Addresses</name>
     <type>DataGrid</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -542,8 +682,8 @@ index based on the array path value [ ] </note>
     </partitioning>
     <fields>
       <field>
-        <name>array</name>
-        <type>Hierarchical</type>
+        <name>first_name</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -554,8 +694,56 @@ index based on the array path value [ ] </note>
         <field_null_if/>
       </field>
       <field>
-        <name>push</name>
+        <name>last_name</name>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>street1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>zip1</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>street2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>zip2</name>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -568,15 +756,19 @@ index based on the array path value [ ] </note>
     </fields>
     <data>
       <line>
-        <item>["A","B","C", "D"]</item>
-        <item>E</item>
+        <item>John</item>
+        <item>Smith</item>
+        <item>200 Data St</item>
+        <item>55555</item>
+        <item>201 Java Ave</item>
+        <item>77777</item>
       </line>
       <line>
-        <item>["Cat","Dog"]</item>
-        <item>Rabbit</item>
-      </line>
-      <line>
-        <item>["Red","Blue"]</item>
+        <item>Fred</item>
+        <item>Lake</item>
+        <item>101 Crimson Dr</item>
+        <item>33333</item>
+        <item/>
         <item/>
       </line>
     </data>
@@ -589,13 +781,13 @@ index based on the array path value [ ] </note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>216</xloc>
-      <yloc>186</yloc>
+      <xloc>144</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sjo: Added Element</name>
+    <name>sjo: SET</name>
     <type>HierarchicalJsonOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -605,9 +797,9 @@ index based on the array path value [ ] </note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <INCOMING_FIELD_NAME>array</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output_after</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
+    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
+    <OUTPUT_FIELD_NAME>output_field</OUTPUT_FIELD_NAME>
+    <PRETTY_PRINT>Y</PRETTY_PRINT>
     <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
     <attributes/>
     <cluster_schema/>
@@ -618,13 +810,13 @@ index based on the array path value [ ] </note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>728</xloc>
-      <yloc>186</yloc>
+      <xloc>544</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sjo: Push Element</name>
+    <name>sjo: SET_IGNORE_NULL_VALUE</name>
     <type>HierarchicalJsonOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -634,9 +826,9 @@ index based on the array path value [ ] </note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <INCOMING_FIELD_NAME>array</INCOMING_FIELD_NAME>
-    <OUTPUT_FIELD_NAME>json_output_before</OUTPUT_FIELD_NAME>
-    <PRETTY_PRINT>N</PRETTY_PRINT>
+    <INCOMING_FIELD_NAME>hierarchical_data</INCOMING_FIELD_NAME>
+    <OUTPUT_FIELD_NAME>output_field</OUTPUT_FIELD_NAME>
+    <PRETTY_PRINT>Y</PRETTY_PRINT>
     <SERVLET_OUTPUT>N</SERVLET_OUTPUT>
     <attributes/>
     <cluster_schema/>
@@ -647,8 +839,8 @@ index based on the array path value [ ] </note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>328</xloc>
-      <yloc>186</yloc>
+      <xloc>544</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
