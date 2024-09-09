@@ -469,7 +469,7 @@
     <created_date>2017/02/23 12:41:52.842</created_date>
     <modified_user>-</modified_user>
     <modified_date>2017/02/23 12:41:52.842</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -570,7 +570,7 @@ Train, Tune, Test Model in R</note>
       <note>Lab: Credit Card Fraud (Train Model)</note>
       <xloc>528</xloc>
       <yloc>48</yloc>
-      <width>236</width>
+      <width>238</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -634,6 +634,10 @@ Deploy Model in R (randomForest)</note>
       </attribute>
       <attribute>
         <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
         <attribute>N</attribute>
       </attribute>
       <attribute>
@@ -720,7 +724,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\transaction_details.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Workflows/Machine Learning/AutoML/data/transaction_details.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -970,7 +974,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer_billing.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Workflows/Machine Learning/AutoML/data/customer_billing.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1055,7 +1059,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Workflows/Machine Learning/AutoML/data/customer.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1129,7 +1133,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\transaction_fraud_report.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Workflows/Machine Learning/AutoML/data/transaction_fraud_report.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1265,6 +1269,9 @@ FROM strataml_customer_billing
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <use_connection_string>N</use_connection_string>
+    <use_legacy_options>Y</use_legacy_options>
+    <connection_string>Encrypted </connection_string>
     <hostname>localhost</hostname>
     <port>27017</port>
     <use_all_replica_members>N</use_all_replica_members>
@@ -1284,6 +1291,7 @@ FROM strataml_customer_billing
     <read_preference>primary</read_preference>
     <output_json>Y</output_json>
     <query_is_pipeline>N</query_is_pipeline>
+    <allow_disk_use>N</allow_disk_use>
     <execute_for_each_row>N</execute_for_each_row>
     <attributes/>
     <cluster_schema/>
@@ -1322,7 +1330,7 @@ FROM strataml_customer_billing
 
 train.df &lt;- as.data.frame(train)
 rf &lt;- randomForest(train.df$reported_as_fraud_historic ~ ., train.df, ntree=8, importance=TRUE)
-save(rf, file="C:\\Machine--Learning\\01_Credit_Card\\Lab_02_Credit_Card_Fraud\\train_model_output\\rf.rdata")
+save(rf, file="/home/pentaho/Projects/ml/rf.rdata")
 
 ok &lt;- "Finished"
 ok.df &lt;- as.data.frame(ok)

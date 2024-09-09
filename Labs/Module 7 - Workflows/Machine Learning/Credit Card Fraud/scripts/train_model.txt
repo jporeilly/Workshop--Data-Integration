@@ -16,7 +16,7 @@ train.df <- as.data.frame(train)
 rf <- randomForest(train.df$reported_as_fraud_historic ~ ., train.df, ntree=8, importance=TRUE)
 
 # save model to output folder: Note no spaces and double backslashes are required.
-save(rf, file="/home/installer/How-To--Machine-Learning/02 Credit Card Fraud/solution/train_model_output/rf.rdata")
+save(rf, file="/home/pentaho/rf.rdata")
 
 # print message ok to indicate no probs..
 # declare variable: ok assigned with the value “Finished”
