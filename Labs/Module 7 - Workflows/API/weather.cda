@@ -3,7 +3,8 @@
    <DataSources>
       <Connection id="weather" type="kettle.TransFromFile">
          <KtrFile>tr_weather_cda.ktr</KtrFile>
-         <variables datarow-name="CITY"/>
+         <variables datarow-name="city"/>
+         <variables datarow-name="country"/>
        </Connection>
    </DataSources>
    
@@ -12,7 +13,8 @@
                type="kettle">
       <Columns/>
       <Parameters>
-         <Parameter default="London" name="CITY" type="String"/>
+         <Parameter default="London" name="city" type="String"/>
+         <Parameter default="GB" name="country" type="String"/>
       </Parameters>
       <Query>conditions_normalized</Query>
       <Output indexes="0,1"/>

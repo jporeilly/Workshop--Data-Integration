@@ -10,7 +10,7 @@ library(randomForest)
 test.df <- as.data.frame(test)
 
 # load randomForest Model
-load("/home/pentaho/rf.rdata")
+load("C:\\Machine—Learning\\01_Credit_Card\\Lab_02_Credit_Card_Fraud\\train_model_output\\rf.rdata")
 
 # declare a variable pred which is assigned the results of using the predict function
 # predict function runs our randomForest model against test.df = newdata
