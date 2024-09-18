@@ -1,0 +1,5 @@
+2023-09-08 11:48:52.430 INFO  <Thread-23> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Dispatching started for transformation [BasicWritetoGCPStorage]
+2023-09-08 11:48:57.627 INFO  <BasicWritetoGCPStorage - Execute SQL script 2> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Finished reading query, closing connection.
+2023-09-08 11:48:57.627 INFO  <BasicWritetoGCPStorage - Data grid> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2023-09-08 11:48:57.628 INFO  <BasicWritetoGCPStorage - Execute SQL script 2> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2023-09-08 11:49:07.646 INFO  <Transformation Heartbeat Thread for: BasicWritetoGCPStorage> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Shutting down heartbeat signal for BasicWritetoGCPStorage

@@ -1,0 +1,48 @@
+2023-09-07 09:54:34.402 INFO  <Thread-86> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Dispatching started for transformation [BasicWritetoGCPStorage]
+2023-09-07 09:54:34.427 ERROR <init of Table output.0 (Thread-88)> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  An error occurred intialising this step: 
+The Simba driver for a Google Big Query database connection does not support regular DDL statements. Please use the GBQ Bulk Loader step to create your table.
+
+2023-09-07 09:54:34.428 ERROR <init of Table output.0 (Thread-88)> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Error initializing step [Table output]
+2023-09-07 09:54:34.429 ERROR <Thread-86> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Step [Table output.0] failed to initialize!
+2023-09-07 09:54:34.431 ERROR <Thread-86> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Errors detected!
+2023-09-07 09:54:34.611 ERROR <Thread-86> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Errors detected!
+2023-09-07 11:02:11.294 INFO  <Thread-96> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Dispatching started for transformation [BasicWritetoGCPStorage]
+2023-09-07 11:02:11.713 INFO  <init of Table output.0 (Thread-98)> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Connected to database [BQ-test-generic-02] (commit=1000)
+2023-09-07 11:02:11.746 INFO  <BasicWritetoGCPStorage - Data grid> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2023-09-07 11:02:12.034 ERROR <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Because of an error, this step can't continue: 
+2023-09-07 11:02:12.034 ERROR <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  org.pentaho.di.core.exception.KettleDatabaseException: 
+Couldn't prepare statement:
+INSERT INTO dataset_test_01.test (ID) VALUES ( ?)
+[Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+
+	at org.pentaho.di.core.database.Database.prepareSQL(Database.java:993)
+	at org.pentaho.di.trans.steps.tableoutput.TableOutput.writeToTable(TableOutput.java:250)
+	at org.pentaho.di.trans.steps.tableoutput.TableOutput.processRow(TableOutput.java:125)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.sql.SQLException: [Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.throwException(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.client.requests.AbstractRequestWithRetry.executeWithRetry(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.client.queryclient.JobsInsertClient.executeQuery(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.client.BQClient.executeQuery(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.client.BQClient.beginTransaction(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.core.BQConnection.beginTransaction(Unknown Source)
+	at com.simba.googlebigquery.jdbc.common.SConnection.beginTransaction(Unknown Source)
+	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+	at org.pentaho.di.core.database.Database.prepareSQL(Database.java:990)
+	... 4 more
+Caused by: com.simba.googlebigquery.googlebigquery.client.exceptions.JobExecutionErrorException: [Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+	... 15 more
+Caused by: com.simba.googlebigquery.googlebigquery.client.exceptions.JobExecutionErrorException: EXEC_JOB_EXECUTION_ERR
+	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.execute(Unknown Source)
+	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.execute(Unknown Source)
+	... 14 more
+
+2023-09-07 11:02:12.036 INFO  <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2023-09-07 11:02:12.049 ERROR <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Errors detected!
+2023-09-07 11:02:12.049 ERROR <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Errors detected!
+2023-09-07 11:02:12.072 ERROR <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Errors detected!
+2023-09-07 11:02:12.106 WARN  <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Transformation detected one or more steps with errors.
+2023-09-07 11:02:12.106 WARN  <BasicWritetoGCPStorage - Table output> [C:/Users/rishrivastava/pentaho/pdi-sample-codebase/BasicWritetoGCPStorage.ktr]  Transformation is killing the other steps!

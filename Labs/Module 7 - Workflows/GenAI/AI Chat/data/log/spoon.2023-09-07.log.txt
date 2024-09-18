@@ -1,0 +1,124 @@
+WARNING: Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/.
+2023/09/07 09:54:33 - Spoon - Running transformation using the Kettle execution engine
+2023/09/07 09:54:33 - Spoon - Transformation opened.
+2023/09/07 09:54:33 - Spoon - Launching transformation [BasicWritetoGCPStorage]...
+2023/09/07 09:54:33 - Spoon - Started the transformation execution.
+2023/09/07 09:54:34 - BasicWritetoGCPStorage - Dispatching started for transformation [BasicWritetoGCPStorage]
+2023/09/07 09:54:34 - Table output.0 - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : An error occurred intialising this step: 
+2023/09/07 09:54:34 - Table output.0 - The Simba driver for a Google Big Query database connection does not support regular DDL statements. Please use the GBQ Bulk Loader step to create your table.
+2023/09/07 09:54:34 - Table output.0 - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Error initializing step [Table output]
+2023/09/07 09:54:34 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Step [Table output.0] failed to initialize!
+2023/09/07 09:54:34 - Spoon - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : BasicWritetoGCPStorage: preparing transformation execution failed
+2023/09/07 09:54:34 - Spoon - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : org.pentaho.di.core.exception.KettleException: 
+2023/09/07 09:54:34 - Spoon - We failed to initialize at least one step.  Execution can not begin!
+2023/09/07 09:54:34 - Spoon - 
+2023/09/07 09:54:34 - Spoon - 
+2023/09/07 09:54:34 - Spoon - 	at org.pentaho.di.trans.Trans.prepareExecution(Trans.java:1295)
+2023/09/07 09:54:34 - Spoon - 	at org.pentaho.di.ui.spoon.trans.TransGraph$30.run(TransGraph.java:4281)
+2023/09/07 09:54:34 - Spoon - 	at java.base/java.lang.Thread.run(Thread.java:834)
+2023/09/07 09:54:34 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Errors detected!
+2023/09/07 09:54:34 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Errors detected!
+2023/09/07 11:02:03 - Spoon - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : An unexpected error occurred in Spoon:  
+2023/09/07 11:02:03 - Spoon - Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+2023/09/07 11:02:03 - Spoon - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.SWT.error(SWT.java:4875)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.SWT.error(SWT.java:4790)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:188)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4001)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3629)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.spoon.Spoon.readAndDispatch(Spoon.java:1421)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.spoon.Spoon.waitForDispose(Spoon.java:8006)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.spoon.Spoon.start(Spoon.java:9388)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.spoon.Spoon.main(Spoon.java:711)
+2023/09/07 11:02:03 - Spoon - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2023/09/07 11:02:03 - Spoon - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+2023/09/07 11:02:03 - Spoon - 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2023/09/07 11:02:03 - Spoon - 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.commons.launcher.Launcher.main(Launcher.java:92)
+2023/09/07 11:02:03 - Spoon - Caused by: org.eclipse.swt.SWTException: Widget is disposed
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.SWT.error(SWT.java:4875)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.SWT.error(SWT.java:4790)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.SWT.error(SWT.java:4761)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Widget.error(Widget.java:432)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:351)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Text.getText(Text.java:1436)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.core.widget.TextVar.getText(TextVar.java:202)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.trans.steps.tableoutput.TableOutputDialog.isConnectionSupported(TableOutputDialog.java:1077)
+2023/09/07 11:02:03 - Spoon - 	at org.pentaho.di.ui.trans.steps.tableoutput.TableOutputDialog.lambda$validateSelection$0(TableOutputDialog.java:1071)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+2023/09/07 11:02:03 - Spoon - 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+2023/09/07 11:02:03 - Spoon - 	... 11 more
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4875)
+	at org.eclipse.swt.SWT.error(SWT.java:4790)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:188)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4001)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3629)
+	at org.pentaho.di.ui.spoon.Spoon.readAndDispatch(Spoon.java:1421)
+	at org.pentaho.di.ui.spoon.Spoon.waitForDispose(Spoon.java:8006)
+	at org.pentaho.di.ui.spoon.Spoon.start(Spoon.java:9388)
+	at org.pentaho.di.ui.spoon.Spoon.main(Spoon.java:711)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.pentaho.commons.launcher.Launcher.main(Launcher.java:92)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4875)
+	at org.eclipse.swt.SWT.error(SWT.java:4790)
+	at org.eclipse.swt.SWT.error(SWT.java:4761)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:432)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:351)
+	at org.eclipse.swt.widgets.Text.getText(Text.java:1436)
+	at org.pentaho.di.ui.core.widget.TextVar.getText(TextVar.java:202)
+	at org.pentaho.di.ui.trans.steps.tableoutput.TableOutputDialog.isConnectionSupported(TableOutputDialog.java:1077)
+	at org.pentaho.di.ui.trans.steps.tableoutput.TableOutputDialog.lambda$validateSelection$0(TableOutputDialog.java:1071)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	... 11 more
+2023/09/07 11:02:11 - Spoon - Running transformation using the Kettle execution engine
+2023/09/07 11:02:11 - Spoon - Transformation opened.
+2023/09/07 11:02:11 - Spoon - Launching transformation [BasicWritetoGCPStorage]...
+2023/09/07 11:02:11 - Spoon - Started the transformation execution.
+2023/09/07 11:02:11 - BasicWritetoGCPStorage - Dispatching started for transformation [BasicWritetoGCPStorage]
+2023/09/07 11:02:11 - Table output.0 - Connected to database [BQ-test-generic-02] (commit=1000)
+2023/09/07 11:02:11 - Data grid.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2023/09/07 11:02:12 - Table output.0 - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Because of an error, this step can't continue: 
+2023/09/07 11:02:12 - Table output.0 - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : org.pentaho.di.core.exception.KettleDatabaseException: 
+2023/09/07 11:02:12 - Table output.0 - Couldn't prepare statement:
+2023/09/07 11:02:12 - Table output.0 - INSERT INTO dataset_test_01.test (ID) VALUES ( ?)
+2023/09/07 11:02:12 - Table output.0 - [Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+2023/09/07 11:02:12 - Table output.0 - 
+2023/09/07 11:02:12 - Table output.0 - 	at org.pentaho.di.core.database.Database.prepareSQL(Database.java:993)
+2023/09/07 11:02:12 - Table output.0 - 	at org.pentaho.di.trans.steps.tableoutput.TableOutput.writeToTable(TableOutput.java:250)
+2023/09/07 11:02:12 - Table output.0 - 	at org.pentaho.di.trans.steps.tableoutput.TableOutput.processRow(TableOutput.java:125)
+2023/09/07 11:02:12 - Table output.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2023/09/07 11:02:12 - Table output.0 - 	at java.base/java.lang.Thread.run(Thread.java:834)
+2023/09/07 11:02:12 - Table output.0 - Caused by: java.sql.SQLException: [Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.throwException(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.requests.AbstractRequestWithRetry.executeWithRetry(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.queryclient.JobsInsertClient.executeQuery(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.BQClient.executeQuery(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.BQClient.beginTransaction(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.core.BQConnection.beginTransaction(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.jdbc.common.SConnection.beginTransaction(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.jdbc.common.SConnection.prepareStatement(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at org.pentaho.di.core.database.Database.prepareSQL(Database.java:990)
+2023/09/07 11:02:12 - Table output.0 - 	... 4 more
+2023/09/07 11:02:12 - Table output.0 - Caused by: com.simba.googlebigquery.googlebigquery.client.exceptions.JobExecutionErrorException: [Simba][BigQueryJDBCDriver](100032) Error executing query job. Message: EXEC_JOB_EXECUTION_ERR
+2023/09/07 11:02:12 - Table output.0 - 	... 15 more
+2023/09/07 11:02:12 - Table output.0 - Caused by: com.simba.googlebigquery.googlebigquery.client.exceptions.JobExecutionErrorException: EXEC_JOB_EXECUTION_ERR
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.execute(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	at com.simba.googlebigquery.googlebigquery.client.requests.jobs.JobsInsertRequest.execute(Unknown Source)
+2023/09/07 11:02:12 - Table output.0 - 	... 14 more
+2023/09/07 11:02:12 - Table output.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2023/09/07 11:02:12 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Errors detected!
+2023/09/07 11:02:12 - Spoon - The transformation has finished!!
+2023/09/07 11:02:12 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Errors detected!
+2023/09/07 11:02:12 - BasicWritetoGCPStorage - ERROR (version 9.3.0.0-428, build 9.3.0.0-428 from 2022-04-12 04.56.25 by buildguy) : Errors detected!
+2023/09/07 11:02:12 - BasicWritetoGCPStorage - Transformation detected one or more steps with errors.
+2023/09/07 11:02:12 - BasicWritetoGCPStorage - Transformation is killing the other steps!
+2023/09/07 11:22:32 - Spoon - Spoon  has ended.
+stopping

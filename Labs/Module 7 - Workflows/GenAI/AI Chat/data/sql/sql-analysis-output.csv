@@ -1,0 +1,6 @@
+"Filename","Source","Target","Condition"
+"daily_rentals_report.sql","rental","daily_rentals_report","r.inventory_id = i.inventory_id"
+"film_popularity_report.sql","rental","film_popularity_report","rental.inventory_id = inventory.inventory_id"
+"revenue_by_category_month.sql","payment","revenue_by_category_month","payment.rental_id = rental.rental_id"
+"staff_performance_report.sql","staff","staff_performance_report","s.staff_id = r.staff_id"
+"top_customers_by_payments.sql","customer","top_customers_by_payments","customer.customer_id = payment.customer_id"
