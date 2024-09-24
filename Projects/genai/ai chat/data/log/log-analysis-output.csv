@@ -1,0 +1,5 @@
+Log File Analysed,Issue,Date of Issue,Resolution
+pdi.2023-09-07.log.txt,Errors initializing Table output step and executing query job due to Simba driver limitations.,2023-09-07,Use the GBQ Bulk Loader step instead of the regular Table output step to create the table and handle data inserts.
+pdi.2023-09-08.log.txt,No Issues found,,No Resolution suggested. Log Looks fine
+pdi.2023-10-02.log.txt,Unable to prepare for execution of the transformation due to a database connection error.,2023-10-02 18:38:31,"Verify all connection parameters for the database, ensure that the appropriate PostgreSQL driver is installed, and check the format of the JDBC URL."
+spoon.2023-09-07.log.txt,The Simba driver for a Google Big Query database connection does not support regular DDL statements and an error occurred while executing the transformation.,2023/09/07,Use the GBQ Bulk Loader step to create your table instead of the regular DDL statements.

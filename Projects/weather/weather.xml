@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<current>
+<city id="2643743" name="London">
+<coord lon="-0.1257" lat="51.5085"/>
+<country>GB</country>
+<timezone>3600</timezone>
+<sun rise="2024-08-29T05:09:01" set="2024-08-29T18:54:08"/>
+</city>
+<temperature value="21.07" min="19.72" max="22.1" unit="celsius"/>
+<feels_like value="20.67" unit="celsius"/>
+<humidity value="55" unit="%"/>
+<pressure value="1018" unit="hPa"/>
+<wind>
+<speed value="5.14" unit="m/s" name="Gentle Breeze"/>
+<gusts/>
+<direction value="250" code="WSW" name="West-southwest"/>
+</wind>
+<clouds value="24" name="few clouds"/>
+<visibility value="10000"/>
+<precipitation mode="no"/>
+<weather number="801" value="few clouds" icon="02d"/>
+<lastupdate value="2024-08-29T11:37:04"/>
+</current>

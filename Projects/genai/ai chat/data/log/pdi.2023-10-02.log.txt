@@ -1,0 +1,129 @@
+2023-10-02 18:11:26.378 INFO  <ModalContext> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update.ktr]  Dispatching started for transformation [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update]
+2023-10-02 18:11:26.443 INFO  <file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update - Get variables> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update.ktr]  Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023-10-02 18:11:26.460 INFO  <file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update - dummy> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr : tr_dimension_update.ktr]  Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023-10-02 18:29:31.401 WARN  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Start of job execution
+2023-10-02 18:29:31.408 INFO  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Set schema_name, table_name]
+2023-10-02 18:29:31.409 INFO  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Create example.dimension_table]
+2023-10-02 18:29:31.589 INFO  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Create example.dimension_table] (result=[true])
+2023-10-02 18:29:31.589 INFO  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Set schema_name, table_name] (result=[true])
+2023-10-02 18:29:31.590 WARN  <Thread-93> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Job execution finished
+2023-10-02 18:38:31.512 WARN  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Start of job execution
+2023-10-02 18:38:31.515 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Set schema_name, table_name]
+2023-10-02 18:38:31.517 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Create example.dimension_table]
+2023-10-02 18:38:31.657 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Insert  business_id=1, load_dts=2022-04-27, value_insert=V1]
+2023-10-02 18:38:31.699 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Running transformation using the Kettle execution engine
+2023-10-02 18:38:31.701 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb  file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [tr_dimension_update]
+2023-10-02 18:38:31.714 ERROR <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Unable to prepare for execution of the transformation
+2023-10-02 18:38:31.715 ERROR <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  org.pentaho.di.core.exception.KettleTransException: 
+There was an error calculating the change data capture date range, it probably involved log table trans_logs.
+
+Error occurred while trying to connect to the database
+
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+
+
+	at org.pentaho.di.trans.Trans.calculateBatchIdAndDateRange(Trans.java:2427)
+	at org.pentaho.di.trans.Trans.prepareExecution(Trans.java:1146)
+	at org.pentaho.di.trans.Trans.execute(Trans.java:782)
+	at org.pentaho.di.job.entries.trans.JobEntryTrans.execute(JobEntryTrans.java:1190)
+	at org.pentaho.di.job.Job.execute(Job.java:719)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:528)
+	at org.pentaho.di.job.Job.run(Job.java:406)
+Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+Error occurred while trying to connect to the database
+
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+
+	at org.pentaho.di.core.database.Database.normalConnect(Database.java:492)
+	at org.pentaho.di.core.database.Database.connect(Database.java:416)
+	at org.pentaho.di.core.database.Database.connect(Database.java:387)
+	at org.pentaho.di.core.database.Database.connect(Database.java:377)
+	at org.pentaho.di.trans.Trans.calculateBatchIdAndDateRange(Trans.java:2251)
+	... 9 more
+Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+	at org.pentaho.di.core.database.Database.connectUsingClass(Database.java:646)
+	at org.pentaho.di.core.database.Database.normalConnect(Database.java:477)
+	... 13 more
+Caused by: org.postgresql.util.PSQLException: Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+	at org.postgresql.Driver.connect(Driver.java:274)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
+	at org.pentaho.di.core.database.Database.connectUsingClass(Database.java:630)
+	... 14 more
+
+2023-10-02 18:38:31.716 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Insert  business_id=1, load_dts=2022-04-27, value_insert=V1] (result=[false])
+2023-10-02 18:38:31.716 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Create example.dimension_table] (result=[false])
+2023-10-02 18:38:31.717 INFO  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Set schema_name, table_name] (result=[false])
+2023-10-02 18:38:31.717 WARN  <Thread-103> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Job execution finished
+2023-10-02 18:40:19.399 WARN  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Start of job execution
+2023-10-02 18:40:19.401 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Set schema_name, table_name]
+2023-10-02 18:40:19.402 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Create example.dimension_table]
+2023-10-02 18:40:19.530 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Starting entry [Insert  business_id=1, load_dts=2022-04-27, value_insert=V1]
+2023-10-02 18:40:19.553 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Running transformation using the Kettle execution engine
+2023-10-02 18:40:19.553 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb  file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [tr_dimension_update]
+2023-10-02 18:40:19.555 ERROR <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Unable to prepare for execution of the transformation
+2023-10-02 18:40:19.556 ERROR <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  org.pentaho.di.core.exception.KettleTransException: 
+There was an error calculating the change data capture date range, it probably involved log table trans_logs.
+
+Error occurred while trying to connect to the database
+
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+
+
+	at org.pentaho.di.trans.Trans.calculateBatchIdAndDateRange(Trans.java:2427)
+	at org.pentaho.di.trans.Trans.prepareExecution(Trans.java:1146)
+	at org.pentaho.di.trans.Trans.execute(Trans.java:782)
+	at org.pentaho.di.job.entries.trans.JobEntryTrans.execute(JobEntryTrans.java:1190)
+	at org.pentaho.di.job.Job.execute(Job.java:719)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:860)
+	at org.pentaho.di.job.Job.execute(Job.java:528)
+	at org.pentaho.di.job.Job.run(Job.java:406)
+Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+Error occurred while trying to connect to the database
+
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+
+	at org.pentaho.di.core.database.Database.normalConnect(Database.java:492)
+	at org.pentaho.di.core.database.Database.connect(Database.java:416)
+	at org.pentaho.di.core.database.Database.connect(Database.java:387)
+	at org.pentaho.di.core.database.Database.connect(Database.java:377)
+	at org.pentaho.di.trans.Trans.calculateBatchIdAndDateRange(Trans.java:2251)
+	... 9 more
+Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+
+	at org.pentaho.di.core.database.Database.connectUsingClass(Database.java:646)
+	at org.pentaho.di.core.database.Database.normalConnect(Database.java:477)
+	... 13 more
+Caused by: org.postgresql.util.PSQLException: Unable to parse URL jdbc:postgresql://${facts.dwhs.etl.connections.logdb.host}:${facts.dwhs.etl.connections.logdb.port}/${facts.dwhs.etl.connections.logdb.database}?sslmode=require&SEQUENCE_FOR_BATCH_ID=batch_id_seq
+	at org.postgresql.Driver.connect(Driver.java:274)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
+	at org.pentaho.di.core.database.Database.connectUsingClass(Database.java:630)
+	... 14 more
+
+2023-10-02 18:40:19.556 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Insert  business_id=1, load_dts=2022-04-27, value_insert=V1] (result=[false])
+2023-10-02 18:40:19.557 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Create example.dimension_table] (result=[false])
+2023-10-02 18:40:19.557 INFO  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Finished job entry [Set schema_name, table_name] (result=[false])
+2023-10-02 18:40:19.557 WARN  <Thread-113> [C:\Users\rishrivastava\Downloads\Example\Example\jb_dimension_update.kjb]  Job execution finished
+2023-10-02 18:41:32.326 INFO  <pool-14-thread-1> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [tr_dimension_update]
+2023-10-02 18:41:33.078 INFO  <pool-14-thread-1> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [transient:ZmlsZTovLy9DOi9Vc2Vycy9yaXNocml2YXN0YXZhL0Rvd25sb2Fkcy9FeGFtcGxlL0V4YW1wbGUvdHJfZGltZW5zaW9uX3VwZGF0ZS5rdHI=:bG9jYWw6R2V0IHZhcmlhYmxlcw== - Service - -444798786]
+2023-10-02 18:41:39.174 INFO  <pool-14-thread-1> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [transient:ZmlsZTovLy9DOi9Vc2Vycy9yaXNocml2YXN0YXZhL0Rvd25sb2Fkcy9FeGFtcGxlL0V4YW1wbGUvdHJfZGltZW5zaW9uX3VwZGF0ZS5rdHI=:bG9jYWw6R2V0IHZhcmlhYmxlcw== - Service - -444798786]
+2023-10-02 18:41:39.614 INFO  <pool-14-thread-1> [file:///C:/Users/rishrivastava/Downloads/Example/Example/tr_dimension_update.ktr]  Dispatching started for transformation [transient:ZmlsZTovLy9DOi9Vc2Vycy9yaXNocml2YXN0YXZhL0Rvd25sb2Fkcy9FeGFtcGxlL0V4YW1wbGUvdHJfZGltZW5zaW9uX3VwZGF0ZS5rdHI=:bG9jYWw6R2V0IHZhcmlhYmxlcw== - Service - 1534967837]
