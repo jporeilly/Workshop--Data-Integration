@@ -1,0 +1,11 @@
+CustomerID,FirstName,LastName,Email,Phone,BirthDate,Address
+1,John,Doe,john.doe@email.com,555-123-4567,1985-03-15,"123 Main St, City, State, 12345"
+2,Jane,Smith,jane.smith@email.com,(555) 987-6543,03/22/1990,"456 Elm Avenue, Town, State, 67890"
+3,John,Doe,johnd@email.com,5551234567,1985-03-15,"123 Main Street, City, State, 12345"
+4,Alice,Johnson,alice.j@email.com,555-555-5555,1988-12-01,"789 Oak Rd, Village, State, 54321"
+5,Bob,Williams,bob.w@email.com,,1975-07-30,"101 Pine Lane, Hamlet, State, 13579"
+6,Emma,Brown,emma.brown@email.com,(555)246-8135,05-19-1992,"202 Cedar Blvd, Borough, State, 24680"
+7,Alice,Johnson,alice.johnson@email.com,555.555.5555,12/01/1988,"789 Oak Road, Village, State, 54321"
+8,Charlie,Davis,charlie.d@email.com,555-369-2587,,"303 Maple Dr, City, State, 97531"
+9,,Taylor,d.taylor@email.com,555-159-7532,1982-09-25,"404 Birch St, Town, State, 86420"
+10,Grace,Lee,grace.lee@email.com,5557894561,11-11-1995,"505 Walnut Ave, City, State, 75319"

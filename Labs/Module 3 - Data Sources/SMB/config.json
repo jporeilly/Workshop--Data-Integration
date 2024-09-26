@@ -1,9 +1,0 @@
-{
-    "domain": "WORKGROUP",
-    "users": [
-        { "name": "pentaho", "password": "Welcome123" }
-    ],
-    "shares": [
-        { "name": "folder1", "path": "/share/folder1", "access": ["pentaho"] }
-    ]
-}
