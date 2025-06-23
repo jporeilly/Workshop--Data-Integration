@@ -1,6 +1,6 @@
-# PowerShell script to run docker-compose from C:\MySQL folder
+# PowerShell script to run docker-compose from C:\MinIO folder
 
-$workingDirectory = "C:\minIO"
+$workingDirectory = "C:\MinIO"
 
 # Check if the directory exists
 if (-not (Test-Path $workingDirectory)) {

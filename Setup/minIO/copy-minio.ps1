@@ -1,13 +1,13 @@
-# PowerShell script to copy minIO files
-# Source: C:\Workshop--Data-Integration\Setup\minIO\*
-# Destination: C:\minIO
+# PowerShell script to copy MinIO files
+# Source: C:\Workshop--Data-Integration\Setup\MinIO\*
+# Destination: C:\MinIO
 
-$sourcePath = "C:\Workshop--Data-Integration\Setup\minIO\*"
-$destinationPath = "C:\minIO"
+$sourcePath = "C:\Workshop--Data-Integration\Setup\MinIO\*"
+$destinationPath = "C:\MinIO"
 
 # Check if source directory exists
-if (-not (Test-Path "C:\Workshop--Data-Integration\Setup\minIO")) {
-    Write-Error "Source directory does not exist: C:\Workshop--Data-Integration\Setup\minIO"
+if (-not (Test-Path "C:\Workshop--Data-Integration\Setup\MinIO")) {
+    Write-Error "Source directory does not exist: C:\Workshop--Data-Integration\Setup\MinIO"
     exit 1
 }
 
