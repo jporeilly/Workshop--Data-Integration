@@ -1,0 +1,37 @@
+services:
+  samba:
+    image: dperson/samba
+    container_name: samba-server
+    restart: unless-stopped
+    ports:
+      - "139:139"
+      - "1445:445"
+    environment:
+      # Create users: bob and alice with passwords
+      - USER=bob;password
+      - USER=alice;password
+      
+      # Share configurations based on your C:\SMB structure
+      # Shared backups - both users can read/write
+      - SHARE=shared-backups;/smb/shared-backups;yes;no;no;bob,alice;bob,alice
+      
+      # Shared documents - both users can read/write, includes presentations subfolder
+      - SHARE=shared-documents;/smb/shared-documents;yes;no;no;bob,alice;bob,alice
+      
+      # Shared media - alice has full access, bob has read-only
+      - SHARE=shared-media;/smb/shared-media;yes;no;no;alice;alice,bob
+      
+      # Bob's exclusive access to presentations (alternative access)
+      - SHARE=presentations;/smb/shared-documents/presentations;yes;no;no;bob;bob
+      
+    volumes:
+      # Mount C:\SMB directories to container
+      - C:\SMB\shared-backups:/smb/shared-backups
+      - C:\SMB\shared-documents:/smb/shared-documents
+      - C:\SMB\shared-media:/smb/shared-media
+    networks:
+      - samba-net
+
+networks:
+  samba-net:
+    driver: bridge
