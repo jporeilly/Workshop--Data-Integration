@@ -1,8 +1,8 @@
-# Jupyter Notebook Setup Script with Tree View and Docker Support
+# Jupyter-Notebook Setup Script with Tree View and Docker Support
 # Creates directories, copies files, and shows directory tree
 param(
-    [string]$SourcePath = "C:\Workshop--Data-Integration\Setup\Jupyter Notebook",
-    [string]$DestinationPath = "C:\Jupyter Notebook",
+    [string]$SourcePath = "C:\\Workshop--Data-Integration\\Setup\\Jupyter-Notebook",
+    [string]$DestinationPath = "C:\\Jupyter-Notebook",
     [switch]$Force,
     [switch]$Verify
 )
@@ -15,6 +15,69 @@ function New-DirectoryIfNotExists {
         return $true
     } else {
         Write-Host "  Exists: $Path" -ForegroundColor Yellow
+        return $false
+    }
+}
+
+function Copy-SalesData {
+    param([string]$SourcePath, [string]$DestinationPath)
+    
+    $sourceFile = Join-Path $SourcePath "sales_data.csv"
+    $destFile = Join-Path $DestinationPath "sales_data.csv"
+    
+    if (Test-Path $sourceFile) {
+        try {
+            Copy-Item -Path $sourceFile -Destination $destFile -Force -ErrorAction Stop
+            Write-Host "  Copied sales_data.csv to $destFile" -ForegroundColor Green
+            return $true
+        } catch {
+            Write-Host "  Failed to copy sales_data.csv: $_" -ForegroundColor Red
+            return $false
+        }
+    } else {
+        Write-Host "  Source file not found: $sourceFile" -ForegroundColor Yellow
+        return $false
+    }
+}
+
+function Copy-NotebookFile {
+    param([string]$SourcePath, [string]$DestinationPath)
+    
+    $sourceFile = Join-Path $SourcePath "sales_analysis.ipynb"
+    $destFile = Join-Path $DestinationPath "sales_analysis.ipynb"
+    
+    if (Test-Path $sourceFile) {
+        try {
+            Copy-Item -Path $sourceFile -Destination $destFile -Force -ErrorAction Stop
+            Write-Host "  Copied sales_analysis.ipynb to $destFile" -ForegroundColor Green
+            return $true
+        } catch {
+            Write-Host "  Failed to copy sales_analysis.ipynb: $_" -ForegroundColor Red
+            return $false
+        }
+    } else {
+        Write-Host "  Source file not found: $sourceFile" -ForegroundColor Yellow
+        return $false
+    }
+}
+
+function Copy-ScriptFile {
+    param([string]$SourcePath, [string]$DestinationPath)
+    
+    $sourceFile = Join-Path $SourcePath "file_watcher.py"
+    $destFile = Join-Path $DestinationPath "file_watcher.py"
+    
+    if (Test-Path $sourceFile) {
+        try {
+            Copy-Item -Path $sourceFile -Destination $destFile -Force -ErrorAction Stop
+            Write-Host "  Copied file_watcher.py to $destFile" -ForegroundColor Green
+            return $true
+        } catch {
+            Write-Host "  Failed to copy file_watcher.py: $_" -ForegroundColor Red
+            return $false
+        }
+    } else {
+        Write-Host "  Source file not found: $sourceFile" -ForegroundColor Yellow
         return $false
     }
 }
@@ -39,8 +102,18 @@ function New-DockerDirectories {
     New-DirectoryIfNotExists -Path $scriptsPath
     New-DirectoryIfNotExists -Path $reportsPath
     
-    # Create sample files
-    $sampleNotebook = Join-Path $workshopDataPath "welcome.ipynb"
+    # Copy required files to their respective directories
+    Write-Host "`nCopying sales data..." -ForegroundColor Cyan
+    Copy-SalesData -SourcePath $PSScriptRoot -DestinationPath $datasetsPath
+    
+    Write-Host "`nCopying notebook files..." -ForegroundColor Cyan
+    Copy-NotebookFile -SourcePath $PSScriptRoot -DestinationPath $notebooksPath
+    
+    Write-Host "`nCopying script files..." -ForegroundColor Cyan
+    Copy-ScriptFile -SourcePath $PSScriptRoot -DestinationPath $scriptsPath
+    
+    # Create sample files in their respective directories
+    $sampleNotebook = Join-Path $notebooksPath "welcome.ipynb"
     if (!(Test-Path $sampleNotebook)) {
         $notebookContent = @"
 {
@@ -63,8 +136,7 @@ function New-DockerDirectories {
     "\n",
     "## Getting Started:\n",
     "1. Run docker-compose up\n",
-    "2. Access Jupyter Lab at http://localhost:8888\n",
-    "3. Access Desktop at http://localhost:6080"
+    "2. Access Jupyter Lab at http://localhost:8888"
    ]
   }
  ],
@@ -193,12 +265,41 @@ try {
     Write-Host "`n2. Creating Docker volume directories..." -ForegroundColor Blue
     $dockerDirs = New-DockerDirectories -BasePath $DestinationPath
     
-    # Step 3: Copy files
+    # Step 3: Copy files with proper directory structure
     Write-Host "`n3. Copying Jupyter Notebook files..." -ForegroundColor Blue
-    $totalItems = (Get-ChildItem -Path $SourcePath -Recurse -File | Measure-Object).Count
-    Write-Host "  Total files to copy: $totalItems" -ForegroundColor White
     
-    Copy-Item -Path "$SourcePath\*" -Destination $DestinationPath -Recurse -Force
+    # Define the files to copy and their destination directories
+    $filesToCopy = @(
+        @{ 
+            Source = Join-Path $SourcePath "docker-compose.yml"
+            Destination = Join-Path $DestinationPath "scripts"
+        },
+        @{ 
+            Source = Join-Path $SourcePath "run-docker-jupyter.ps1"
+            Destination = Join-Path $DestinationPath "scripts"
+        },
+        @{ 
+            Source = Join-Path $SourcePath "welcome.ipynb"
+            Destination = Join-Path $DestinationPath "notebooks"
+        }
+    )
+    
+    # Copy each file to its destination
+    foreach ($file in $filesToCopy) {
+        $destDir = $file.Destination
+        if (!(Test-Path $destDir)) {
+            New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+        }
+        
+        if (Test-Path $file.Source) {
+            $fileName = Split-Path $file.Source -Leaf
+            $destPath = Join-Path $destDir $fileName
+            Copy-Item -Path $file.Source -Destination $destPath -Force
+            Write-Host "  Copied: $($file.Source) -> $destPath" -ForegroundColor Green
+        } else {
+            Write-Host "  Warning: Source file not found: $($file.Source)" -ForegroundColor Yellow
+        }
+    }
     Write-Host "  Copy operation completed successfully" -ForegroundColor Green
 
     # Step 4: Show directory tree

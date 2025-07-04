@@ -1,16 +1,10 @@
-# ============================================================================
-# Jupyter Notebook with Desktop Environment - Docker Compose Configuration
-# ============================================================================
-# Simplified version that avoids complex heredoc syntax issues
-# ============================================================================
-
 services:
-  jupyter-desktop:
+  jupyter:
     # Base image: Jupyter's official scipy notebook with scientific packages
     image: jupyter/scipy-notebook:latest
     
     # Container name for easy reference in docker commands
-    container_name: jupyter-pdi-workshop
+    container_name: jupyter-datascience
     
     # Restart policy: automatically restart container if it stops
     restart: unless-stopped
@@ -18,103 +12,40 @@ services:
     # Port mappings
     ports:
       - "8888:8888"   # Jupyter Lab web interface
-      - "6080:6080"   # VNC web interface (noVNC) for desktop environment
-    
-    # Volume mappings (Host:Container)
-    volumes:
-      - ./workshop-data:/home/jovyan/work
-      - ./pdi-output:/home/jovyan/pdi-data
     
     # Environment variables
     environment:
       - JUPYTER_ENABLE_LAB=yes
-      - GRANT_SUDO=yes
-      - JUPYTER_TOKEN=
-      - JUPYTER_PASSWORD=
-      - DISPLAY=:1
+      - JUPYTER_TOKEN=datascience
+      - TZ=Europe/London
     
-    # Run as root to install system packages and configure desktop
+    # Volume mappings (Host:Container) - Using Windows-style paths with quotes for spaces
+    volumes:
+      # Sample datasets directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\datasets"
+        target: /home/jovyan/datasets
+      # Main notebooks directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\notebooks"
+        target: /home/jovyan/notebooks
+      # PDI output directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\pdi-output"
+        target: /home/jovyan/pdi-output
+      # Reports directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\reports"
+        target: /home/jovyan/reports  
+      # Workshop data directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\workshop-data"
+        target: /home/jovyan/work  
+    
+    # Command to start Jupyter Lab
+    command: start-notebook.sh --NotebookApp.token=datascience --ip=0.0.0.0 --port=8888 --no-browser
+    
     user: root
-    
-    # Simplified startup command without complex heredocs
-    command: >
-      bash -c "
-        echo '=== Starting Jupyter Desktop Environment Setup ===' &&
-        
-        # Update package manager
-        apt-get update &&
-        
-        # Install desktop environment packages
-        echo '--- Installing Desktop Environment ---' &&
-        apt-get install -y xfce4 xfce4-goodies tightvncserver novnc websockify firefox-esr file-manager-thunar xfce4-terminal gedit &&
-        
-        # Install additional system tools
-        echo '--- Installing Additional Tools ---' &&
-        apt-get install -y curl wget git vim nano htop tree zip unzip &&
-        
-        # Upgrade pip and install Python packages
-        echo '--- Installing Python Packages ---' &&
-        pip install --upgrade pip &&
-        pip install --no-cache-dir pandas numpy matplotlib seaborn plotly dash bokeh sqlalchemy psycopg2-binary pymongo openpyxl xlrd pyodbc xgboost lightgbm jupyterlab-git jupyterlab-lsp jupyter-dash ipywidgets tqdm pytest &&
-        
-        # Configure VNC server
-        echo '--- Configuring VNC Server ---' &&
-        mkdir -p /root/.vnc &&
-        echo 'password' | vncpasswd -f > /root/.vnc/passwd &&
-        chmod 600 /root/.vnc/passwd &&
-        
-        # Start VNC server in background
-        echo '--- Starting VNC Server ---' &&
-        vncserver :1 -geometry 1024x768 -depth 24 &&
-        
-        # Start noVNC web interface in background
-        echo '--- Starting noVNC Web Interface ---' &&
-        websockify --web=/usr/share/novnc/ 6080 localhost:5901 &
-        
-        # Configure Jupyter Lab
-        echo '--- Configuring Jupyter Lab ---' &&
-        mkdir -p /root/.jupyter &&
-        echo \"c.ServerApp.ip = '0.0.0.0'\" > /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.port = 8888\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.open_browser = False\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.allow_root = True\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.token = ''\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.password = ''\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ExtensionApp.default_url = '/lab'\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.root_dir = '/home/jovyan'\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.allow_origin = '*'\" >> /root/.jupyter/jupyter_lab_config.py &&
-        echo \"c.ServerApp.allow_credentials = True\" >> /root/.jupyter/jupyter_lab_config.py &&
-        
-        # Set proper ownership for jovyan user directories
-        echo '--- Setting File Permissions ---' &&
-        chown -R jovyan:users /home/jovyan &&
-        
-        # Create startup message
-        echo '--- Creating Welcome Message ---' &&
-        mkdir -p /home/jovyan/work &&
-        echo '# Jupyter Desktop Workshop Environment' > /home/jovyan/work/README.md &&
-        echo '' >> /home/jovyan/work/README.md &&
-        echo 'Welcome to your Jupyter Lab environment with desktop access!' >> /home/jovyan/work/README.md &&
-        echo '' >> /home/jovyan/work/README.md &&
-        echo '## Access Points' >> /home/jovyan/work/README.md &&
-        echo '- Jupyter Lab: http://localhost:8888' >> /home/jovyan/work/README.md &&
-        echo '- Desktop Environment: http://localhost:6080 (password: password)' >> /home/jovyan/work/README.md &&
-        echo '' >> /home/jovyan/work/README.md &&
-        echo '## Directories' >> /home/jovyan/work/README.md &&
-        echo '- /home/jovyan/work - Your main workspace (mounted from host)' >> /home/jovyan/work/README.md &&
-        echo '- /home/jovyan/pdi-data - PDI output files (mounted from host)' >> /home/jovyan/work/README.md &&
-        echo '' >> /home/jovyan/work/README.md &&
-        echo 'Happy coding!' >> /home/jovyan/work/README.md &&
-        
-        # Final startup message
-        echo '=== Environment Setup Complete ===' &&
-        echo 'Jupyter Lab: http://localhost:8888' &&
-        echo 'Desktop: http://localhost:6080 (password: password)' &&
-        
-        # Start Jupyter Lab (this keeps the container running)
-        echo '--- Starting Jupyter Lab ---' &&
-        start-notebook.sh --NotebookApp.token='' --NotebookApp.password='' --allow-root --ip=0.0.0.0 --port=8888 --no-browser
-      "
     
     # Health check
     healthcheck:

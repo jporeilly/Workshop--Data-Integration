@@ -1,0 +1,11 @@
+order_id,customer_id,product_name,product_category,quantity,unit_price,cost,order_date
+1001,CUST001,Widget A,Electronics,2,25.99,15.00,2024-01-15
+1002,CUST002,Gadget B,Electronics,1,45.50,25.00,2024-01-15
+1003,CUST001,Tool C,Hardware,3,12.99,8.00,2024-01-16
+1004,CUST003,Device D,Electronics,1,89.99,45.00,2024-01-17
+1005,CUST002,Part E,Hardware,5,7.50,4.00,2024-01-18
+1006,CUST004,Component F,Electronics,2,33.25,20.00,2024-01-19
+1007,CUST005,Accessory G,Home,1,15.75,8.50,2024-01-20
+1008,CUST003,Kit H,Hardware,1,125.00,75.00,2024-01-21
+1009,CUST006,Item I,Home,3,22.50,12.00,2024-01-22
+1010,CUST004,Product J,Electronics,2,67.80,35.00,2024-01-23

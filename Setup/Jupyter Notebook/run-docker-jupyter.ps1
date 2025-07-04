@@ -1,11 +1,12 @@
-# PowerShell script to run docker-compose from C:\Jupyter Notebook folder
+# PowerShell script to run Jupyter Notebook in Docker
+# Manages the Jupyter container defined in docker-compose.yml
 
 param(
     [Parameter(Position=0)]
     [ValidateSet("start", "stop", "restart", "status", "logs", "shell", "cleanup", "help")]
     [string]$Action = "start",
     
-    [string]$WorkingDirectory = "C:\Jupyter Notebook",
+    [string]$WorkingDirectory = "C:\Jupyter-Notebook",
     [switch]$Follow,
     [switch]$Force,
     [switch]$OpenBrowser
@@ -19,10 +20,11 @@ if (-not (Test-Path $workingDirectory)) {
     exit 1
 }
 
-# Check if docker-compose.yml exists in the directory
-$composeFile = Join-Path $workingDirectory "docker-compose.yml"
+# Check if docker-compose.yml exists in the scripts directory
+$scriptsDir = Join-Path $workingDirectory "scripts"
+$composeFile = Join-Path $scriptsDir "docker-compose.yml"
 if (-not (Test-Path $composeFile)) {
-    Write-Error "docker-compose.yml not found in: $workingDirectory"
+    Write-Error "docker-compose.yml not found in: $scriptsDir"
     exit 1
 }
 
@@ -65,7 +67,7 @@ function Show-Help {
     Write-Host "=== Jupyter Notebook Docker Manager ===" -ForegroundColor Magenta
     Write-Host ""
     Write-Host "USAGE:" -ForegroundColor Yellow
-    Write-Host "  .\run-docker-jupyter-corrected.ps1 [ACTION] [OPTIONS]"
+    Write-Host "  .\run-docker-jupyter.ps1 [ACTION] [OPTIONS]"
     Write-Host ""
     Write-Host "ACTIONS:" -ForegroundColor Yellow
     Write-Host "  start      Start the Jupyter environment (default)"
@@ -83,10 +85,16 @@ function Show-Help {
     Write-Host "  -Force            Force operation (for cleanup action)"
     Write-Host "  -OpenBrowser      Open browser after start"
     Write-Host ""
-    Write-Host "ACCESS POINTS:" -ForegroundColor Yellow
+    Write-Host "ACCESS POINT:" -ForegroundColor Yellow
     Write-Host "  Jupyter Lab: http://localhost:8888"
-    Write-Host "  Desktop Environment: http://localhost:6080 (password: password)"
+    Write-Host "  Token: datascience"
     Write-Host ""
+    Write-Host "VOLUMES:" -ForegroundColor Yellow
+    Write-Host "  Datasets: C:\Jupyter-Notebook\datasets"
+    Write-Host "  Notebooks: C:\Jupyter-Notebook\notebooks"
+    Write-Host "  PDI output: C:\Jupyter-Notebook\pdi-output"
+    Write-Host "  Reports: C:\Jupyter-Notebook\reports"
+    Write-Host "  Workshop data: C:\Jupyter-Notebook\workshop-data"
 }
 
 # Handle help action
@@ -96,8 +104,10 @@ if ($Action -eq "help") {
 }
 
 try {
-    Write-Host "Changing to directory: $workingDirectory"
-    Set-Location -Path $workingDirectory
+    # Change to the scripts directory where docker-compose.yml is located
+    $scriptsDir = Join-Path $workingDirectory "scripts"
+    Write-Host "Changing to directory: $scriptsDir"
+    Set-Location -Path $scriptsDir
     
     switch ($Action) {
         "start" {
@@ -109,19 +119,25 @@ try {
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "Jupyter environment started successfully!" -ForegroundColor Green
                 Write-Host ""
-                Write-Host "Access URLs:" -ForegroundColor Cyan
+                Write-Host "ACCESS INFORMATION:" -ForegroundColor Cyan
                 Write-Host "  Jupyter Lab: http://localhost:8888"
-                Write-Host "  Desktop Environment: http://localhost:6080 (password: password)"
+                Write-Host "  Token: datascience"
                 Write-Host ""
-                Write-Host "You can check the status with: $composeCommand ps"
-                Write-Host "To view logs, use: $composeCommand logs"
-                Write-Host "To stop the services, use: $composeCommand down"
+                Write-Host "VOLUME MAPPINGS:" -ForegroundColor Cyan
+                Write-Host "  Datasets: C:\Jupyter-Notebook\datasets"
+                Write-Host "  Notebooks: C:\Jupyter-Notebook\notebooks"
+                Write-Host "  PDI output: C:\Jupyter-Notebook\pdi-output"
+                Write-Host "  Reports: C:\Jupyter-Notebook\reports"
+                Write-Host "  Workshop data: C:\Jupyter-Notebook\workshop-data"
+                Write-Host ""
+                Write-Host "MANAGEMENT COMMANDS:" -ForegroundColor Cyan
+                Write-Host "  Check status: $composeCommand ps"
+                Write-Host "  View logs: $composeCommand logs"
+                Write-Host "  Stop services: $composeCommand down"
                 
                 if ($OpenBrowser) {
-                    Write-Host "Opening browser windows..." -ForegroundColor Cyan
+                    Write-Host "Opening Jupyter Lab in browser..." -ForegroundColor Cyan
                     Start-Process "http://localhost:8888"
-                    Start-Sleep -Seconds 2
-                    Start-Process "http://localhost:6080"
                 }
             } else {
                 Write-Error "Docker Compose failed to start. Exit code: $LASTEXITCODE"
@@ -173,7 +189,7 @@ try {
         "shell" {
             Write-Host "Opening shell in Jupyter container..." -ForegroundColor Cyan
             Write-Host "Type 'exit' to return to PowerShell" -ForegroundColor Yellow
-            docker exec -it jupyter-pdi-workshop /bin/bash
+            docker exec -it jupyter-datascience /bin/bash
         }
         
         "cleanup" {
