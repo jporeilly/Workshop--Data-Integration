@@ -1,0 +1,95 @@
+# Docker Compose Configuration for Cedalo Mosquitto MQTT Platform
+# Version: 1.0
+# Description: Deploys Cedalo Mosquitto MQTT broker with persistent storage
+
+services:
+  mosquitto:
+    image: cedalo/management-center:2.6.4
+    container_name: mosquitto-broker
+    restart: unless-stopped
+
+    # Environment variables
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - CEDALO_MC_LICENSE_IGNORE=true
+      - CEDALO_MC_USERNAME=cedalo
+      - CEDALO_MC_PASSWORD=password
+      - CEDALO_MC_EMAIL=cedalo@cedalo.com
+
+    # Port mappings
+    ports:
+      - "1883:1883"      # MQTT port
+      - "9001:9001"      # WebSocket port
+      - "8883:8883"      # MQTT over TLS (optional)
+      - "8088:8088"      # Management Center UI
+    
+    # Volume mappings for persistent storage
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
+    
+    # Network configuration
+    networks:
+      - mqtt-network
+    
+    # Health check configuration
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 10s mosquitto_pub -h localhost -p 1883 -t 'health/check' -m 'ping' -q 0 || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 40s
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Resource limits (optional - adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Labels for organization
+    labels:
+      - "com.example.service=mosquitto"
+      - "com.example.description=Cedalo Mosquitto MQTT Broker"
+      - "com.example.version=2.6"
+
+# Network configuration
+networks:
+  mqtt-network:
+    driver: bridge
+    name: mqtt-network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+    labels:
+      - "com.example.network=mqtt"
+
+# Volume configuration (optional - for named volumes)
+volumes:
+  mosquitto-data:
+    driver: local
+    name: mosquitto-data
+  mosquitto-config:
+    driver: local
+    name: mosquitto-config
+  mosquitto-log:
+    driver: local
+    name: mosquitto-log
