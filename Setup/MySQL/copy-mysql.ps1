@@ -2,12 +2,12 @@
 # Source: C:\Workshop--Data-Integration\Setup\MySQL\*
 # Destination: C:\MySQL
 
-$sourcePath = "C:\Workshop--Data-Integration\Setup\MySQL\*"
+$sourcePath = "C:\Workshop--Installation\MySQL\*"
 $destinationPath = "C:\MySQL"
 
 # Check if source directory exists
-if (-not (Test-Path "C:\Workshop--Data-Integration\Setup\MySQL")) {
-    Write-Error "Source directory does not exist: C:\Workshop--Data-Integration\Setup\MySQL"
+if (-not (Test-Path "C:\Workshop--Installation\MySQL")) {
+    Write-Error "Source directory does not exist: C:\Workshop--Installation\MySQL"
     exit 1
 }
 
