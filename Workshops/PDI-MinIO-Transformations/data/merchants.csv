@@ -1,0 +1,19 @@
+merchant_id,merchant_name,merchant_category,country,risk_level
+MER-5001,Amazon.com,RETAIL,United States,LOW
+MER-5002,Luxury Watches Inc,JEWELRY,Switzerland,HIGH
+MER-5003,Joe's Coffee Shop,RESTAURANT,United States,LOW
+MER-5004,Target Corporation,RETAIL,United States,LOW
+MER-5005,Best Buy Electronics,ELECTRONICS,United States,LOW
+MER-5006,Whole Foods Market,GROCERY,United States,LOW
+MER-5007,Delta Airlines,TRAVEL,United States,MEDIUM
+MER-5008,Shell Gas Station,GAS_STATION,United States,LOW
+MER-5009,Apple Store,ELECTRONICS,United States,LOW
+MER-5010,Hotels.com,TRAVEL,United States,MEDIUM
+MER-5011,Carrefour,RETAIL,France,LOW
+MER-5012,Uber Technologies,TRANSPORTATION,United States,LOW
+MER-5013,Microsoft Store,SOFTWARE,United States,LOW
+MER-5014,Offshore Casino Ltd,GAMBLING,Malta,HIGH
+MER-5015,Costco Wholesale,RETAIL,United States,LOW
+MER-5016,Starbucks Coffee,RESTAURANT,United States,LOW
+MER-5017,Electronics Warehouse,ELECTRONICS,Hong Kong,HIGH
+MER-5018,Netflix Inc,ENTERTAINMENT,United States,LOW

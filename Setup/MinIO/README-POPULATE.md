@@ -42,7 +42,7 @@ The population scripts create realistic datasets in multiple formats commonly us
 
 ### Common Requirements
 
-- MinIO running and accessible (default: http://localhost:9000)
+- MinIO running and accessible (default: http://localhost:9002)
 - MinIO Client (mc) installed
 - MinIO credentials (default: minioadmin/minioadmin)
 
@@ -54,11 +54,24 @@ wget https://dl.min.io/client/mc/release/linux-amd64/mc
 chmod +x mc
 sudo mv mc /usr/local/bin/
 
-# Optional: Install Python packages for Parquet generation
-pip3 install pandas pyarrow
-
 # Optional: Install utilities
 sudo apt install curl jq
+
+# Optional: Install Python packages for Parquet generation
+# Note: Ubuntu 24.04+ requires a virtual environment (PEP 668)
+
+# Option 1: Virtual environment (recommended)
+python3 -m venv ~/venv
+source ~/venv/bin/activate
+pip install pandas pyarrow
+# Run populate script while venv is activated
+# Deactivate when done: deactivate
+
+# Option 2: System packages (pandas only, pyarrow not available)
+sudo apt install python3-pandas
+
+# Option 3: Override system protection (not recommended)
+pip install --break-system-packages pandas pyarrow
 ```
 
 ### Windows-Specific
@@ -66,10 +79,18 @@ sudo apt install curl jq
 ```powershell
 # Download MinIO Client
 # From: https://dl.min.io/client/mc/release/windows-amd64/mc.exe
-# Place in PATH (e.g., C:\Windows\System32)
+# Place in PATH (e.g., C:\Windows\System32 or C:\Program Files\MinIO)
 
 # Optional: Install Python packages for Parquet generation
+# Option 1: Direct install (if not externally managed)
 pip install pandas pyarrow
+
+# Option 2: Virtual environment (recommended for newer Python)
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install pandas pyarrow
+# Run populate script while venv is activated
+# Deactivate when done: deactivate
 ```
 
 ## Usage
@@ -160,6 +181,27 @@ Data files uploaded:
 ```
 
 ## Accessing the Data
+
+### Verify MinIO API (curl)
+
+Before accessing data, verify MinIO is running:
+
+```bash
+# Check if MinIO is alive (health check)
+curl -s http://localhost:9000/minio/health/live
+# Expected: empty response with HTTP 200
+
+# Check MinIO cluster health
+curl -s http://localhost:9000/minio/health/cluster
+# Expected: JSON with cluster status
+
+# Check with verbose output to see HTTP status
+curl -I http://localhost:9000/minio/health/live
+# Expected: HTTP/1.1 200 OK
+
+# Quick one-liner to verify MinIO is running
+curl -sf http://localhost:9000/minio/health/live && echo "MinIO is running" || echo "MinIO is not responding"
+```
 
 ### Via MinIO Console
 
@@ -544,6 +586,12 @@ The script is idempotent and can be safely re-run:
 ### Pentaho Documentation
 - PDI VFS: https://help.hitachivantara.com/Documentation/Pentaho
 - S3 Configuration: https://help.hitachivantara.com/Documentation/Pentaho/Data_Integration
+
+### PDI Transformation Workshop
+- **[PDI-MinIO-Transformations Workshop](../../Workshops/PDI-MinIO-Transformations/README.md)**
+  - 6 hands-on exercises using this sample data
+  - Covers: joins, XML/JSON parsing, aggregations, log analysis
+  - Duration: 4-6 hours total
 
 ### Sample Transformations
 - Located in: `/path/to/pentaho/samples/transformations/`

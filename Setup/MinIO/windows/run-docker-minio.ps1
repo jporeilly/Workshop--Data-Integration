@@ -152,11 +152,11 @@ try {
 
     # Change to the MinIO directory where docker-compose.yml is located
     Set-Location -Path $workingDirectory
-    Write-Host "[INFO] Changed to directory: $workingDirectory" -ForegroundColor Gray
+    Write-Host "[INFO] Changed to directory: $workingDirectory" -ForegroundColor DarkCyan
 
     # Execute docker-compose up command
     # Split the command for proper execution with & operator
-    Write-Host "[INFO] Running: $composeCommand up -d" -ForegroundColor Gray
+    Write-Host "[INFO] Running: $composeCommand up -d" -ForegroundColor DarkCyan
     Write-Host ""
 
     # Run docker-compose up in detached mode
@@ -196,7 +196,7 @@ try {
         Write-Host "  Stop service:  $composeCommand down" -ForegroundColor White
         Write-Host "  Restart:       $composeCommand restart" -ForegroundColor White
         Write-Host ""
-        Write-Host "Run these commands from: $workingDirectory" -ForegroundColor Gray
+        Write-Host "Run these commands from: " -NoNewline; Write-Host "$workingDirectory" -ForegroundColor Cyan
         Write-Host ""
     }
     else {

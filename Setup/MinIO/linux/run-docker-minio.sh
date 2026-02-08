@@ -42,7 +42,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
-GRAY='\033[0;37m'
+WHITE='\033[1;37m'   # Bright white for better contrast
+GRAY='\033[0;90m'    # Dark gray (for less important info)
 NC='\033[0m' # No Color - resets to default
 
 # ------------------------------------------------------------------------------
@@ -70,7 +71,7 @@ if [ ! -d "$WORKING_DIRECTORY" ]; then
     echo -e "${RED}[ERROR] Directory does not exist: $WORKING_DIRECTORY${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please run the copy-minio.sh script first to set up the directory:${NC}"
-    echo -e "  ${GRAY}sudo ./copy-minio.sh${NC}"
+    echo -e "  ${CYAN}sudo ./copy-minio.sh${NC}"
     echo ""
     exit 1
 fi
@@ -106,11 +107,11 @@ if ! command -v docker &> /dev/null; then
     echo -e "${RED}[ERROR] Docker is not installed${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please install Docker Engine:${NC}"
-    echo -e "  ${GRAY}sudo apt update${NC}"
-    echo -e "  ${GRAY}sudo apt install docker.io docker-compose-plugin${NC}"
+    echo -e "  ${CYAN}sudo apt update${NC}"
+    echo -e "  ${CYAN}sudo apt install docker.io docker-compose-plugin${NC}"
     echo ""
     echo -e "${YELLOW}Or follow the official installation guide:${NC}"
-    echo -e "  ${GRAY}https://docs.docker.com/engine/install/ubuntu/${NC}"
+    echo -e "  ${CYAN}https://docs.docker.com/engine/install/ubuntu/${NC}"
     exit 1
 fi
 
@@ -124,8 +125,8 @@ if [ $? -ne 0 ]; then
     echo -e "${RED}[ERROR] Docker is installed but not running${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please start Docker service:${NC}"
-    echo -e "  ${GRAY}sudo systemctl start docker${NC}"
-    echo -e "  ${GRAY}sudo systemctl enable docker  # Enable auto-start at boot${NC}"
+    echo -e "  ${CYAN}sudo systemctl start docker${NC}"
+    echo -e "  ${CYAN}sudo systemctl enable docker${NC}  # Enable auto-start at boot"
     echo ""
     exit 1
 fi
@@ -141,28 +142,28 @@ echo -e "${GREEN}[OK] Docker found: $DOCKER_VERSION${NC}"
 
 COMPOSE_COMMAND=""
 
-# Try standalone docker-compose first (V1)
-# &> /dev/null redirects all output, making this a silent check
-if command -v docker-compose &> /dev/null; then
-    COMPOSE_COMMAND="docker-compose"
-    COMPOSE_VERSION=$(docker-compose --version 2>&1)
-    echo -e "${GREEN}[OK] Docker Compose found: $COMPOSE_VERSION${NC}"
-# If standalone not found, try Docker Compose V2 plugin
-elif docker compose version &> /dev/null; then
+# Try Docker Compose V2 plugin first (preferred - works with Python 3.12+)
+# The V1 standalone 'docker-compose' has issues with Python 3.12 (missing distutils)
+if docker compose version &> /dev/null; then
     COMPOSE_COMMAND="docker compose"
     COMPOSE_VERSION=$(docker compose version 2>&1)
+    echo -e "${GREEN}[OK] Docker Compose found: $COMPOSE_VERSION${NC}"
+# Fallback to standalone docker-compose (V1) - may not work on Python 3.12+
+elif command -v docker-compose &> /dev/null && docker-compose --version &> /dev/null; then
+    COMPOSE_COMMAND="docker-compose"
+    COMPOSE_VERSION=$(docker-compose --version 2>&1)
     echo -e "${GREEN}[OK] Docker Compose found: $COMPOSE_VERSION${NC}"
 else
     # Neither version found - installation required
     echo -e "${RED}[ERROR] Docker Compose is not installed or not available${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please install Docker Compose:${NC}"
-    echo -e "  ${GRAY}# For Docker Compose V2 (plugin):${NC}"
-    echo -e "  ${GRAY}sudo apt update${NC}"
-    echo -e "  ${GRAY}sudo apt install docker-compose-plugin${NC}"
+    echo -e "  # For Docker Compose V2 (plugin - recommended):"
+    echo -e "  ${CYAN}sudo apt update${NC}"
+    echo -e "  ${CYAN}sudo apt install docker-compose-plugin${NC}"
     echo ""
-    echo -e "  ${GRAY}# Or for standalone docker-compose V1:${NC}"
-    echo -e "  ${GRAY}sudo apt install docker-compose${NC}"
+    echo -e "  # Or for standalone docker-compose V1:"
+    echo -e "  ${CYAN}sudo apt install docker-compose${NC}"
     exit 1
 fi
 
@@ -233,7 +234,7 @@ if [ $EXIT_CODE -eq 0 ]; then
     echo -e "  ${GREEN}Stop service:${NC}  $COMPOSE_COMMAND down"
     echo -e "  ${GREEN}Restart:${NC}       $COMPOSE_COMMAND restart"
     echo ""
-    echo -e "${GRAY}Run these commands from: $WORKING_DIRECTORY${NC}"
+    echo -e "Run these commands from: ${CYAN}$WORKING_DIRECTORY${NC}"
     echo ""
 
     # Additional helpful information
@@ -249,18 +250,18 @@ else
     echo -e "${RED}[ERROR] Docker Compose failed to start. Exit code: $EXIT_CODE${NC}" >&2
     echo ""
     echo -e "${YELLOW}Troubleshooting:${NC}"
-    echo -e "  ${GRAY}1. Check if ports 9000 or 9002 are already in use:${NC}"
-    echo -e "     ${GRAY}sudo netstat -tlnp | grep -E ':(9000|9002)'${NC}"
+    echo -e "  1. Check if ports 9000 or 9002 are already in use:"
+    echo -e "     ${CYAN}sudo netstat -tlnp | grep -E ':(9000|9002)'${NC}"
     echo ""
-    echo -e "  ${GRAY}2. View detailed logs:${NC}"
-    echo -e "     ${GRAY}$COMPOSE_COMMAND logs${NC}"
+    echo -e "  2. View detailed logs:"
+    echo -e "     ${CYAN}$COMPOSE_COMMAND logs${NC}"
     echo ""
-    echo -e "  ${GRAY}3. Ensure Docker has sufficient resources${NC}"
-    echo -e "  ${GRAY}4. Check Docker service status:${NC}"
-    echo -e "     ${GRAY}sudo systemctl status docker${NC}"
+    echo -e "  3. Ensure Docker has sufficient resources"
+    echo -e "  4. Check Docker service status:"
+    echo -e "     ${CYAN}sudo systemctl status docker${NC}"
     echo ""
-    echo -e "  ${GRAY}5. Try stopping any existing MinIO container:${NC}"
-    echo -e "     ${GRAY}$COMPOSE_COMMAND down${NC}"
+    echo -e "  5. Try stopping any existing MinIO container:"
+    echo -e "     ${CYAN}$COMPOSE_COMMAND down${NC}"
     echo ""
 
     # Return to original directory before exiting

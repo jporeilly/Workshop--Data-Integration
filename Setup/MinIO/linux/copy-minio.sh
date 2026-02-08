@@ -18,6 +18,8 @@
 # Files Copied:
 #   - docker-compose.yml: Docker Compose configuration for MinIO
 #   - run-docker-minio.sh: Script to start MinIO container
+#   - populate-minio.sh: Script to populate MinIO with sample data
+#   - README-POPULATE.md: Documentation for the populate script
 #
 # Requirements:
 #   - Ubuntu 24.04 LTS (or compatible Linux distribution)
@@ -42,7 +44,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
-GRAY='\033[0;37m'
+WHITE='\033[1;37m'   # Bright white for better contrast
+GRAY='\033[0;90m'    # Dark gray (for less important info)
 NC='\033[0m' # No Color - resets to default
 
 # ------------------------------------------------------------------------------
@@ -80,7 +83,7 @@ if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}[ERROR] This script requires root privileges to write to /opt/minio${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please run with sudo:${NC}"
-    echo -e "  ${GRAY}sudo $0${NC}"
+    echo -e "  ${CYAN}sudo $0${NC}"
     echo ""
     exit 1
 fi
@@ -97,8 +100,8 @@ if [ ! -d "$SOURCE_PATH" ]; then
     echo -e "${RED}[ERROR] Source directory does not exist: $SOURCE_PATH${NC}" >&2
     echo ""
     echo -e "${YELLOW}Please verify that:${NC}"
-    echo -e "  ${GRAY}1. You are running this script from the correct directory${NC}"
-    echo -e "  ${GRAY}2. The MinIO setup files exist in this location${NC}"
+    echo -e "  1. You are running this script from the correct directory"
+    echo -e "  2. The MinIO setup files exist in this location"
     exit 1
 fi
 
@@ -151,8 +154,8 @@ fi
 
 echo ""
 echo -e "${CYAN}Copying files...${NC}"
-echo -e "  ${GRAY}From: $SOURCE_PATH${NC}"
-echo -e "  ${GRAY}To:   $DESTINATION_PATH${NC}"
+echo -e "  From: ${CYAN}$SOURCE_PATH${NC}"
+echo -e "  To:   ${CYAN}$DESTINATION_PATH${NC}"
 echo ""
 
 # Copy docker-compose.yml
@@ -165,16 +168,28 @@ COPY_RESULT=$?
 cp "$SOURCE_PATH/run-docker-minio.sh" "$DESTINATION_PATH/" 2>/dev/null
 COPY_RESULT=$((COPY_RESULT + $?))
 
-# Copy README if it exists (optional, not critical)
+# Copy populate script
+# This script populates MinIO with sample data
+cp "$SOURCE_PATH/populate-minio.sh" "$DESTINATION_PATH/" 2>/dev/null
+COPY_RESULT=$((COPY_RESULT + $?))
+
+# Copy README files if they exist (optional, not critical)
 if [ -f "$SOURCE_PATH/README.md" ]; then
     cp "$SOURCE_PATH/README.md" "$DESTINATION_PATH/" 2>/dev/null
 fi
 
+# Copy README-POPULATE.md from parent directory
+PARENT_PATH="$(dirname "$SOURCE_PATH")"
+if [ -f "$PARENT_PATH/README-POPULATE.md" ]; then
+    cp "$PARENT_PATH/README-POPULATE.md" "$DESTINATION_PATH/" 2>/dev/null
+fi
+
 # Check if copy operations succeeded
 if [ $COPY_RESULT -eq 0 ]; then
-    # Make the run script executable
+    # Make ALL shell scripts executable
     # 755 permissions = rwxr-xr-x (executable by all, writable by owner)
-    chmod +x "$DESTINATION_PATH/run-docker-minio.sh"
+    find "$DESTINATION_PATH" -name "*.sh" -type f -exec chmod +x {} \;
+    echo -e "${GREEN}[OK] All .sh scripts in $DESTINATION_PATH are now executable${NC}"
 
     # Verify the script is now executable
     if [ -x "$DESTINATION_PATH/run-docker-minio.sh" ]; then
@@ -185,9 +200,9 @@ if [ $COPY_RESULT -eq 0 ]; then
 
         # Display next steps
         echo -e "${YELLOW}Next steps:${NC}"
-        echo -e "  ${GRAY}1. Review the configuration: sudo nano $DESTINATION_PATH/docker-compose.yml${NC}"
-        echo -e "  ${GRAY}2. Ensure Docker is installed and running: docker --version${NC}"
-        echo -e "  ${GRAY}3. Start MinIO: sudo $DESTINATION_PATH/run-docker-minio.sh${NC}"
+        echo -e "  1. Review the configuration: ${CYAN}sudo nano $DESTINATION_PATH/docker-compose.yml${NC}"
+        echo -e "  2. Ensure Docker is installed and running: ${CYAN}docker --version${NC}"
+        echo -e "  3. Start MinIO: ${CYAN}sudo $DESTINATION_PATH/run-docker-minio.sh${NC}"
         echo ""
 
         # Display file list
@@ -201,9 +216,9 @@ else
     echo -e "${RED}[ERROR] An error occurred during the copy operation${NC}" >&2
     echo ""
     echo -e "${YELLOW}Troubleshooting:${NC}"
-    echo -e "  ${GRAY}- Verify source files exist and are readable${NC}"
-    echo -e "  ${GRAY}- Check disk space: df -h /opt${NC}"
-    echo -e "  ${GRAY}- Ensure no permission issues${NC}"
+    echo -e "  - Verify source files exist and are readable"
+    echo -e "  - Check disk space: ${CYAN}df -h /opt${NC}"
+    echo -e "  - Ensure no permission issues"
     exit 1
 fi
 

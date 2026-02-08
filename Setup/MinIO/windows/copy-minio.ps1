@@ -88,8 +88,8 @@ else {
 
 Write-Host ""
 Write-Host "Copying files..." -ForegroundColor Cyan
-Write-Host "  From: $sourcePath" -ForegroundColor Gray
-Write-Host "  To:   $destinationPath" -ForegroundColor Gray
+Write-Host "  From: " -NoNewline; Write-Host "$sourcePath" -ForegroundColor Cyan
+Write-Host "  To:   " -NoNewline; Write-Host "$destinationPath" -ForegroundColor Cyan
 Write-Host ""
 
 try {
