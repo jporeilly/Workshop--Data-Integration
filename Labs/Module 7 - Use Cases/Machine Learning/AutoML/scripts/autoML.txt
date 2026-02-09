@@ -1,42 +1,168 @@
-#to improve performance, increase number of generations and population size for 'tpot = TPOTClassifier(generations=1, verbosity=2,population_size=50, config_dict='TPOT light')'
-# ensure the following libraries are installed
-#pandas
-#matplotlib
-#py4j
-#numpy
-
-
-# import libraries
+# H2O AutoML for PDI - COMPLETE WORKING VERSION
+import h2o
+from h2o.automl import H2OAutoML
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
-# import TPOT classifier and train_test_split 
-from tpot import TPOTClassifier
-from sklearn import preprocessing
-from sklearn.model_selection import train_test_split
+# Initialize H2O
+try:
+    h2o.init(max_mem_size='4G', nthreads=-1)
+    print("✅ H2O initialized!")
+except:
+    pass
 
-# references all rows and columns
-x = cust.iloc[:,0:-1].values #returns a numpy array
-min_max_scaler = preprocessing.MinMaxScaler()
-x_scaled = min_max_scaler.fit_transform(x)
+# Get data from PDI
+input_df = dataset.copy()
+# IMMEDIATE DIAGNOSTIC - Before any processing
+print(f"\n\ED\A0\BD\ED\B4\8D RAW DATA CHECK:")
+print(f"Columns: {list(input_df.columns)}")
+print(f"Shape: {input_df.shape}")
+print(f"\nFirst 5 rows of reported_as_fraud_historic:")
+if 'reported_as_fraud_historic' in input_df.columns:
+    print(input_df['reported_as_fraud_historic'].head())
+    print(f"Type: {input_df['reported_as_fraud_historic'].dtype}")
+    print(f"Unique values: {input_df['reported_as_fraud_historic'].unique()}")
+else:
+    print("❌ Column 'reported_as_fraud_historic' NOT FOUND!")
+    print(f"Available columns: {list(input_df.columns)}")
 
-X=np.asarray(x_scaled)
-y=np.asarray(cust.iloc[:,-1])
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=None)
+# Print original columns
+print(f"\n\ED\A0\BD\ED\B3\8B Columns received: {list(input_df.columns)}")
 
-tpot = TPOTClassifier(generations=1, verbosity=2,population_size=50, config_dict='TPOT light')
-tpot.fit(X_train, y_train)
-output_score=str(tpot.score(X_test, y_test))
-tpot.export('tpot_creditcard_pipeline.py')
-print(tpot.score(X_test, y_test))
+# Rename fraud column
+input_df.columns = input_df.columns.str.replace('reported_as_fraud_historic', 'fraud')
+print(f"\ED\A0\BD\ED\B3\8B After rename: {list(input_df.columns)}")
 
-model_name=[x[0] for x in tpot.evaluated_individuals_.items()]
-model_gen=[x[1]['generation'] for x in tpot.evaluated_individuals_.items()]
-model_mut=[x[1]['mutation_count'] for x in tpot.evaluated_individuals_.items()]
-model_cross=[x[1]['crossover_count'] for x in tpot.evaluated_individuals_.items()]
-model_predec=[x[1]['predecessor'] for x in tpot.evaluated_individuals_.items()]
-model_opp=[x[1]['operator_count'] for x in tpot.evaluated_individuals_.items()]
-model_cv=[str(y[1]['internal_cv_score']) for y in tpot.evaluated_individuals_.items()]
-model_list=list(zip(model_name,model_gen,model_mut,model_cross,model_predec,model_opp,model_cv))
-model_df=pd.DataFrame(model_list,columns=['pipe','generation','mutation','crossover','predecessor','operator','cv'])
+# CRITICAL DIAGNOSTIC: Check fraud column
+print(f"\n\ED\A0\BD\ED\B4\8D FRAUD COLUMN DIAGNOSTIC:")
+print(f"Data type: {input_df['fraud'].dtype}")
+print(f"Unique values: {sorted(input_df['fraud'].unique())}")
+print(f"Value counts:")
+print(input_df['fraud'].value_counts())
+
+# Verify we have both classes
+unique_vals = input_df['fraud'].unique()
+if len(unique_vals) < 2:
+    error_msg = f"❌ CRITICAL ERROR: Fraud column has only {len(unique_vals)} unique value(s): {unique_vals}. Need both 0 and 1 for binary classification!"
+    print(error_msg)
+    raise ValueError(error_msg)
+
+# Convert to integer
+input_df['fraud'] = input_df['fraud'].astype(int)
+
+print(f"\n\ED\A0\BD\ED\B3\8A Dataset: {input_df.shape[0]:,} rows × {input_df.shape[1]} columns")
+fraud_count = (input_df['fraud'] == 1).sum()
+fraud_pct = (fraud_count / len(input_df)) * 100
+print(f"\ED\A0\BD\ED\BA\A8 Fraud cases: {fraud_count:,} ({fraud_pct:.2f}%)")
+
+if fraud_count == 0:
+    raise ValueError("❌ ERROR: No fraud cases found! Cannot train classification model.")
+
+# Convert to H2O frame
+hf = h2o.H2OFrame(input_df)
+hf['fraud'] = hf['fraud'].asfactor()
+
+# Split data
+train, test = hf.split_frame(ratios=[0.75], seed=42)
+print(f"\n\ED\A0\BD\ED\B3\88 Training: {train.nrows:,} rows")
+print(f"\ED\A0\BD\ED\B3\89 Test:     {test.nrows:,} rows")
+
+# Define features and target
+x = train.columns
+x.remove('fraud')
+y = 'fraud'
+
+print(f"\ED\A0\BC\ED\BE\AF Using {len(x)} features")
+
+# Train AutoML
+start_time = datetime.now()
+print("\n\ED\A0\BE\ED\B4\96 Starting H2O AutoML Training...")
+print("="*60)
+
+aml = H2OAutoML(
+    max_models=5,
+    max_runtime_secs=900,
+    seed=42,
+    balance_classes=True,
+    nfolds=5,
+    sort_metric='AUC',
+    include_algos=['GBM', 'XGBoost', 'GLM', 'DRF', 'DeepLearning'],
+    verbosity='info'
+)
+
+aml.train(x=x, y=y, training_frame=train)
+
+duration = (datetime.now() - start_time).total_seconds()
+print(f"\n✅ Training completed in {duration/60:.1f} minutes!")
+print("="*60)
+
+# Get best model
+best = aml.leader
+perf = best.model_performance(test)
+
+print(f"\n\ED\A0\BC\ED\BF\86 BEST MODEL: {best.model_id}")
+print(f"Algorithm: {best.algo}")
+
+# Safely get metrics (handle None case)
+try:
+    auc_val = perf.auc()
+    acc_val = perf.accuracy()[0][1]
+    prec_val = perf.precision()[0][1]
+    rec_val = perf.recall()[0][1]
+    f1_val = perf.F1()[0][1]
+    
+    print("\n\ED\A0\BD\ED\B3\8A TEST SET PERFORMANCE")
+    print("="*60)
+    print(f"AUC:       {auc_val:.4f}")
+    print(f"Accuracy:  {acc_val:.4f}")
+    print(f"Precision: {prec_val:.4f}")
+    print(f"Recall:    {rec_val:.4f}")
+    print(f"F1 Score:  {f1_val:.4f}")
+    print("="*60)
+    
+    # Confusion Matrix
+    print("\n\ED\A0\BD\ED\B3\8B CONFUSION MATRIX")
+    cm = perf.confusion_matrix()
+    print(cm)
+    
+except (TypeError, AttributeError, KeyError) as e:
+    print(f"\n⚠️ WARNING: Could not calculate metrics: {e}")
+    print("Setting default values...")
+    auc_val = 0.0
+    acc_val = 0.0
+    prec_val = 0.0
+    rec_val = 0.0
+    f1_val = 0.0
+
+# Feature Importance
+try:
+    varimp = best.varimp(use_pandas=True)
+    print("\n\ED\A0\BC\ED\BE\AF TOP 5 FEATURES")
+    print(varimp.head(5))
+except:
+    print("\n⚠️ Feature importance not available")
+
+# Save model
+model_path = h2o.save_model(model=best, path="/tmp/h2o_models", force=True)
+print(f"\n\ED\A0\BD\ED\B2\BE Model saved to: {model_path}")
+
+# Leaderboard
+lb = aml.leaderboard.as_data_frame()
+print(f"\n\ED\A0\BD\ED\B3\8A Total models trained: {lb.shape[0]}")
+
+# Output as STRINGS for PDI
+best_model_id = [str(best.model_id)]
+best_algorithm = [str(best.algo)]
+best_auc = [str(auc_val)]
+best_accuracy = [str(acc_val)]
+best_precision = [str(prec_val)]
+best_recall = [str(rec_val)]
+best_f1 = [str(f1_val)]
+total_models_trained = [str(int(lb.shape[0]))]
+training_time_minutes = [str(duration/60)]
+saved_model_path = [str(model_path)]
+
+print("\n✅ All output variables prepared as strings!")
+print(f"Ready to return: 1 row with 10 fields")
