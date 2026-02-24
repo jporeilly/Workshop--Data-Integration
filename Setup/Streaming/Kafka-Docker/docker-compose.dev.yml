@@ -1,0 +1,40 @@
+# Docker Compose override file for development
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+version: '3.8'
+
+# This file provides development-friendly overrides:
+# - Port mappings for easier access
+# - Volume mounts for live debugging
+# - Environment variables for verbose logging
+# - Reduced resource constraints
+
+services:
+  # Example override for any broker
+  # Uncomment and modify as needed
+
+  # broker1:
+  #   environment:
+  #     - KAFKA_LOG4J_ROOT_LOGLEVEL=DEBUG
+  #     - KAFKA_TOOLS_LOG4J_LOGLEVEL=DEBUG
+  #   ports:
+  #     - "9091:9091"  # Expose broker port
+
+  # schema-registry:
+  #   environment:
+  #     - SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL=DEBUG
+
+  # kafka-connect1:
+  #   volumes:
+  #     - ./custom-connectors:/usr/share/confluent-hub-components
+
+  # Prometheus with custom config
+  # prometheus:
+  #   volumes:
+  #     - ./prometheus-dev.yml:/etc/prometheus/prometheus.yml
+
+  # Grafana with development settings
+  # grafana:
+  #   environment:
+  #     - GF_LOG_LEVEL=debug
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin123

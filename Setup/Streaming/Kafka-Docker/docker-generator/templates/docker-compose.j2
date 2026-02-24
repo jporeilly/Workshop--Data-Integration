@@ -1,0 +1,94 @@
+---
+{# version: "{{docker_compose_version}}" #}
+{# version is now obsolete #}
+services:
+{% for service in services %}
+    {{ service.name }}:
+        image: {{ service.image }}
+        hostname: {{ service.hostname }}
+        container_name: {{ service.container_name}}
+
+        {%  if service.healthcheck is defined %}
+        healthcheck:
+        {% for key,value in service.healthcheck.items() %}
+            {{ key }}: {{ value }}
+        {% endfor %}
+        {% endif -%}
+
+        {% if service.depends_on is defined %}
+        depends_on:
+        {% for depends in service.depends_on %}
+            - {{ depends }}
+        {%  endfor %}
+        {% endif -%}
+
+        {% if service.depends_on_condition is defined %}
+        depends_on:
+        {% for depends in service.depends_on_condition %}
+            {{ depends }}:
+                condition: service_healthy
+        {%  endfor %}
+        {% endif -%}
+
+        {%  if service.environment is defined %}
+        environment:
+        {% for key,value in service.environment.items() %}
+            {{ key }}: {{ value }}
+        {% endfor %}
+        {% endif -%}
+
+        {% if service.cap_add is defined %}
+        cap_add:
+        {% for capability in service.cap_add %}
+            - {{capability}}
+        {% endfor %}
+        {% endif -%}
+
+        {% if service.ports is defined %}
+        ports:
+        {% for host,container in service.ports.items() %}
+            - {{host}}:{{container}}
+        {% endfor %}
+        {% endif -%}
+
+        {% if service.command is defined %}
+        command: {{ service.command }}
+        {% endif -%}
+
+        {% if service.volumes is defined %}
+        volumes:
+        {% for volume in service.volumes %}
+            - {{ volume }}
+        {% endfor %}
+        {% endif -%}
+
+        {% if service.deploy is defined %}
+        deploy:
+        {% if service.deploy.resources is defined %}
+            resources:
+            {% if service.deploy.resources.limits is defined %}
+                limits:
+                {% for key, value in service.deploy.resources.limits.items() %}
+                    {{ key }}: {{ value }}
+                {% endfor %}
+            {% endif -%}
+            {% if service.deploy.resources.reservations is defined %}
+                reservations:
+                {% for key, value in service.deploy.resources.reservations.items() %}
+                    {{ key }}: {{ value }}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+        {% endif %}
+
+{% endfor %}
+
+{% if volumes is defined and volumes %}
+volumes:
+{% for volume_name, volume_config in volumes.items() %}
+    {{ volume_name }}:
+    {% for key, value in volume_config.items() %}
+        {{ key }}: {{ value }}
+    {% endfor %}
+{% endfor %}
+{% endif %}
