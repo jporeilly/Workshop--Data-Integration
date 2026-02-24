@@ -1,0 +1,108 @@
+# Docker Compose Configuration for EMQX MQTT Broker
+# Version: 2.0
+# Description: Deploys EMQX MQTT broker with built-in dashboard
+#
+# Quick Start:
+#   docker-compose up -d      # Start the container
+#   docker-compose logs -f    # View logs
+#   docker-compose stop       # Stop the container
+#   docker-compose down       # Remove the container
+#
+# Access Points:
+#   - MQTT: localhost:1883
+#   - WebSocket: localhost:8083
+#   - WebSocket SSL: localhost:8084
+#   - Dashboard: http://localhost:18083 (admin/public)
+#
+# Version Notes:
+#   - Using 'latest' tag for EMQX (works properly, unlike Cedalo)
+#   - EMQX 5.x includes built-in professional dashboard
+#   - No license required for community features
+#   - Much better performance than Mosquitto
+
+services:
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx-broker
+    restart: unless-stopped
+
+    # Environment variables
+    environment:
+      - EMQX_NAME=emqx
+      - EMQX_HOST=127.0.0.1
+      - EMQX_NODE__COOKIE=emqx_secret_cookie
+
+      # Dashboard credentials (CHANGE FOR PRODUCTION!)
+      - EMQX_DASHBOARD__DEFAULT_USERNAME=admin
+      - EMQX_DASHBOARD__DEFAULT_PASSWORD=public
+
+      # Node name
+      - EMQX_NODE_NAME=emqx@127.0.0.1
+
+      # Logging
+      - EMQX_LOG__CONSOLE_HANDLER__LEVEL=warning
+      - EMQX_LOG__FILE_HANDLERS__DEFAULT__LEVEL=warning
+
+    # Port mappings
+    ports:
+      - "1883:1883"      # MQTT port
+      - "8083:8083"      # WebSocket port (MQTT over WebSocket)
+      - "8084:8084"      # WebSocket SSL port
+      - "8883:8883"      # MQTT SSL port
+      - "18083:18083"    # Dashboard/HTTP API
+
+    # Volume mappings for persistent storage
+    volumes:
+      - ./data:/opt/emqx/data
+      - ./log:/opt/emqx/log
+
+    # Network configuration
+    networks:
+      - mqtt-network
+
+    # Health check configuration
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Labels for organization
+    labels:
+      - "com.example.service=emqx"
+      - "com.example.description=EMQX MQTT Broker"
+      - "com.example.version=5.x"
+
+# Network configuration
+networks:
+  mqtt-network:
+    driver: bridge
+    name: mqtt-network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+    labels:
+      - "com.example.network=mqtt"

@@ -482,6 +482,44 @@
     </hop>
   </order>
   <step>
+    <name>Calculate Fraud Score</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>fraud_risk_score</field_name>
+      <formula_string>([high_amount_flag] * 20) +
+([overlimit_flag] * 30) +
+([high_risk_merchant_flag] * 25) +
+([velocity_flag] * 15) +
+([new_account_flag] * 5) +
+([high_utilization_flag] * 15)</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Join Merchants</name>
     <type>MergeJoin</type>
     <description/>
@@ -1328,44 +1366,6 @@
     <GUI>
       <xloc>560</xloc>
       <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculate Fraud Score</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>fraud_risk_score</field_name>
-      <formula_string>([high_amount_flag] * 20) +
-([overlimit_flag] * 30) +
-([high_risk_merchant_flag] * 25) +
-([velocity_flag] * 15) +
-([new_account_flag] * 5) +
-([high_utilization_flag] * 15)</formula_string>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -1,0 +1,143 @@
+# =============================================================================
+# DOCKER COMPOSE - Jupyter Lab Container (Windows)
+# =============================================================================
+#
+# Purpose:
+#   Defines a single-service Docker deployment that runs Jupyter Lab with the
+#   SciPy scientific-computing stack. Host directories under C:\Jupyter-Notebook
+#   are bind-mounted into the container so that files created by Pentaho Data
+#   Integration (PDI) on the host are immediately visible inside the notebook
+#   environment, and vice-versa.
+#
+# Image:
+#   jupyter/scipy-notebook:latest
+#     - Based on the official Jupyter Docker Stacks project
+#     - Includes Python 3, NumPy, pandas, matplotlib, seaborn, scikit-learn,
+#       SciPy, and many other scientific packages pre-installed
+#     - https://jupyter-docker-stacks.readthedocs.io/
+#
+# Ports:
+#   8888  ->  Jupyter Lab web interface (http://localhost:8888)
+#
+# Authentication:
+#   Token: datascience   (set via JUPYTER_TOKEN environment variable)
+#
+# Volume mappings (Host -> Container):
+#   C:\Jupyter-Notebook\datasets      -> /home/jovyan/datasets    (source CSV data)
+#   C:\Jupyter-Notebook\notebooks     -> /home/jovyan/notebooks   (notebook files)
+#   C:\Jupyter-Notebook\pdi-output    -> /home/jovyan/pdi-output  (PDI output landing zone)
+#   C:\Jupyter-Notebook\reports       -> /home/jovyan/reports     (generated reports)
+#   C:\Jupyter-Notebook\workshop-data -> /home/jovyan/work        (general workspace)
+#
+# Health check:
+#   Polls http://localhost:8888/lab every 30 seconds to confirm the service
+#   is responsive. The container is marked unhealthy after 3 consecutive
+#   failures, which can be used by orchestrators to trigger a restart.
+#
+# Usage:
+#   docker compose up -d          # Start in detached mode
+#   docker compose ps             # Check status
+#   docker compose logs           # View logs
+#   docker compose down           # Stop and remove container
+#
+# Notes:
+#   - "user: root" is required so the container process can read/write the
+#     bind-mounted host directories regardless of file ownership.
+#   - The "unless-stopped" restart policy ensures the container comes back
+#     automatically after a host reboot or Docker daemon restart.
+#   - Windows paths use escaped backslashes (\\) inside the YAML strings.
+#     Docker Desktop for Windows handles the translation to Linux paths
+#     inside the container.
+# =============================================================================
+
+services:
+  jupyter:
+    # --- Container image -----------------------------------------------------
+    # jupyter/scipy-notebook includes the full SciPy scientific stack:
+    # Python 3, NumPy, pandas, matplotlib, seaborn, scikit-learn, etc.
+    image: jupyter/scipy-notebook:latest
+
+    # --- Container name ------------------------------------------------------
+    # Fixed name makes it easy to reference in docker exec / docker logs.
+    container_name: jupyter-datascience
+
+    # --- Restart policy ------------------------------------------------------
+    # "unless-stopped" keeps the container running across Docker restarts
+    # and host reboots, but respects a manual "docker compose down".
+    restart: unless-stopped
+
+    # --- Port mappings -------------------------------------------------------
+    # Map host port 8888 to container port 8888 (Jupyter Lab web UI).
+    ports:
+      - "8888:8888"
+
+    # --- Environment variables -----------------------------------------------
+    environment:
+      # Enable the Jupyter Lab interface (instead of classic notebook)
+      - JUPYTER_ENABLE_LAB=yes
+      # Set the authentication token required to log in
+      - JUPYTER_TOKEN=datascience
+      # Set the container timezone (adjust to your locale if needed)
+      - TZ=Europe/London
+
+    # --- Bind-mount volumes --------------------------------------------------
+    # Each host directory is mapped to a corresponding path inside the
+    # container. Files written by PDI on the host (e.g. pdi-output\) appear
+    # instantly in the notebook, and reports generated inside the notebook
+    # (e.g. reports\) are visible on the host.
+    #
+    # NOTE: Windows paths use escaped backslashes (\\) in YAML. Docker Desktop
+    # for Windows handles the path translation automatically.
+    volumes:
+      # datasets\ : Source CSV files (sales_data.csv, orders.csv, etc.)
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\datasets"
+        target: /home/jovyan/datasets
+      # notebooks\ : Jupyter .ipynb files (sales_analysis.ipynb, welcome.ipynb)
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\notebooks"
+        target: /home/jovyan/notebooks
+      # pdi-output\ : Landing zone where PDI transformations write output CSV files.
+      #               The file_watcher.py monitors this folder for new files.
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\pdi-output"
+        target: /home/jovyan/pdi-output
+      # reports\ : Analysis output (Excel/CSV reports generated by notebooks)
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\reports"
+        target: /home/jovyan/reports
+      # workshop-data\ : General-purpose workspace directory
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\workshop-data"
+        target: /home/jovyan/work
+      # scripts\post-start.sh : Startup script that installs Python packages
+      #                         (watchdog, xlsxwriter) before launching Jupyter Lab.
+      - type: bind
+        source: "C:\\Jupyter-Notebook\\scripts\\post-start.sh"
+        target: /usr/local/bin/post-start.sh
+
+    # --- Startup command -----------------------------------------------------
+    # Runs the post-start.sh script which installs required Python packages
+    # (watchdog, xlsxwriter) and then launches Jupyter Lab. This eliminates
+    # the need for manual "docker exec pip install" after container recreates.
+    command: bash /usr/local/bin/post-start.sh
+
+    # --- Run as root ---------------------------------------------------------
+    # Required to ensure the container process can read/write bind-mounted
+    # host directories regardless of file ownership.
+    user: root
+
+    # --- Health check --------------------------------------------------------
+    # Docker periodically curls the Jupyter Lab endpoint to verify the
+    # service is responsive. If 3 consecutive checks fail, the container
+    # is marked "unhealthy".
+    #   interval     : Time between checks (30 seconds)
+    #   timeout      : Max wait per check (10 seconds)
+    #   retries      : Failures before marking unhealthy (3)
+    #   start_period : Grace period after container start before checks begin (60s)
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/lab"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

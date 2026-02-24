@@ -1,0 +1,15 @@
+{
+  "name": "pdi-purchases-datagen",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "kafka.topic": "pdi-purchases",
+    "quickstart": "purchases",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "value.converter.decimal.format": "NUMERIC",
+    "max.interval": 500,
+    "iterations": 10000000,
+    "tasks.max": "1"
+  }
+}

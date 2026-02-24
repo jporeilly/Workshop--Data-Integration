@@ -1,0 +1,32 @@
+[
+  {
+    "registertime": 1487715775521,
+    "userid": "User_1",
+    "regionid": "Region_2",
+    "gender": "MALE"
+  },
+  {
+    "registertime": 1487715776645,
+    "userid": "User_2",
+    "regionid": "Region_6",
+    "gender": "FEMALE"
+  },
+  {
+    "registertime": 1487715777302,
+    "userid": "User_3",
+    "regionid": "Region_3",
+    "gender": "MALE"
+  },
+  {
+    "registertime": 1487715778456,
+    "userid": "User_4",
+    "regionid": "Region_5",
+    "gender": "OTHER"
+  },
+  {
+    "registertime": 1487715779823,
+    "userid": "User_5",
+    "regionid": "Region_9",
+    "gender": "FEMALE"
+  }
+]

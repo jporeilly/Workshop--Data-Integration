@@ -415,7 +415,6 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -469,7 +468,7 @@
     <created_date>2017/02/23 12:41:52.842</created_date>
     <modified_user>-</modified_user>
     <modified_date>2017/02/23 12:41:52.842</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -568,14 +567,14 @@ Score probability of fraud</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Lab: Credit Card Fraud (Deploy and Predict)</note>
-      <xloc>448</xloc>
+      <note>Credit Card Fraud (Deploy and Predict)</note>
+      <xloc>432</xloc>
       <yloc>64</yloc>
-      <width>280</width>
-      <heigth>28</heigth>
+      <width>261</width>
+      <heigth>29</heigth>
       <fontname>Segoe UI</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>Y</fontbold>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
       <fontcolorgreen>0</fontcolorgreen>
@@ -586,7 +585,7 @@ Score probability of fraud</note>
       <bordercolorred>255</bordercolorred>
       <bordercolorgreen>255</bordercolorgreen>
       <bordercolorblue>255</bordercolorblue>
-      <drawshadow>Y</drawshadow>
+      <drawshadow>N</drawshadow>
     </notepad>
   </notepads>
   <connection>
@@ -612,6 +611,10 @@ Score probability of fraud</note>
       </attribute>
       <attribute>
         <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
         <attribute>N</attribute>
       </attribute>
       <attribute>
@@ -682,16 +685,73 @@ Score probability of fraud</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>rscrpt-predict</from>
-      <to>msxlsx-predective</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>sv-fields</from>
       <to>sv-predict_fields</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>rscrpt-predict</from>
+      <to>Predict Fraud</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Predict Fraud</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${Internal.Entry.Current.Directory}/output/credit_card_fraud</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>csvi-customer</name>
     <type>CsvInput</type>
@@ -703,7 +763,7 @@ Score probability of fraud</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/customer.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -715,14 +775,14 @@ Score probability of fraud</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
         <name>customer_name</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>19</length>
@@ -733,7 +793,7 @@ Score probability of fraud</note>
         <name>customer_id</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -744,7 +804,7 @@ Score probability of fraud</note>
         <name>customer_billing_zip</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -777,7 +837,7 @@ Score probability of fraud</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer_billing.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/customer_billing.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -789,14 +849,14 @@ Score probability of fraud</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
         <name>customer_id</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -807,7 +867,7 @@ Score probability of fraud</note>
         <name>transaction_id</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -818,7 +878,7 @@ Score probability of fraud</note>
         <name>card_number</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -829,7 +889,7 @@ Score probability of fraud</note>
         <name>expiry_date</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -862,7 +922,7 @@ Score probability of fraud</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\transaction_details.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/transaction_details.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -874,14 +934,14 @@ Score probability of fraud</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
         <name>customer_id</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -892,7 +952,7 @@ Score probability of fraud</note>
         <name>transaction_id</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -903,7 +963,7 @@ Score probability of fraud</note>
         <name>ship_to_address</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>1</length>
@@ -914,7 +974,7 @@ Score probability of fraud</note>
         <name>ship_to_address_1</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>45</length>
@@ -925,7 +985,7 @@ Score probability of fraud</note>
         <name>ship_to_city</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -936,7 +996,7 @@ Score probability of fraud</note>
         <name>ship_to_country</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>3</length>
@@ -947,7 +1007,7 @@ Score probability of fraud</note>
         <name>ship_to_customer_number</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -958,7 +1018,7 @@ Score probability of fraud</note>
         <name>ship_to_email</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>23</length>
@@ -969,7 +1029,7 @@ Score probability of fraud</note>
         <name>ship_to_name</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>19</length>
@@ -980,7 +1040,7 @@ Score probability of fraud</note>
         <name>ship_to_phone</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>12</length>
@@ -991,7 +1051,7 @@ Score probability of fraud</note>
         <name>ship_to_state</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>2</length>
@@ -1002,7 +1062,7 @@ Score probability of fraud</note>
         <name>ship_to_zip</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -1013,7 +1073,7 @@ Score probability of fraud</note>
         <name>first_time_customer</name>
         <type>Boolean</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>-1</length>
@@ -1022,9 +1082,9 @@ Score probability of fraud</note>
       </field>
       <field>
         <name>order_dollar_amount</name>
-        <type>Number</type>
+        <type>BigNumber</type>
         <format>#.#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>5</length>
@@ -1035,7 +1095,7 @@ Score probability of fraud</note>
         <name>num_items</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -1044,9 +1104,9 @@ Score probability of fraud</note>
       </field>
       <field>
         <name>age</name>
-        <type>Number</type>
+        <type>BigNumber</type>
         <format>#.#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>5</length>
@@ -1057,7 +1117,7 @@ Score probability of fraud</note>
         <name>web_order</name>
         <type>Boolean</type>
         <format/>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>-1</length>
@@ -1068,7 +1128,7 @@ Score probability of fraud</note>
         <name>total_transactions_to_date</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -1079,7 +1139,7 @@ Score probability of fraud</note>
         <name>hour_of_day</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -1185,6 +1245,9 @@ FROM strataml_customer_billing
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <use_connection_string>N</use_connection_string>
+    <use_legacy_options>Y</use_legacy_options>
+    <connection_string>Encrypted </connection_string>
     <hostname>localhost</hostname>
     <port>27017</port>
     <use_all_replica_members>N</use_all_replica_members>
@@ -1204,6 +1267,7 @@ FROM strataml_customer_billing
     <read_preference>primary</read_preference>
     <output_json>Y</output_json>
     <query_is_pipeline>N</query_is_pipeline>
+    <allow_disk_use>N</allow_disk_use>
     <execute_for_each_row>N</execute_for_each_row>
     <attributes/>
     <cluster_schema/>
@@ -1217,180 +1281,6 @@ FROM strataml_customer_billing
       <xloc>432</xloc>
       <yloc>80</yloc>
       <draw>N</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>msxlsx-predective</name>
-    <type>TypeExitExcelWriterStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>Y</makeSheetActive>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <startingCell>B5</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>Y</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>Y</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>N</add_to_result_filenames>
-    <file>
-      <name>${Internal.Entry.Current.Directory}\output\credit_card_predict</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>Predict</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>reuse</if_file_exists>
-      <if_sheet_exists>reuse</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
-    <fields>
-      <field>
-        <name>first_time_customer</name>
-        <type>Number</type>
-        <format/>
-        <title>first_time_customer</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>order_dollar_amount</name>
-        <type>Number</type>
-        <format/>
-        <title>order_dollar_amount</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>num_items</name>
-        <type>Number</type>
-        <format/>
-        <title>num_items</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>age</name>
-        <type>Number</type>
-        <format/>
-        <title>age</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>web_order</name>
-        <type>Number</type>
-        <format/>
-        <title>web_order</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>total_transactions_to_date</name>
-        <type>Number</type>
-        <format/>
-        <title>total_transactions_to_date</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>hour_of_day</name>
-        <type>Number</type>
-        <format/>
-        <title>hour_of_day</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>billing_shipping_zip_equal</name>
-        <type>Number</type>
-        <format/>
-        <title>billing_shipping_zip_equal</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>pred</name>
-        <type>Number</type>
-        <format/>
-        <title>pred</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
     </GUI>
   </step>
   <step>
@@ -1412,16 +1302,60 @@ FROM strataml_customer_billing
     <output_is_raw_text>N</output_is_raw_text>
     <strings_as_factors>Y</strings_as_factors>
     <include_input_as_output>N</include_input_as_output>
-    <script>library(randomForest)
+    <script># ============================================================
+# GBM Prediction - Credit Card Fraud Detection
+# ============================================================
+# This script loads the trained GBM model and scores new
+# transactions with a fraud probability (0 to 1).
+# It runs inside the PDI R Script Executor step.
+# ============================================================
 
+# Load the GBM library
+library(gbm)
+
+# Convert the incoming PDI data frame ("test") to a standard R data frame
+# The "test" variable is automatically created by the R Script Executor
+# from the input step: sv-convert_booleans_to_numbers
 test.df &lt;- as.data.frame(test)
-load("C:\\Machine--Learning\\01_Credit_Card\\Lab_02_Credit_Card_Fraud\\train_model_output\\rf.rdata")
-pred &lt;- predict(rf, newdata = test.df)
-pred.df &lt;- as.data.frame(pred)
 
-submission &lt;- data.frame(cbind(test.df,pred.df))
+# Load the trained model artifact saved during the training step
+# This file contains: gbm_model (the trained model) and best_trees (optimal tree count)
+load(file = "/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/Credit Card Fraud/solution/train_model_output/gbm_fraud.rdata")
+
+# ============================================================
+# Score each transaction with a fraud probability
+# ============================================================
+# type = "response" returns probabilities on the 0..1 scale
+# (since the model was trained with distribution = "bernoulli")
+# Values closer to 1 indicate higher likelihood of fraud
+fraud_prob &lt;- predict(
+  gbm_model,
+  newdata = test.df,
+  n.trees = best_trees,
+  type = "response"
+)
+
+# ============================================================
+# Build the output data frame
+# ============================================================
+# fraud_probability  : raw probability from the model (0 to 1)
+# fraud_pct          : probability as a percentage for readability
+# predicted_fraud    : binary flag using a 50% decision threshold
+#                      adjust threshold based on business rules
+#                      (e.g., 0.3 for more aggressive fraud catching)
+pred.df &lt;- data.frame(
+  fraud_probability = fraud_prob,
+  fraud_pct         = round(fraud_prob * 100, 2),
+  predicted_fraud   = ifelse(fraud_prob >= 0.5, 1, 0)
+)
+
+# Combine the original test data with the predictions
+# This preserves all input fields so downstream PDI steps
+# can filter, sort, or write results with full context
+submission &lt;- cbind(test.df, pred.df)
+
+# Return the combined data frame to PDI
 submission
-
 
 
 </script>
@@ -1468,7 +1402,15 @@ submission
         <type>Number</type>
       </out_field>
       <out_field>
-        <field_name>pred</field_name>
+        <field_name>fraud_probability</field_name>
+        <type>Number</type>
+      </out_field>
+      <out_field>
+        <field_name>fraud_pct</field_name>
+        <type>Number</type>
+      </out_field>
+      <out_field>
+        <field_name>predicted_fraud</field_name>
         <type>Number</type>
       </out_field>
     </output_fields>

@@ -1,0 +1,40 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: kafka-workshop-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: kafka_warehouse
+      MYSQL_USER: kafka_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-kafka_password}
+    ports:
+      - "3306:3306"
+    volumes:
+      # Persist MySQL data
+      - mysql_data:/var/lib/mysql
+      # Auto-run init scripts on first start
+      - ./sql/01-create-database-mysql-docker.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      # MySQL configuration
+      - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf:ro
+    networks:
+      - kafka-workshop
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+
+volumes:
+  mysql_data:
+    name: kafka-workshop-mysql-data
+
+networks:
+  kafka-workshop:
+    name: kafka-workshop-network
+    driver: bridge

@@ -414,7 +414,6 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -476,12 +475,12 @@ Please note that the step can also accept multiple file paths and rows of HTML. 
     <hop>
       <from>dg: filepath from stream</from>
       <to>hp: parse html xpath</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Data grid</from>
       <to>hp: parse html xpath</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -566,7 +565,7 @@ Please note that the step can also accept multiple file paths and rows of HTML. 
     </fields>
     <data>
       <line>
-        <item>/home/pentaho/Projects/genai/html/data/homepage.html</item>
+        <item>/home/pentaho/Workshop--Data-Integration/Projects/genai/html/data/homepage.html</item>
       </line>
     </data>
     <attributes/>
@@ -648,7 +647,7 @@ Please note that the step can also accept multiple file paths and rows of HTML. 
     <INPUT_FORMAT>Binary Datum</INPUT_FORMAT>
     <COMMAND_FROM_FIELD>Y</COMMAND_FROM_FIELD>
     <COMMAND_FROM_SELECTOR>N</COMMAND_FROM_SELECTOR>
-    <INPUT_FILE>/home/pentaho/Projects/genai/html/data/homepage.html</INPUT_FILE>
+    <INPUT_FILE>/home/pentaho/Workshop--Data-Integration/Projects/genai/html/data/homepage.html</INPUT_FILE>
     <attributes/>
     <cluster_schema/>
     <remotesteps>

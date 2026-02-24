@@ -415,7 +415,6 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -469,7 +468,7 @@
     <created_date>2017/02/23 12:41:52.842</created_date>
     <modified_user>-</modified_user>
     <modified_date>2017/02/23 12:41:52.842</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -567,14 +566,14 @@ Train, Tune, Test Model in R</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Lab: Credit Card Fraud (Train Model)</note>
+      <note>Credit Card Fraud (Train Model)</note>
       <xloc>528</xloc>
       <yloc>48</yloc>
-      <width>236</width>
-      <heigth>28</heigth>
+      <width>215</width>
+      <heigth>29</heigth>
       <fontname>Segoe UI</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>Y</fontbold>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
       <fontcolorgreen>0</fontcolorgreen>
@@ -585,7 +584,7 @@ Train, Tune, Test Model in R</note>
       <bordercolorred>255</bordercolorred>
       <bordercolorgreen>255</bordercolorgreen>
       <bordercolorblue>255</bordercolorblue>
-      <drawshadow>Y</drawshadow>
+      <drawshadow>N</drawshadow>
     </notepad>
     <notepad>
       <note>3. Deploy Model
@@ -634,6 +633,10 @@ Deploy Model in R (randomForest)</note>
       </attribute>
       <attribute>
         <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
         <attribute>N</attribute>
       </attribute>
       <attribute>
@@ -705,7 +708,7 @@ Deploy Model in R (randomForest)</note>
     </hop>
     <hop>
       <from>sv-convert_booleans_to_numbers</from>
-      <to>rscrpt-train_model _random_ forest</to>
+      <to>rscrpt-train_gbm</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -720,7 +723,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\transaction_details.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/transaction_details.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -732,7 +735,7 @@ Deploy Model in R (randomForest)</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
@@ -775,7 +778,7 @@ Deploy Model in R (randomForest)</note>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>62</length>
+        <length>45</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -786,7 +789,7 @@ Deploy Model in R (randomForest)</note>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>22</length>
+        <length>15</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -819,7 +822,7 @@ Deploy Model in R (randomForest)</note>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>27</length>
+        <length>23</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -830,7 +833,7 @@ Deploy Model in R (randomForest)</note>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>23</length>
+        <length>19</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -880,12 +883,12 @@ Deploy Model in R (randomForest)</note>
       </field>
       <field>
         <name>order_dollar_amount</name>
-        <type>Number</type>
+        <type>BigNumber</type>
         <format>#.#</format>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>6</length>
+        <length>5</length>
         <precision>1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -902,7 +905,7 @@ Deploy Model in R (randomForest)</note>
       </field>
       <field>
         <name>age</name>
-        <type>Number</type>
+        <type>BigNumber</type>
         <format>#.#</format>
         <currency>$</currency>
         <decimal>.</decimal>
@@ -970,7 +973,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer_billing.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/customer_billing.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -982,7 +985,7 @@ Deploy Model in R (randomForest)</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
@@ -1055,7 +1058,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\customer.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/customer.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1067,7 +1070,7 @@ Deploy Model in R (randomForest)</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
@@ -1077,7 +1080,7 @@ Deploy Model in R (randomForest)</note>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>22</length>
+        <length>19</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -1129,7 +1132,7 @@ Deploy Model in R (randomForest)</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}\data\transaction_fraud_report.csv</filename>
+    <filename>/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/AutoML/data/transaction_fraud_report.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1141,19 +1144,19 @@ Deploy Model in R (randomForest)</note>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
     <newline_possible>N</newline_possible>
-    <format/>
+    <format>mixed</format>
     <encoding/>
     <fields>
       <field>
         <name>transaction_id</name>
         <type>Integer</type>
-        <format> #</format>
+        <format>#</format>
         <currency>$</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
         <precision>0</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>reported_as_fraud_historic</name>
@@ -1265,6 +1268,9 @@ FROM strataml_customer_billing
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <use_connection_string>N</use_connection_string>
+    <use_legacy_options>Y</use_legacy_options>
+    <connection_string>Encrypted </connection_string>
     <hostname>localhost</hostname>
     <port>27017</port>
     <use_all_replica_members>N</use_all_replica_members>
@@ -1284,6 +1290,7 @@ FROM strataml_customer_billing
     <read_preference>primary</read_preference>
     <output_json>Y</output_json>
     <query_is_pipeline>N</query_is_pipeline>
+    <allow_disk_use>N</allow_disk_use>
     <execute_for_each_row>N</execute_for_each_row>
     <attributes/>
     <cluster_schema/>
@@ -1300,7 +1307,7 @@ FROM strataml_customer_billing
     </GUI>
   </step>
   <step>
-    <name>rscrpt-train_model _random_ forest</name>
+    <name>rscrpt-train_gbm</name>
     <type>RScriptExcecutor</type>
     <description/>
     <distribute>Y</distribute>
@@ -1318,12 +1325,60 @@ FROM strataml_customer_billing
     <output_is_raw_text>N</output_is_raw_text>
     <strings_as_factors>Y</strings_as_factors>
     <include_input_as_output>N</include_input_as_output>
-    <script>library(randomForest)
+    <script># ============================================================
+# GBM Model Training - Credit Card Fraud Detection
+# ============================================================
+# This script trains a Gradient Boosting Machine (GBM) model
+# to predict fraudulent credit card transactions.
+# It runs inside the PDI R Script Executor step.
+# ============================================================
 
+# Load the GBM library for gradient boosting
+library(gbm)
+
+# Convert the incoming PDI data frame ("train") to a standard R data frame
+# The "train" variable is automatically created by the R Script Executor
+# from the input step: sv-convert_booleans_to_numbers
 train.df &lt;- as.data.frame(train)
-rf &lt;- randomForest(train.df$reported_as_fraud_historic ~ ., train.df, ntree=8, importance=TRUE)
-save(rf, file="C:\\Machine--Learning\\01_Credit_Card\\Lab_02_Credit_Card_Fraud\\train_model_output\\rf.rdata")
 
+# Convert the target variable to binary 0/1
+# as.factor() creates levels, as.numeric() assigns 1 and 2, then subtract 1
+# Result: 0 = not fraud, 1 = fraud
+train.df$reported_as_fraud_historic &lt;- as.numeric(
+  as.factor(train.df$reported_as_fraud_historic)
+) - 1
+
+# Train the GBM model
+# --------------------------------------------------------
+# Note: We use OOB (out-of-bag) estimation instead of
+# cross-validation (cv.folds) because JRI runs R inside
+# the JVM process. Cross-validation spawns additional
+# processes that exceed the FD_SETSIZE limit (1024) in
+# Linux's select() system call, causing the JVM to abort.
+# --------------------------------------------------------
+gbm_model &lt;- gbm(
+  reported_as_fraud_historic ~ .,   # predict fraud using all other columns
+  data = train.df,                  # training data
+  distribution = "bernoulli",       # binary classification (fraud yes/no)
+  n.trees = 500,                    # number of boosting iterations
+  interaction.depth = 4,            # max depth of each tree
+  shrinkage = 0.01,                 # learning rate (smaller = more robust)
+  n.minobsinnode = 10,              # min observations per terminal node
+  bag.fraction = 0.5                # use 50% of data per tree (stochastic GBM)
+)
+
+# Determine the optimal number of trees using OOB error
+# This avoids overfitting by finding where performance plateaus
+best_trees &lt;- gbm.perf(gbm_model, method = "OOB")
+
+# Save the trained model and optimal tree count to disk
+# The predict transformation will load this file to score new transactions
+save(gbm_model, best_trees,
+  file = "/home/pentaho/Workshop--Data-Integration/Labs/Module 7 - Use Cases/Machine Learning/Credit Card Fraud/solution/train_model_output/gbm_fraud.rdata"
+)
+
+# Return a status message to PDI
+# The R Script Executor expects a data frame as output
 ok &lt;- "Finished"
 ok.df &lt;- as.data.frame(ok)
 ok.df</script>
@@ -1351,7 +1406,7 @@ ok.df</script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
+      <xloc>976</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>

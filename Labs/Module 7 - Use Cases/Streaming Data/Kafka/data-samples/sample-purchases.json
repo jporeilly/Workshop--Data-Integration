@@ -1,0 +1,42 @@
+[
+  {
+    "order_id": 1000,
+    "product_id": "Product_42",
+    "price": 125.99,
+    "quantity": 2,
+    "customer_id": "Customer_123",
+    "timestamp": 1708538400000
+  },
+  {
+    "order_id": 1001,
+    "product_id": "Product_18",
+    "price": 49.95,
+    "quantity": 1,
+    "customer_id": "Customer_456",
+    "timestamp": 1708538460000
+  },
+  {
+    "order_id": 1002,
+    "product_id": "Product_7",
+    "price": 299.00,
+    "quantity": 1,
+    "customer_id": "Customer_789",
+    "timestamp": 1708538520000
+  },
+  {
+    "order_id": 1003,
+    "product_id": "Product_23",
+    "price": 15.50,
+    "quantity": 5,
+    "customer_id": "Customer_123",
+    "timestamp": 1708538580000
+  },
+  {
+    "order_id": 1004,
+    "product_id": "Product_91",
+    "price": 89.99,
+    "quantity": 3,
+    "customer_id": "Customer_321",
+    "timestamp": 1708538640000
+  }
+]
