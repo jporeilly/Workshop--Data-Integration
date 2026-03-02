@@ -1,0 +1,21 @@
+customer_id,company_name,website,contact_name,phone,address,city,state,country
+1001,Acme Corp,acmecorp.com,John Smith,,,,"CA",
+1002,TechStart Inc,,,555-9876,123 Oak Ave,Los Angeles,,USA
+1003,Global Solutions,globalsolutions.io,Sarah Chen,,,"Seattle",WA,
+1004,DataFlow Systems,,Mike Johnson,+1-555-1234,456 Pine St,,"Texas",
+1005,CloudFirst,cloudfirst.com,,,789 Main St,San Francisco,CA,USA
+1006,AI Innovations,,,Emily White,555-5678,,Austin,TX,
+1007,Smart Analytics,smartanalytics.io,Robert Lee,+1-555-9999,321 Elm St,Boston,MA,USA
+1008,NextGen Tech,,,Lisa Kumar,,,,"California",
+1009,Quantum Data,,David Park,555-1111,654 Maple Ave,,"WA",USA
+1010,Insight Partners,insightpartners.com,,,987 Cedar Ln,Chicago,IL,
+1011,Digital Dynamics,,,James Wilson,+1-555-2222,,"New York",NY,USA
+1012,Vision Systems,visionsys.com,Maria Garcia,,147 Birch St,,"CA",USA
+1013,FutureWave,futurewave.io,Tom Anderson,555-3333,,Miami,FL,
+1014,Apex Solutions,,,Rachel Kim,,258 Spruce Dr,Denver,CO,USA
+1015,Innovate Labs,innovatelabs.com,Chris Taylor,+1-555-4444,,"Portland",OR,
+1016,Bright Data,,Susan Martinez,555-6666,369 Ash Ct,,"Texas",USA
+1017,Precision Tech,precisiontech.io,,,741 Oak Blvd,Philadelphia,PA,
+1018,Summit Analytics,,,Kevin Brown,+1-555-7777,852 Pine Rd,,"WA",USA
+1019,Prime Systems,primesys.com,Jennifer Davis,,963 Elm Way,Atlanta,GA,
+1020,Vertex Solutions,,Michael Robinson,555-8888,,,"California",USA

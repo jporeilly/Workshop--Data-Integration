@@ -1,0 +1,11 @@
+customer_id,name,email,phone,address,company_name
+1001,john smith,JSMITH@GMAIL.COM,555.123.4567,"123 main st apt 5, new york, ny","acme corp"
+1002,SARAH JOHNSON,sarah.j@company,+1-555-987-6543,"456 oak avenue, los angeles, ca 90001",TechStart Inc
+1003,Bob O'Brien,bob.obrien@email.com,(555) 111-2222,"789 Pine Rd, Chicago IL","DataSys LLC"
+1004,maria garcia,m.garcia@test.co.uk,5551234567,"321 Elm Street, Houston, Texas 77001",global solutions ltd
+1005,JAMES WILSON,james@,555-999-8888,"PO Box 456, Seattle WA 98101","Cloud Services, Inc."
+1006,emily chen,emily.chen@startup.io,+1 555 777 6666,"1010 Market St Suite 200, San Francisco CA","AI Innovations"
+1007,michael brown,mbrown@company.com,555.444.3333,"2020 Broadway Apt 10B, Boston MA 02101",boston consulting
+1008,lisa anderson,lisa_anderson@email,555 888 9999,"3030 Lake Dr, Miami FL 33101","Real Estate Group LLC"
+1009,david lee,david.lee@tech.com,(555)222-3333,"4040 River Rd, Austin TX 78701",TECH SOLUTIONS INC
+1010,jennifer white,j.white@global.com,+1-555-666-7777,"5050 Hill Ave, Denver CO 80201","mountain ventures"

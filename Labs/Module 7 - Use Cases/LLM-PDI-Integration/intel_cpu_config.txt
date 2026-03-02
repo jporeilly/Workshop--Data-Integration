@@ -1,0 +1,35 @@
+Intel CPU Configuration Summary
+Generated: Thu 26 Feb 16:56:44 GMT 2026
+
+Hardware:
+  CPU Model: Intel(R) Xeon(R) CPU X5650 @ 2.67GHz
+  CPU Cores: 12
+  AVX Support: cpu
+
+Recommended Settings:
+  Model: llama2:7b
+  PDI STEP_COPIES: 11
+  Keep Alive: 60m
+
+Ollama Configuration:
+  Location: /etc/systemd/system/ollama.service.d/override.conf
+  Status: active
+
+Performance Test:
+  Response Time: 24419ms
+  Tokens/Second: 7.4
+
+Next Steps:
+1. Open PDI transformation:
+   /home/pentaho/LLM-PDI-Integration/transformations/sentiment_analysis_optimized.ktr
+
+2. Set parameters:
+   MODEL_NAME = llama2:7b
+   STEP_COPIES = 11
+   KEEP_ALIVE = 60m
+
+3. Run the transformation!
+
+For benchmarking:
+   cd /home/pentaho/LLM-PDI-Integration/examples
+   ./benchmark_ollama.sh

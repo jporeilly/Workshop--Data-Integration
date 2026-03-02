@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>multi_stage_pipeline</name>
+    <description>Multi-Stage LLM Pipeline - Intelligent Document Router with 5 sequential AI stages</description>
+    <extended_description>This transformation demonstrates advanced LLM orchestration with chained AI calls:
+
+Stage 1: Document Classification (type identification)
+Stage 2: Urgency &amp; Priority Scoring (1-10 urgency score)
+Stage 3: Type-Specific Information Extraction (conditional based on type)
+Stage 4: Action Item Generation (specific tasks to complete)
+Stage 5: Department Routing (who should handle this)
+
+Each stage builds on previous stage outputs, creating an intelligent processing pipeline.
+
+Use Case: Automated document triage and routing system for support, security, legal, etc.</extended_description>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>/</directory>
+    <parameters>
+      <parameter>
+        <name>OLLAMA_URL</name>
+        <default_value>http://localhost:11434</default_value>
+        <description>Ollama API base URL</description>
+      </parameter>
+      <parameter>
+        <name>MODEL_NAME</name>
+        <default_value>llama3.2:3b</default_value>
+        <description>LLM model to use for all stages</description>
+      </parameter>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+      </trans-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2025/02/28 00:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2025/02/28 00:00:00.000</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Workshop 6: Multi-Stage LLM Pipeline
+
+This transformation chains 5 sequential LLM calls:
+1. Classification → Identify document type
+2. Priority Scoring → Rate urgency 1-10
+3. Info Extraction → Extract type-specific details
+4. Action Generation → Create action items
+5. Department Routing → Assign to team
+
+Each stage uses outputs from previous stages!</note>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      <width>450</width>
+      <heigth>200</heigth>
+      <fontname>Sans</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>200</backgroundcolorgreen>
+      <backgroundcolorblue>100</backgroundcolorblue>
+      <bordercolorred>200</bordercolorred>
+      <bordercolorgreen>150</bordercolorgreen>
+      <bordercolorblue>0</bordercolorblue>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Read Documents</from>
+      <to>Stage 1: Build Classification Prompt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 1: Build Classification Prompt</from>
+      <to>Stage 1: Call LLM - Classify</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 1: Call LLM - Classify</from>
+      <to>Stage 1: Parse Classification</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 1: Parse Classification</from>
+      <to>Stage 2: Build Priority Prompt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 2: Build Priority Prompt</from>
+      <to>Stage 2: Call LLM - Priority</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 2: Call LLM - Priority</from>
+      <to>Stage 2: Parse Priority</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 2: Parse Priority</from>
+      <to>Stage 3: Build Extraction Prompt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 3: Build Extraction Prompt</from>
+      <to>Stage 3: Call LLM - Extract</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 3: Call LLM - Extract</from>
+      <to>Stage 3: Parse Extraction</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 3: Parse Extraction</from>
+      <to>Stage 4: Build Actions Prompt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 4: Build Actions Prompt</from>
+      <to>Stage 4: Call LLM - Actions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 4: Call LLM - Actions</from>
+      <to>Stage 4: Parse Actions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 4: Parse Actions</from>
+      <to>Stage 5: Build Routing Prompt</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 5: Build Routing Prompt</from>
+      <to>Stage 5: Call LLM - Route</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 5: Call LLM - Route</from>
+      <to>Stage 5: Parse Routing</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stage 5: Parse Routing</from>
+      <to>Write Processed Documents</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Read Documents</name>
+    <type>CsvInput</type>
+    <description>Read incoming documents to process</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>${Internal.Transformation.Filename.Directory}/../data/incoming_documents.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>document_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>50</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>source</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>100</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>raw_text</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>50000</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>received_date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 1: Build Classification Prompt</name>
+    <type>ScriptValueMod</type>
+    <description>Create classification prompt for document type identification</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// STAGE 1: Document Classification
+// Goal: Identify the type of document to enable conditional processing
+
+var stage1_prompt = "Classify the following document and return ONLY a valid JSON object:\n\n" +
+  "{" + '\"doc_type\": \"one of: security_incident, legal_threat, critical_ticket, business_opportunity, bug_report, feature_request, general_inquiry, positive_feedback\"' + ", " +
+  '\"confidence\": 0.0 to 1.0' + ", " +
+  '\"reasoning\": \"brief explanation\"' + "}\n\n" +
+  "Classification Guidelines:\n" +
+  "- security_incident: Vulnerability reports, breach notifications, security concerns\n" +
+  "- legal_threat: Cease &amp; desist, trademark/copyright claims, legal demands\n" +
+  "- critical_ticket: High-value customer issues, billing errors, urgent problems\n" +
+  "- business_opportunity: Partnership offers, sales leads, significant deals\n" +
+  "- bug_report: Software defects, crashes, technical issues\n" +
+  "- feature_request: Enhancement requests, new feature ideas\n" +
+  "- general_inquiry: Questions, basic support, information requests\n" +
+  "- positive_feedback: Praise, testimonials, thank you messages\n\n" +
+  "Rules:\n" +
+  "- Return ONLY valid JSON, no additional text\n" +
+  "- Choose the MOST SPECIFIC type that fits\n" +
+  "- Confidence &gt; 0.8 means very sure, &lt; 0.5 means uncertain\n\n" +
+  "DOCUMENT SOURCE: " + source + "\n" +
+  "DOCUMENT TEXT:\n" + raw_text;
+
+var model_name = getVariable("MODEL_NAME", "llama3.2:3b");
+
+var stage1_request = JSON.stringify({
+  "model": model_name,
+  "prompt": stage1_prompt,
+  "stream": false,
+  "format": "json",
+  "options": {
+    "temperature": 0.1,
+    "num_predict": 200
+  }
+});</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>stage1_request</name>
+        <rename>stage1_request</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>250</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 1: Call LLM - Classify</name>
+    <type>Rest</type>
+    <description>Call Ollama API for classification</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>POST</method>
+    <url>${OLLAMA_URL}/api/generate</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField/>
+    <bodyField>stage1_request</bodyField>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword/>
+    <headers>
+    </headers>
+    <parameters>
+    </parameters>
+    <result>
+      <name>stage1_response</name>
+      <code>stage1_code</code>
+      <response_time>stage1_time</response_time>
+      <response_header/>
+    </result>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 1: Parse Classification</name>
+    <type>ScriptValueMod</type>
+    <description>Extract classification from LLM response</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Parse Stage 1 response
+var doc_type = "general_inquiry"; // default fallback
+var classification_confidence = 0.0;
+var classification_reasoning = "";
+
+try {
+  var response = JSON.parse(stage1_response);
+  var llmOutput = response.response;
+
+  // Extract JSON from response
+  var jsonStart = llmOutput.indexOf("{");
+  var jsonEnd = llmOutput.lastIndexOf("}") + 1;
+
+  if (jsonStart &gt;= 0 &amp;&amp; jsonEnd &gt; jsonStart) {
+    var jsonStr = llmOutput.substring(jsonStart, jsonEnd);
+    var classResult = JSON.parse(jsonStr);
+
+    doc_type = classResult.doc_type || "general_inquiry";
+    classification_confidence = classResult.confidence || 0.0;
+    classification_reasoning = classResult.reasoning || "";
+  }
+} catch(e) {
+  doc_type = "general_inquiry";
+  classification_confidence = 0.0;
+  classification_reasoning = "Error parsing: " + e.message;
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>doc_type</name>
+        <rename>doc_type</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>classification_confidence</name>
+        <rename>classification_confidence</rename>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>classification_reasoning</name>
+        <rename>classification_reasoning</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>550</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 2: Build Priority Prompt</name>
+    <type>ScriptValueMod</type>
+    <description>Create priority scoring prompt using doc_type from Stage 1</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// STAGE 2: Priority Scoring
+// Uses doc_type from Stage 1 to contextualize urgency assessment
+
+var stage2_prompt = "This document has been classified as: " + doc_type + "\n\n" +
+  "Rate the urgency and assign priority. Return ONLY valid JSON:\n\n" +
+  "{" + '\"urgency\": 1-10 integer' + ", " +
+  '\"priority\": \"LOW, MEDIUM, HIGH, or CRITICAL\"' + ", " +
+  '\"reasoning\": \"brief explanation\"' + "}\n\n" +
+  "Urgency Guidelines by Type:\n" +
+  "- security_incident: Usually 8-10 (immediate threat)\n" +
+  "- legal_threat: Usually 7-9 (legal deadlines matter)\n" +
+  "- critical_ticket: 6-9 (depends on customer value &amp; impact)\n" +
+  "- business_opportunity: 5-7 (time-sensitive but not emergency)\n" +
+  "- bug_report: 4-8 (depends on severity &amp; user impact)\n" +
+  "- feature_request: 2-5 (enhancement, not urgent)\n" +
+  "- general_inquiry: 1-4 (routine support)\n" +
+  "- positive_feedback: 1-2 (no urgency, just nice to have)\n\n" +
+  "Priority Mapping:\n" +
+  "- CRITICAL: Urgency 9-10 (immediate action required)\n" +
+  "- HIGH: Urgency 7-8 (action needed within hours)\n" +
+  "- MEDIUM: Urgency 4-6 (action within days)\n" +
+  "- LOW: Urgency 1-3 (can wait)\n\n" +
+  "Consider in your assessment:\n" +
+  "- Potential business impact\n" +
+  "- Time sensitivity and deadlines\n" +
+  "- Legal or compliance implications\n" +
+  "- Customer value (look for enterprise/account details)\n\n" +
+  "DOCUMENT TEXT:\n" + raw_text;
+
+var model_name = getVariable("MODEL_NAME", "llama3.2:3b");
+
+var stage2_request = JSON.stringify({
+  "model": model_name,
+  "prompt": stage2_prompt,
+  "stream": false,
+  "format": "json",
+  "options": {
+    "temperature": 0.2,
+    "num_predict": 200
+  }
+});</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>stage2_request</name>
+        <rename>stage2_request</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 2: Call LLM - Priority</name>
+    <type>Rest</type>
+    <description>Call Ollama API for priority scoring</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>POST</method>
+    <url>${OLLAMA_URL}/api/generate</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField/>
+    <bodyField>stage2_request</bodyField>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword/>
+    <headers>
+    </headers>
+    <parameters>
+    </parameters>
+    <result>
+      <name>stage2_response</name>
+      <code>stage2_code</code>
+      <response_time>stage2_time</response_time>
+      <response_header/>
+    </result>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>250</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 2: Parse Priority</name>
+    <type>ScriptValueMod</type>
+    <description>Extract priority from LLM response</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Parse Stage 2 response
+var urgency = 5; // default medium urgency
+var priority = "MEDIUM";
+var priority_reasoning = "";
+
+try {
+  var response = JSON.parse(stage2_response);
+  var llmOutput = response.response;
+
+  var jsonStart = llmOutput.indexOf("{");
+  var jsonEnd = llmOutput.lastIndexOf("}") + 1;
+
+  if (jsonStart &gt;= 0 &amp;&amp; jsonEnd &gt; jsonStart) {
+    var jsonStr = llmOutput.substring(jsonStart, jsonEnd);
+    var priorityResult = JSON.parse(jsonStr);
+
+    urgency = priorityResult.urgency || 5;
+    priority = priorityResult.priority || "MEDIUM";
+    priority_reasoning = priorityResult.reasoning || "";
+  }
+} catch(e) {
+  urgency = 5;
+  priority = "MEDIUM";
+  priority_reasoning = "Error parsing: " + e.message;
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>urgency</name>
+        <rename>urgency</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>priority</name>
+        <rename>priority</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>priority_reasoning</name>
+        <rename>priority_reasoning</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 3: Build Extraction Prompt</name>
+    <type>ScriptValueMod</type>
+    <description>Conditional extraction based on doc_type from Stage 1</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// STAGE 3: Type-Specific Information Extraction
+// CONDITIONAL: Different extraction logic based on doc_type from Stage 1
+
+var extraction_prompt = "";
+
+// Conditional extraction based on document type
+if (doc_type == "security_incident") {
+  extraction_prompt = "Extract security incident details. Return ONLY valid JSON:\n\n" +
+    "{" + '\"vuln_type\": \"SQL injection, XSS, etc.\"' + ", " +
+    '\"severity\": \"Low, Medium, High, Critical\"' + ", " +
+    '\"affected_systems\": \"which systems\"' + ", " +
+    '\"disclosure_days\": integer or null' + "}\n\n" +
+    "DOCUMENT:\n" + raw_text;
+
+} else if (doc_type == "legal_threat") {
+  extraction_prompt = "Extract legal threat details. Return ONLY valid JSON:\n\n" +
+    "{" + '\"legal_issue\": \"trademark, copyright, etc.\"' + ", " +
+    '\"deadline_days\": integer or null' + ", " +
+    '\"potential_liability\": \"brief estimate\"' + ", " +
+    '\"parties\": \"who is threatening us\"' + "}\n\n" +
+    "DOCUMENT:\n" + raw_text;
+
+} else if (doc_type == "critical_ticket") {
+  extraction_prompt = "Extract customer support details. Return ONLY valid JSON:\n\n" +
+    "{" + '\"customer_name\": \"company or person\"' + ", " +
+    '\"issue_summary\": \"brief description\"' + ", " +
+    '\"business_impact\": \"revenue risk, etc.\"' + ", " +
+    '\"account_value\": \"$ amount if mentioned\"' + "}\n\n" +
+    "DOCUMENT:\n" + raw_text;
+
+} else if (doc_type == "business_opportunity") {
+  extraction_prompt = "Extract business opportunity details. Return ONLY valid JSON:\n\n" +
+    "{" + '\"partner_name\": \"company name\"' + ", " +
+    '\"opportunity_type\": \"partnership, sales, etc.\"' + ", " +
+    '\"deal_value\": \"$ amount if mentioned\"' + ", " +
+    '\"contact_person\": \"name and title\"' + "}\n\n" +
+    "DOCUMENT:\n" + raw_text;
+
+} else {
+  // Generic extraction for other types
+  extraction_prompt = "Extract key details. Return ONLY valid JSON:\n\n" +
+    "{" + '\"summary\": \"one sentence summary\"' + ", " +
+    '\"key_points\": [\"point 1\", \"point 2\"]' + ", " +
+    '\"mentions_deadline\": true or false' + "}\n\n" +
+    "DOCUMENT:\n" + raw_text;
+}
+
+var model_name = getVariable("MODEL_NAME", "llama3.2:3b");
+
+var stage3_request = JSON.stringify({
+  "model": model_name,
+  "prompt": extraction_prompt,
+  "stream": false,
+  "format": "json",
+  "options": {
+    "temperature": 0.2,
+    "num_predict": 300
+  }
+});</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>stage3_request</name>
+        <rename>stage3_request</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>550</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 3: Call LLM - Extract</name>
+    <type>Rest</type>
+    <description>Call Ollama API for information extraction</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>POST</method>
+    <url>${OLLAMA_URL}/api/generate</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField/>
+    <bodyField>stage3_request</bodyField>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword/>
+    <headers>
+    </headers>
+    <parameters>
+    </parameters>
+    <result>
+      <name>stage3_response</name>
+      <code>stage3_code</code>
+      <response_time>stage3_time</response_time>
+      <response_header/>
+    </result>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>500</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 3: Parse Extraction</name>
+    <type>ScriptValueMod</type>
+    <description>Extract type-specific details from LLM response</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Parse Stage 3 response - store as JSON string for flexibility
+var extracted_details = "{}";
+
+try {
+  var response = JSON.parse(stage3_response);
+  var llmOutput = response.response;
+
+  var jsonStart = llmOutput.indexOf("{");
+  var jsonEnd = llmOutput.lastIndexOf("}") + 1;
+
+  if (jsonStart &gt;= 0 &amp;&amp; jsonEnd &gt; jsonStart) {
+    extracted_details = llmOutput.substring(jsonStart, jsonEnd);
+  }
+} catch(e) {
+  extracted_details = '{"error": "' + e.message + '"}';
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>extracted_details</name>
+        <rename>extracted_details</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>250</xloc>
+      <yloc>500</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 4: Build Actions Prompt</name>
+    <type>ScriptValueMod</type>
+    <description>Generate action items based on doc_type and urgency</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// STAGE 4: Action Item Generation
+// Uses: doc_type, urgency, priority from previous stages
+
+var stage4_prompt = "This is a " + doc_type + " document with " + priority + " priority (urgency " + urgency + "/10).\n\n" +
+  "Generate specific action items. Return ONLY valid JSON:\n\n" +
+  "{" + '\"actions\": [\"action 1\", \"action 2\", \"action 3\"]' + ", " +
+  '\"action_count\": integer' + ", " +
+  '\"requires_escalation\": true or false' + "}\n\n" +
+  "Action Guidelines:\n" +
+  "- Be specific and actionable\n" +
+  "- Include who should do what\n" +
+  "- Mention timeframes if urgent\n" +
+  "- CRITICAL/HIGH priority: immediate actions\n" +
+  "- MEDIUM/LOW priority: can be more general\n\n" +
+  "Examples for " + doc_type + ":\n";
+
+// Type-specific action examples
+if (doc_type == "security_incident") {
+  stage4_prompt += "- Alert security team immediately\n- Patch vulnerability within 48h\n- Notify affected users\n- Prepare disclosure statement\n\n";
+} else if (doc_type == "legal_threat") {
+  stage4_prompt += "- Forward to legal counsel\n- Gather evidence/documentation\n- Prepare response within deadline\n- Brief executive team\n\n";
+} else if (doc_type == "critical_ticket") {
+  stage4_prompt += "- Assign to senior engineer\n- Contact customer within 2h\n- Investigate root cause\n- Offer service credits if needed\n\n";
+} else if (doc_type == "business_opportunity") {
+  stage4_prompt += "- Schedule discovery call\n- Prepare pitch deck\n- Assign account executive\n- Send follow-up email\n\n";
+}
+
+stage4_prompt += "DOCUMENT:\n" + raw_text;
+
+var model_name = getVariable("MODEL_NAME", "llama3.2:3b");
+
+var stage4_request = JSON.stringify({
+  "model": model_name,
+  "prompt": stage4_prompt,
+  "stream": false,
+  "format": "json",
+  "options": {
+    "temperature": 0.3,
+    "num_predict": 400
+  }
+});</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>stage4_request</name>
+        <rename>stage4_request</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>500</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 4: Call LLM - Actions</name>
+    <type>Rest</type>
+    <description>Call Ollama API for action generation</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>POST</method>
+    <url>${OLLAMA_URL}/api/generate</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField/>
+    <bodyField>stage4_request</bodyField>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword/>
+    <headers>
+    </headers>
+    <parameters>
+    </parameters>
+    <result>
+      <name>stage4_response</name>
+      <code>stage4_code</code>
+      <response_time>stage4_time</response_time>
+      <response_header/>
+    </result>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>550</xloc>
+      <yloc>500</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 4: Parse Actions</name>
+    <type>ScriptValueMod</type>
+    <description>Extract action items from LLM response</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Parse Stage 4 response
+var actions_json = "[]";
+var action_count = 0;
+var requires_escalation = false;
+
+try {
+  var response = JSON.parse(stage4_response);
+  var llmOutput = response.response;
+
+  var jsonStart = llmOutput.indexOf("{");
+  var jsonEnd = llmOutput.lastIndexOf("}") + 1;
+
+  if (jsonStart &gt;= 0 &amp;&amp; jsonEnd &gt; jsonStart) {
+    var jsonStr = llmOutput.substring(jsonStart, jsonEnd);
+    var actionsResult = JSON.parse(jsonStr);
+
+    if (actionsResult.actions &amp;&amp; Array.isArray(actionsResult.actions)) {
+      actions_json = JSON.stringify(actionsResult.actions);
+      action_count = actionsResult.actions.length;
+    }
+    requires_escalation = actionsResult.requires_escalation || false;
+  }
+} catch(e) {
+  actions_json = '["Review manually"]';
+  action_count = 1;
+  requires_escalation = false;
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>actions_json</name>
+        <rename>actions_json</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>action_count</name>
+        <rename>action_count</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>requires_escalation</name>
+        <rename>requires_escalation</rename>
+        <type>Boolean</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>600</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 5: Build Routing Prompt</name>
+    <type>ScriptValueMod</type>
+    <description>Determine department routing based on all previous stages</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// STAGE 5: Department Routing
+// Uses: ALL previous stage outputs for intelligent routing decision
+
+var stage5_prompt = "Route this document to the appropriate department.\n\n" +
+  "CONTEXT FROM PREVIOUS ANALYSIS:\n" +
+  "- Document Type: " + doc_type + "\n" +
+  "- Priority: " + priority + " (urgency " + urgency + "/10)\n" +
+  "- Actions Required: " + action_count + " action items\n" +
+  "- Requires Escalation: " + requires_escalation + "\n\n" +
+  "Return ONLY valid JSON:\n\n" +
+  "{" + '\"primary_dept\": \"Security, Legal, Support, Engineering, Product, Sales, Marketing\"' + ", " +
+  '\"escalate_to\": \"CEO, CTO, CFO, VP or null\"' + ", " +
+  '\"cc_depts\": [\"dept1\", \"dept2\"] or []' + ", " +
+  '\"sla_hours\": integer (response time SLA)' + "}\n\n" +
+  "Routing Rules:\n" +
+  "- security_incident → Security (2-4h SLA), escalate to CTO if CRITICAL\n" +
+  "- legal_threat → Legal (4-8h SLA), escalate to CEO if high liability\n" +
+  "- critical_ticket → Support → Account Manager (4-24h SLA based on urgency)\n" +
+  "- business_opportunity → Sales/Partnerships (24-48h SLA)\n" +
+  "- bug_report → Engineering (24-72h SLA)\n" +
+  "- feature_request → Product (1-2 week SLA)\n" +
+  "- general_inquiry → Support (1-2 day SLA)\n" +
+  "- positive_feedback → Marketing (no SLA, log for testimonials)\n\n" +
+  "Escalation Triggers:\n" +
+  "- Urgency &gt;= 9: Always escalate to executive\n" +
+  "- Legal/Security CRITICAL: Escalate to C-level\n" +
+  "- High account value (&gt;$100k): CC account manager\n\n" +
+  "DOCUMENT:\n" + raw_text;
+
+var model_name = getVariable("MODEL_NAME", "llama3.2:3b");
+
+var stage5_request = JSON.stringify({
+  "model": model_name,
+  "prompt": stage5_prompt,
+  "stream": false,
+  "format": "json",
+  "options": {
+    "temperature": 0.1,
+    "num_predict": 200
+  }
+});</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>stage5_request</name>
+        <rename>stage5_request</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>250</xloc>
+      <yloc>600</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 5: Call LLM - Route</name>
+    <type>Rest</type>
+    <description>Call Ollama API for routing decision</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>POST</method>
+    <url>${OLLAMA_URL}/api/generate</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField/>
+    <bodyField>stage5_request</bodyField>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword/>
+    <headers>
+    </headers>
+    <parameters>
+    </parameters>
+    <result>
+      <name>stage5_response</name>
+      <code>stage5_code</code>
+      <response_time>stage5_time</response_time>
+      <response_header/>
+    </result>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>600</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stage 5: Parse Routing</name>
+    <type>ScriptValueMod</type>
+    <description>Extract routing decision from LLM response</description>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Parse Stage 5 response
+var primary_dept = "Support"; // default
+var escalate_to = "";
+var cc_depts = "[]";
+var sla_hours = 48;
+
+try {
+  var response = JSON.parse(stage5_response);
+  var llmOutput = response.response;
+
+  var jsonStart = llmOutput.indexOf("{");
+  var jsonEnd = llmOutput.lastIndexOf("}") + 1;
+
+  if (jsonStart &gt;= 0 &amp;&amp; jsonEnd &gt; jsonStart) {
+    var jsonStr = llmOutput.substring(jsonStart, jsonEnd);
+    var routingResult = JSON.parse(jsonStr);
+
+    primary_dept = routingResult.primary_dept || "Support";
+    escalate_to = routingResult.escalate_to || "";
+    if (routingResult.cc_depts &amp;&amp; Array.isArray(routingResult.cc_depts)) {
+      cc_depts = JSON.stringify(routingResult.cc_depts);
+    }
+    sla_hours = routingResult.sla_hours || 48;
+  }
+} catch(e) {
+  primary_dept = "Support";
+  escalate_to = "";
+  cc_depts = "[]";
+  sla_hours = 48;
+}
+
+// Calculate total processing time
+var total_processing_time = (stage1_time || 0) + (stage2_time || 0) + (stage3_time || 0) + (stage4_time || 0) + (stage5_time || 0);
+var stages_completed = 5;</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>primary_dept</name>
+        <rename>primary_dept</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>escalate_to</name>
+        <rename>escalate_to</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>cc_depts</name>
+        <rename>cc_depts</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sla_hours</name>
+        <rename>sla_hours</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>total_processing_time</name>
+        <rename>total_processing_time</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>stages_completed</name>
+        <rename>stages_completed</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>550</xloc>
+      <yloc>600</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Processed Documents</name>
+    <type>TextFileOutput</type>
+    <description>Save fully processed documents with all enrichments</description>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}/../output/processed_documents_</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>document_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>doc_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>classification_confidence</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>urgency</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>priority</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>extracted_details</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>action_count</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>actions_json</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>requires_escalation</name>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>primary_dept</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>escalate_to</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cc_depts</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sla_hours</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>stages_completed</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>total_processing_time</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>700</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

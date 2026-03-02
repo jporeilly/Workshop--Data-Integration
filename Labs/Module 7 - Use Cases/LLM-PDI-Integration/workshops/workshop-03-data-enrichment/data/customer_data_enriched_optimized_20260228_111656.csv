@@ -1,0 +1,21 @@
+customer_id,enriched_company,enriched_website,enriched_contact,enriched_phone,enriched_address,enriched_city,enriched_state,enriched_country,industry,employee_range,parsing_error
+1004,DataFlow Systems,UNKNOWN,Mike Johnson,+1-555-1234,456 Pine St,ST,Texas,USA,Tech,11-50,N
+1003,Global Solutions,globalsolutions.io,Sarah Chen,+1-555-1234-5678,UNKNOWN,Seattle,WA,US,Tech,11-50,N
+1002,TechStart Inc,Web:,Contact:,555-9876,123 Oak Ave,Los Angeles,ST,USA,Tech,11-50,N
+1001,Acme Corp,acmecorp.com,John Smith,+1-555-1234-5678,Unknown,Unknown,CA,USA,Tech,11-50,N
+1006,AI Innovations,UNKNOWN,Emily White,Emily White,555-5678,Austin,Austin,TX,Tech,11-50,N
+1007,Smart Analytics,smartanalytics.io,Robert Lee,+1-555-9999,321 Elm St,Boston,MA,USA,Tech,11-50,N
+1008,NextGen Tech,https://nextgentech.com,Lisa Kumar,Lisa Kumar,"123 Main St, San Francisco, CA 94105",San Francisco,CA,California,Tech,11-50,N
+1005,CloudFirst,cloudfirst.com,Unknown,+1-555-1234-5678,789 Main St,San Francisco,CA,USA,Tech,11-50,N
+1011,Digital Dynamics,UNKNOWN,Web,James Wilson,+1-555-2222,UNKNOWN,New York,NY,UNKNOWN,UNKNOWN,N
+1010,Insight Partners,insightpartners.com,?,+1-555-1234-5678,987 Cedar Ln,Chicago,IL,?,Tech,11-50,N
+1012,Vision Systems,visionsys.com,Maria Garcia,+1-555-1234-5678,147 Birch St,ST,CA,USA,Tech,11-50,N
+1015,Innovate Labs,innovatelabs.com,Chris Taylor,+1-555-4444,UNKNOWN,Portland,OR,US,Tech,11-50,N
+1009,Quantum Data,Web:,David Park,555-1111,654 Maple Ave,ST,WA,USA,Unknown,1-10,N
+1016,Bright Data,UNKNOWN,Susan Martinez,555-6666,369 Ash Ct,ST,Texas,USA,Tech,11-50,N
+1014,Apex Solutions,Web:,Rachel Kim,Rachel Kim,Addr:,258 Spruce Dr,Denver,CO,Services,11-50,N
+1020,Vertex Solutions,UNKNOWN,Michael Robinson,555-8888,UNKNOWN,UNKNOWN,California,USA,Tech,11-50,N
+1019,Prime Systems,primesys.com,Jennifer Davis,+1-555-1234-5678,963 Elm Way,Atlanta,GA,UNKNOWN,Tech,11-50,N
+1013,FutureWave,futurewave.io,Tom Anderson,555-3333,?,Miami,FL,UNKNOWN,Tech,11-50,N
+1018,Summit Analytics,UNKNOWN,Kevin Brown,Kevin Brown,+1-555-7777,852 Pine Rd,WA,WA,Tech,11-50,N
+1017,Precision Tech,precisiontech.io,?,+1-555-123-4567,741 Oak Blvd,Philadelphia,PA,?,Tech,11-50,N
