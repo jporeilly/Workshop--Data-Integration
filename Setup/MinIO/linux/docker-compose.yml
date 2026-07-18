@@ -1,7 +1,7 @@
 services:
   minio:
     image: minio/minio:latest
-    container_name: minio
+    container_name: az-water-minio
     restart: always
     ports:
       - "9000:9000"
